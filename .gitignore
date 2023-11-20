@@ -1,0 +1,15 @@
+.vscode/
+.idea/
+
+*.tmp/
+*.env/
+*.class/
+*.jar/
+
+node_modules/
+
+target/
+out/
+release/
+build/
+
