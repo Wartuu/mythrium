@@ -28,6 +28,7 @@ Mythrium is powered by a streamlined tech stack for efficient development:
 ### Frontend
 
 - **React:** Dynamic UI library.
+- **Vite:** dev env, server
 - **Sass:** Styling preprocessor.
 
 ### Integration
