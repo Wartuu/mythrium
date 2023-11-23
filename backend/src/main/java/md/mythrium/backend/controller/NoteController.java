@@ -2,16 +2,14 @@ package md.mythrium.backend.controller;
 
 
 import md.mythrium.backend.json.ApiError;
-import md.mythrium.backend.model.Note;
-import md.mythrium.backend.repository.NoteRepository;
+import md.mythrium.backend.entity.Note;
 import md.mythrium.backend.service.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController()
-@RequestMapping("/api/v1/note/")
+@RequestMapping("/api/v1/")
 public class NoteController {
 
 
@@ -19,18 +17,19 @@ public class NoteController {
     private NoteService noteService;
 
 
-    @GetMapping("/{noteUrl}")
-    public Object getNote(@PathVariable String noteUrl) {
-        if(noteUrl == null || noteUrl.equals("*"))
+    @GetMapping("/note")
+    public Object getNote(@RequestParam(value = "uuid", required = false) String uuid) {
+
+
+        if(uuid == null || uuid.equals("*"))
             return noteService.getAllNotes();
 
-        Note note = noteService.getNoteByUrl(noteUrl);
+        Note note = noteService.getNoteByUrl(uuid);
 
-        if(note != null)
-            return note;
+        if(note == null)
+            return new Note();
 
-        return new ApiError(404, "url does not exist");
-
+        return note;
     }
 
 }

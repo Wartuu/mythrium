@@ -1,12 +1,11 @@
 package md.mythrium.backend.service;
 
 
-import md.mythrium.backend.model.Note;
+import md.mythrium.backend.entity.Note;
 import md.mythrium.backend.repository.NoteRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class NoteService {

@@ -1,12 +1,7 @@
-package md.mythrium.backend.model;
+package md.mythrium.backend.entity;
 
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
-import org.hibernate.id.UUIDGenerator;
-
-import java.util.UUID;
 
 @Entity
 @Table(name = "notes")

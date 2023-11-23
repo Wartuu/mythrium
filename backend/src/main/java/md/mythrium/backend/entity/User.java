@@ -1,4 +1,4 @@
-package md.mythrium.backend.model;
+package md.mythrium.backend.entity;
 
 
 import jakarta.persistence.*;
