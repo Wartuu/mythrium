@@ -27,7 +27,7 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: Change directory to ./backend
-      run: cd ./backend
+    - name: Change directory to backend
+      run: cd mythrium/backend
     - name: Build with Maven
       run: mvn -B package --file pom.xml
