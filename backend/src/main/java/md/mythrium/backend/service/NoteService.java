@@ -16,11 +16,4 @@ public class NoteService {
         this.repository = repository;
     }
 
-    public List<Note> getAllNotes() {
-        return repository.findAll();
-    }
-
-    public Note getNoteByUrl(String url) {
-        return repository.findByUrl(url);
-    }
 }
