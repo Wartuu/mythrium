@@ -20,7 +20,6 @@ To get started with Mythrium, follow these steps:
 1. [Download the latest release](#) or clone the repository.
 2. launch jar or Build project with maven with built bundles from frontend
 3. `java -jar mythrium-version.jar`
-3. 
 
 ## Issues and Bugs
 
@@ -28,7 +27,7 @@ If you encounter any issues or find a bug, please [open an issue](https://github
 
 ## Acknowledgments
 
-Feel free to explore the [Tech Stack](#informations) powering Mythrium and check out the [ToDo List](#informations) for upcoming features and improvements.
+Feel free to explore the [Tech Stack](TECHSTACK.MD) powering Mythrium and check out the [ToDo List](TODO.MD) for upcoming features and improvements.
 
 
 ## License
