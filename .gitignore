@@ -1,6 +1,7 @@
 .vscode/
 .idea/
 
+
 *.tmp/
 *.env/
 *.class/
@@ -12,4 +13,6 @@ target/
 out/
 release/
 build/
+dist/
+
 

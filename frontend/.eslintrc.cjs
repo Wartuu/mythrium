@@ -16,5 +16,6 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
+    indent: ['warn', 4], // Set the tab size to 4 spaces
   },
-}
+};
