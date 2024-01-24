@@ -1,0 +1,50 @@
+#page {
+    font-size: 100px;
+
+    width: 100vw;
+    height: 100vh;
+
+
+}
+
+#motto {
+    font-size: 35px;
+    font-display: bold;
+
+    color: #8c8c8c;
+
+
+}
+
+#log-in {
+    position: fixed;
+    right: 0px;
+    top: 0px;
+    margin: 25px;
+}
+
+#cards {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    background-color: #624e6e81;
+    transition-duration: 0.5s;
+    border-radius: 10px;
+
+    margin: 10px;
+    width: 500px;
+    height: 500px;
+
+    box-shadow: 2px 2px 5px #121212;
+    backdrop-filter: blur(5px);
+    border: 1px solid #624e6e90;    
+}
+
+.card:hover {
+    box-shadow: 4px 4px 10px #121212;
+    transform: translate(0, -5px);
+}

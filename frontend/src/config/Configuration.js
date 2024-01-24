@@ -65,6 +65,7 @@ class StorageManager {
 
 }
 
+
 const storageManager = new StorageManager();
 
 Object.freeze(storageManager);

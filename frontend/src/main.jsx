@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import EditPage from './routes/edit'
 import HomeRoute from './routes/home'
+import "./styles/global.scss"
 
 
 // initialize website
@@ -13,15 +14,19 @@ const router = createBrowserRouter([
     {
         'path': '/',
         element: (
-            <HomeRoute/>
+            <>
+                <HomeRoute/>
+            </>
         )
     },
     {
         'path': '/note/edit',
         element: (
-            <EditPage/>
+            <>
+                <EditPage/>
+            </>
         )
-    }
+    }, 
 ])  
 
 

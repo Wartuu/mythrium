@@ -1,0 +1,29 @@
+
+$green: #326323;
+$red: #ee6723;
+$black: #303030;
+
+#navbar {
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    width: 100%;
+    height: 75px;
+
+    background-color: $green;
+
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+
+}
+
+#navbar-button {
+    width: 150px;
+    height: 100%;
+
+
+
+    margin-left: 10px;
+}

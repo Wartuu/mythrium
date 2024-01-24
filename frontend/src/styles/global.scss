@@ -1,0 +1,34 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #202020;
+    color: snow;
+}
+
+.center-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-action {
+    height: 35px;
+    width: 125px;
+
+    border: none;
+    color: white;
+    text-align: center;
+
+    background-color: #007acc;
+    border: 1px ;
+
+    border-radius: 10px;
+
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+
+.button-action:hover {
+    box-shadow: 4px 4px 10px #121212;
+    transform: translate(0, -2px);
+}
