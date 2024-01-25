@@ -1,8 +1,45 @@
+// colors
+$background: #202020;
+$shadow: #121212;
+$blue: #007acc;
+$light-purple: #6a5acd;
+$purple: #624e6e;
+$gray: #abadab;
+$lime: #82d782;
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('static/JetBrainsMono-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('static/JetBrainsMono-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+}
+
+* {
+    font-family: 'JetBrains Mono', monospace;
+}
+
 body {
     margin: 0;
     padding: 0;
-    background-color: #202020;
-    color: snow;
+    background-color: $background;
+    color: white;
+}
+
+#page {
+    font-size: 100px;
+    font-weight: bold;
+    width: 100vw;
+    height: 100vh;
+    
+    display: flex;
+    flex-direction: column;
 }
 
 .center-flex {
@@ -11,7 +48,23 @@ body {
     justify-content: center;
 }
 
+.end-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.href {
+    text-decoration: none;
+    font-weight: bold;
+    color: $lime;
+}
+
+
 .button-action {
+
+    flex: 1;
+
     height: 35px;
     width: 125px;
 
@@ -19,9 +72,40 @@ body {
     color: white;
     text-align: center;
 
-    background-color: #007acc;
-    border: 1px ;
+    background-color: desaturate($color: $blue, $amount: 25);
+    border: 1px;
+    border-radius: 10px;
 
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+
+.button-action-size {
+    position: sticky;
+    right: 0px;
+    top: 0px;
+    margin: 25px;
+}
+
+.button-link {
+    text-decoration: none;
+    width: 125px;
+    height: 35px;
+    display: flex;
+    position: fixed;
+}
+
+.button-comment {
+    height: 35px;
+    width: 125px;
+
+    border: none;
+    color: $shadow;
+    text-align: center;
+
+    background-color: $gray;
+
+    border: 1px;
     border-radius: 10px;
 
     transition-duration: 0.5s;
@@ -29,6 +113,14 @@ body {
 }
 
 .button-action:hover {
-    box-shadow: 4px 4px 10px #121212;
+    background-color: $blue;
+    box-shadow: 1px 1px 10px $shadow;
+}
+
+
+.button-comment:hover {
+    box-shadow: 4px 4px 10px $shadow;
     transform: translate(0, -2px);
+
+    background-color: $lime;
 }

@@ -1,6 +1,6 @@
 import React from "react";
 
-import NoteEditor from "../components/editor";
+const NoteEditor = () => import("../components/editor");
 
 
 class EditPage extends React.Component {

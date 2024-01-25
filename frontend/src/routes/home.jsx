@@ -5,13 +5,17 @@ import { Link } from "react-router-dom";
 
 
 
-class HomeRoute extends React.Component {
+class HomePage extends React.Component {
 
     constructor(props) {
         super(props);
 
+        this.variables = {
+            MOTTO: "Forever free and open-source"
+        },
+
         this.state = {
-            motto: "M"
+            motto: this.variables.MOTTO[0]
         }
 
         this.animateMotto = this.animateMotto.bind(this);
@@ -22,34 +26,39 @@ class HomeRoute extends React.Component {
     }
     
     componentWillUnmount() {
-        clearInterval(this.intervalID);
+        clearInterval(this.intervalId);
     }
 
     animateMotto() {
-        const MOTTO = "Make your myths real";
         let currentChar = 1;
+
+        if (!(this.variables.MOTTO.length > 1)) {
+            return;
+        }
 
         this.intervalId = setInterval(() => {
 
-            if (currentChar < MOTTO.length) {
+            if (currentChar < this.variables.MOTTO.length) {
                 this.setState({
-                    motto: this.state.motto + MOTTO[currentChar],
+                    motto: this.state.motto + this.variables.MOTTO[currentChar],
                 });
+
             } else {
                 clearInterval(this.intervalId);
+                return;
             }
 
-            console.log(this.state.motto);
             currentChar++;
-        }, 100);
+        }, 150);
+
     }
 
     render() {
         return(
             <>
                 <div id="page">
-                    <Link to={"/login"}>
-                        <button className="button-action" id="log-in">
+                    <Link to={"/login"} className="button-link log-in-url">
+                        <button className="button-comment" id="log-in">
                             Log in
                         </button>
                     </Link>
@@ -59,9 +68,37 @@ class HomeRoute extends React.Component {
 
 
                     <div id="cards">
-                        <div id="about" className="card"></div>
-                        <div id="join" className="card"></div>
-                        <div id="updates" className="card"></div>
+                        <div id="about" className="card">
+                            <div className="header">open-source</div>
+
+                            <div className="details">
+                                our project is actively developed at our <a href="https://github.com/wartuu/mythrium" className="href">repository</a> at github.com
+                            </div>
+
+
+                        </div>
+                        <div id="join" className="card">
+
+                            <div className="header">Join us!</div>
+                            <div className="details">
+                                Our project provides free storage for all of your notes! <br/><br/>
+                                With easy to use editor you can edit, create, upload all files
+                            </div>
+
+                            <Link to={"/register"} className="button-link" id="register">
+                                <button className="button-action filler-button">
+                                    Join now!
+                                </button>
+                            </Link>
+
+                        </div>
+                        <div id="share" className="card">
+                            <div className="header">Want to share?</div>
+                            <div className="details">
+                                You can share all of your notes and files creating a single link for everyone or just for your friends! <br/> <br/>
+                                Our application supports <br/>Real-time collaboration in editor!
+                            </div>
+                        </div>
                     </div>
 
 
@@ -73,4 +110,4 @@ class HomeRoute extends React.Component {
     }
 }
 
-export default HomeRoute;
+export default HomePage;

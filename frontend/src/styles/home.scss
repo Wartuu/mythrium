@@ -1,18 +1,39 @@
-#page {
-    font-size: 100px;
+// colors
 
-    width: 100vw;
-    height: 100vh;
-
-
-}
+$dark-shadow: #000000;
+$background: #202020;
+$shadow: #121212;
+$blue: #0a72a5;
+$purple: #624e6e;
+$gray: #abadab;
 
 #motto {
     font-size: 35px;
     font-display: bold;
 
-    color: #8c8c8c;
+    color: $gray;
+    text-shadow: 2px 2px 5px $dark-shadow;
+}
 
+.header {
+    font-size: 50px;
+    text-shadow: 1px 1px 5px $shadow;
+
+    text-align: center;
+    align-self: center;
+
+    margin: 25px;
+}
+
+.filler-button {
+    width: 100%;
+}
+
+
+.details {
+    margin: 10px;
+    font-size: 20px;
+    text-align: center;
 
 }
 
@@ -23,6 +44,18 @@
     margin: 25px;
 }
 
+.log-in-url {
+    right: 0px;
+    top: 0px;
+    margin: 25px;
+}
+
+#register {
+    margin: 10%;
+    align-self: center;
+    bottom: 0%;
+}
+
 #cards {
     height: 80vh;
     display: flex;
@@ -31,7 +64,7 @@
 }
 
 .card {
-    background-color: #624e6e81;
+    background-color: $purple;
     transition-duration: 0.5s;
     border-radius: 10px;
 
@@ -39,12 +72,19 @@
     width: 500px;
     height: 500px;
 
-    box-shadow: 2px 2px 5px #121212;
+    color: white;
+
+    box-shadow: 2px 2px 5px $shadow;
     backdrop-filter: blur(5px);
-    border: 1px solid #624e6e90;    
+    border: 1px solid rgba($color: $purple, $alpha: 0.9);    
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
 }
 
 .card:hover {
-    box-shadow: 4px 4px 10px #121212;
-    transform: translate(0, -5px);
+    box-shadow: 4px 4px 10px $shadow;
+    transform: translate(0, -2px);
 }
