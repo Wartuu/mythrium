@@ -31,7 +31,7 @@ jobs:
         cache-dependency-path: '**/package-lock.json'
 
     - name: Install Dependencies
-      run: npm --prefix frontend ci ./frontend
+      run: npm --prefix frontend ci ./frontend --fetch-timeout=60000
       
 
     - name: Build
