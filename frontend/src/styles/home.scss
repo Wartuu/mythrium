@@ -1,11 +1,13 @@
-// colors
-
-$dark-shadow: #000000;
 $background: #202020;
+$dark-background: #101010;
+$dark-shadow: #000000;
 $shadow: #121212;
-$blue: #0a72a5;
+$light-shadow: #242424;
+$blue: #007acc;
+$light-purple: #6a5acd;
 $purple: #624e6e;
 $gray: #abadab;
+$lime: #82d782;
 
 #motto {
     font-size: 35px;
@@ -17,12 +19,17 @@ $gray: #abadab;
 
 .header {
     font-size: 50px;
-    text-shadow: 1px 1px 5px $shadow;
+    text-shadow: 2px 2px 5px $light-purple;
 
     text-align: center;
     align-self: center;
 
     margin: 25px;
+}
+
+.home-bg {
+    background: rgb(32,32,32);
+    background: linear-gradient(180deg, rgba(32,32,32,1) 60%, rgba(106,90,205,1) 130%);
 }
 
 .filler-button {
@@ -56,6 +63,15 @@ $gray: #abadab;
     bottom: 0%;
 }
 
+.register {
+    background-color: darken($color: #FFFFFF, $amount: 25);
+    color: $dark-shadow;
+}
+
+.register:hover {
+    background-color: darken($color: #FFFFFF, $amount: 15);
+}
+
 #cards {
     height: 80vh;
     display: flex;
@@ -64,7 +80,7 @@ $gray: #abadab;
 }
 
 .card {
-    background-color: $purple;
+    background-color: $shadow;
     transition-duration: 0.5s;
     border-radius: 10px;
 
@@ -74,7 +90,7 @@ $gray: #abadab;
 
     color: white;
 
-    box-shadow: 2px 2px 5px $shadow;
+    box-shadow: 2px 2px 5px $light-shadow;
     backdrop-filter: blur(5px);
     border: 1px solid rgba($color: $purple, $alpha: 0.9);    
 

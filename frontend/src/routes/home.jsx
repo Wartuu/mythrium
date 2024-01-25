@@ -56,7 +56,7 @@ class HomePage extends React.Component {
     render() {
         return(
             <>
-                <div id="page">
+                <div id="page" className="home-bg">
                     <Link to={"/login"} className="button-link log-in-url">
                         <button className="button-comment" id="log-in">
                             Log in
@@ -86,7 +86,7 @@ class HomePage extends React.Component {
                             </div>
 
                             <Link to={"/register"} className="button-link" id="register">
-                                <button className="button-action filler-button">
+                                <button className="button-action filler-button register">
                                     Join now!
                                 </button>
                             </Link>

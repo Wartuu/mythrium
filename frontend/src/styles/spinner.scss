@@ -1,0 +1,31 @@
+$background: #202020;
+$dark-background: #101010;
+$dark-shadow: #000000;
+$shadow: #121212;
+$light-shadow: #242424;
+$blue: #007acc;
+$light-purple: #6a5acd;
+$purple: #624e6e;
+$gray: #abadab;
+$lime: #82d782;
+
+
+
+#spinner {
+    width: 2vw;
+    height: 2vw;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid $light-purple;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+#spinner-wrapper {
+    box-shadow: 4px 4px 8px $shadow;
+    border-radius: 50%;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg);}
+    100% { transform: rotate(360deg);}
+}
