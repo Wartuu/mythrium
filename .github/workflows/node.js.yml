@@ -18,24 +18,16 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    # Install and setup Node.js
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
 
-    # Install dependencies
     - name: Install Dependencies
       run: npm ci
+      working-directory: ./frontend
 
-    # Build Vite in the ./frontend directory
     - name: Build Vite
       run: npm run build
       working-directory: ./frontend
-
-    # Run the build step for the main project, if applicable
-    - name: Build Main Project
-      run: npm run build
-      working-directory: ./frontend
-
