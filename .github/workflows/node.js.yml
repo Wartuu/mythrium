@@ -31,11 +31,11 @@ jobs:
 
     # Build Vite in the ./frontend directory
     - name: Build Vite
-      run: |
-        cd frontend
-        npm ci
-        npm run build
+      run: npm run build
+      working-directory: ./frontend
 
     # Run the build step for the main project, if applicable
     - name: Build Main Project
       run: npm run build
+      working-directory: ./frontend
+
