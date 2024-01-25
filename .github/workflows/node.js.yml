@@ -31,11 +31,9 @@ jobs:
         cache-dependency-path: '**/package-lock.json'
 
     - name: Install Dependencies
-      run: npm ci
-      working-directory: /home/runner/work/mythrium/mythrium
+      run: npm --prefix frontend ci ./frontend
       
 
     - name: Build
-      run: npm run build
-      working-directory: /home/runner/work/mythrium/mythrium/frontend
+      run: npm run --prefix frontend build
       
