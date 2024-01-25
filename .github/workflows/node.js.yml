@@ -17,15 +17,15 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+    
+    - name: go to frontend
+      run: cd ./frontend
 
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-
-    - name: go to frontend
-      run: cd ./frontend
 
     - name: Install Dependencies
       run: npm ci
