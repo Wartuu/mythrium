@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { API, sendRequest } from "../config/api";
-import Error404 from "../routes/error404";
+import PropTypes from "prop-types";
 
 import "../styles/note.scss";
 import Spinner from "./spinner";
@@ -73,5 +73,9 @@ const NoteViewer = ({ uuid }) => {
         </>
     );
 };
+
+NoteViewer.propTypes = {
+    uuid: PropTypes.string
+}
 
 export default NoteViewer;

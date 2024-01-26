@@ -1,17 +1,22 @@
 import React, { Suspense } from "react";
 import { useParams } from "react-router-dom";
-import NoteViewer from "../components/noteViewer";
+import Spinner from "../components/spinner";
 
 
 
 const Note = () => {
     let { uuid } = useParams();
 
+    const NoteViewer = React.lazy(()=>import("../components/noteViewer"));
 
     return (
         <div id="page" className="center-flex">
             <div className="large-card no-hover">
-                <NoteViewer uuid={uuid}/>
+                <div>
+                    <Suspense fallback={<Spinner/>}>
+                        <NoteViewer uuid={uuid}/>
+                    </Suspense>
+                </div>
             </div>
         </div>
 
