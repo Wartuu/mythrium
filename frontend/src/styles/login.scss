@@ -1,0 +1,45 @@
+$background: #202020;
+$dark-background: #101010;
+$dark-shadow: #000000;
+$shadow: #121212;
+$light-shadow: #242424;
+$blue: #007acc;
+$light-purple: #6a5acd;
+$purple: #624e6e;
+$gray: #abadab;
+$lime: #82d782;
+$red: #ff6666;
+
+.credentials {
+    margin: 10px;
+    align-self: center;
+}
+
+.credentials:last-of-type {
+    margin: 50px;
+}
+
+.login-spinner {
+
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-message {
+    width: 100%;
+    text-align: center;
+
+    margin-top: 5%;
+}
+
+.error-color {
+    color: $red;
+}
+
+.success-color {
+    color: $lime;
+}
+

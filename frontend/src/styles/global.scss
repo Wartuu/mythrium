@@ -1,4 +1,6 @@
 $background: #202020;
+$dark-background: #101010;
+$dark-shadow: #000000;
 $shadow: #121212;
 $light-shadow: #242424;
 $blue: #007acc;
@@ -6,6 +8,7 @@ $light-purple: #6a5acd;
 $purple: #624e6e;
 $gray: #abadab;
 $lime: #82d782;
+$red: #ff6666;
 
 @font-face {
     font-family: 'JetBrains Mono';
@@ -60,11 +63,25 @@ body {
     color: $lime;
 }
 
+.header {
+    font-size: 50px;
+    text-shadow: 2px 2px 5px darken($color: #FFFFFF, $amount: 50);
+
+    text-align: center;
+    align-self: center;
+
+    margin: 25px;
+}
+
+.details {
+    margin: 10px;
+    font-size: 20px;
+    text-align: center;
+
+}
+
 
 .button-action {
-
-    flex: 1;
-
     height: 35px;
     width: 125px;
 
@@ -123,4 +140,45 @@ body {
     transform: translate(0, -2px);
 
     background-color: $lime;
+}
+
+
+input[type="text"], input[type="password"] {
+    width: 50%;
+    height: 25px;
+
+    border: none;
+    outline: none;
+
+    background-color: $background;
+    color: white;
+}
+
+
+#cards {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card {
+    background-color: $shadow;
+    transition-duration: 0.5s;
+    border-radius: 10px;
+
+    margin: 10px;
+    width: 500px;
+    height: 500px;
+
+    color: white;
+
+    box-shadow: 2px 2px 5px $light-shadow;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba($color: $purple, $alpha: 0.9);    
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
 }

@@ -1,18 +1,10 @@
 import React from "react";
 
 
-class RegisterPage extends React.Component {
-    render() {
-
-
-
-
-        return(
-            <>
-                Todo:
-            </>
-        )
-    }
+const RegisterPage = () => {
+    return(
+        <>ToDo:</>
+    )
 }
 
 export default RegisterPage;

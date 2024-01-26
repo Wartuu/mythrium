@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "../styles/404.scss"
 
 
-function Error404() {
+const Error404 = () => {
     return (
         <>
             <div className="center-flex" id="page">
