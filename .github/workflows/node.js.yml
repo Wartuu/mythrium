@@ -11,30 +11,26 @@ jobs:
 
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     strategy:
       matrix:
-        node-version: [14.x, 16.x, 18.x]
+        node-version: [21.x]
 
     steps:
     - uses: actions/checkout@v3
 
-    - name: change directory
-      run: cd /home/runner/work/mythrium/mythrium/frontend
-
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: 21
         cache: 'npm'
+        cache-dependency-path: '**/package-lock.json'
 
     - name: Install Dependencies
-      run: npm ci
-      working-directory: /home/runner/work/mythrium/mythrium
+      run: npm --prefix frontend ci ./frontend --fetch-timeout=60000
       
 
     - name: Build
-      run: npm run build
-      working-directory: /home/runner/work/mythrium/mythrium/frontend
+      run: npm run --prefix frontend build
       
