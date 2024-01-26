@@ -25,8 +25,13 @@ $red: #ff6666;
 }
 
 * {
+    scrollbar-width: thin;
+    scrollbar-color: $purple $background;
+ 
     font-family: 'JetBrains Mono', monospace;
 }
+
+
 
 body {
     margin: 0;
@@ -175,17 +180,15 @@ input[type="text"], input[type="password"] {
     justify-content: center;
 }
 
-.card {
+.card, .large-card {
     background-color: $shadow;
     transition-duration: 0.5s;
     border-radius: 10px;
 
     margin: 10px;
-    width: 500px;
-    height: 500px;
-
     color: white;
 
+    // Common styles for both card and large-card
     box-shadow: 2px 2px 5px $light-shadow;
     backdrop-filter: blur(5px);
     border: 1px solid rgba($color: $purple, $alpha: 0.9);    
@@ -199,4 +202,34 @@ input[type="text"], input[type="password"] {
         box-shadow: 4px 4px 10px $shadow;
         transform: translate(0, -2px);
     }
+}
+
+.card {
+    width: 500px;
+    height: 500px;
+}
+
+.large-card {
+    width: 800px;
+    height: 800px;
+}
+
+.card-center {
+    position: fixed;
+    justify-content: center;
+    align-self: center;
+    
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+.error-color {
+    color: $red;
+}
+
+.success-color {
+    color: $lime;
 }

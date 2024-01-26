@@ -1,0 +1,23 @@
+$background: #202020;
+$dark-background: #101010;
+$dark-shadow: #000000;
+$shadow: #121212;
+$light-shadow: #242424;
+$blue: #007acc;
+$light-purple: #6a5acd;
+$purple: #624e6e;
+$gray: #abadab;
+$lime: #82d782;
+$red: #ff6666;
+
+
+$blur-border-r: 15% 75px 35vh 13vw/ 3em 5rem 29vmin 12.5vmax;
+
+#note-viewer {
+    width: 90%;
+    height: 90%;
+    
+    overflow-y: scroll;
+
+    font-size: 25px ;
+}

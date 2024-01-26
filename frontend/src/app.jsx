@@ -8,7 +8,7 @@ const HomePage      =   React.lazy(() => import('./routes/home'))
 const Error404      =   React.lazy(() => import('./routes/error404'))
 const LoginPage     =   React.lazy(() => import('./routes/login'))
 const RegisterPage  =   React.lazy(() => import('./routes/register'))
-const NoteLoader    =   React.lazy(() => import('./routes/note'))
+const Note          =   React.lazy(() => import('./routes/note'))
 
 const router = createBrowserRouter([
     {
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
     },
     {
         'path': '/note/:uuid',
-        element: <NoteLoader/>
+        element: <Note/>
     },
     {
         'path': '*',
