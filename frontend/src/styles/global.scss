@@ -73,6 +73,19 @@ body {
     margin: 25px;
 }
 
+.comment-text {
+    color: $gray;
+    font-size: 10px;
+
+    text-align: center;
+    align-self: center;
+
+    margin: 25px;
+    position: fixed;
+
+    bottom: 10px;
+}
+
 .details {
     margin: 10px;
     font-size: 20px;
@@ -181,4 +194,9 @@ input[type="text"], input[type="password"] {
     flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
+
+    &:not(.no-hover):hover {
+        box-shadow: 4px 4px 10px $shadow;
+        transform: translate(0, -2px);
+    }
 }
