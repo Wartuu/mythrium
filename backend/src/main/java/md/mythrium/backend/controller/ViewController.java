@@ -10,8 +10,7 @@ public class ViewController {
 
 
     @GetMapping(value = {"/", ""})
-    public String application(@PathVariable(required = false) String path) {
-        System.out.println(path);
+    public String application() {
         return "/index.html";
     }
 

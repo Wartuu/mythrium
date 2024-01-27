@@ -22,7 +22,7 @@ public class RedirectConfig implements Filter {
             return;
         }
 
-        if(uri.toLowerCase(Locale.ROOT).startsWith("/static")) {
+        if(uri.toLowerCase(Locale.ROOT).startsWith("/assets")) {
             filterChain.doFilter(servletRequest, servletResponse);
             return;
         }

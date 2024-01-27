@@ -8,10 +8,10 @@
 *.jar/
 
 node_modules/
-package-lock.json
 
 target/
 out/
+backend/src/main/resources/static/*
 release/
 build/
 dist/
