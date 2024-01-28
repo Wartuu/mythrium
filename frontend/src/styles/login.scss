@@ -13,6 +13,7 @@ $red: #ff6666;
 .credentials {
     margin: 10px;
     align-self: center;
+    display: inline-block;
 }
 
 .credentials:last-of-type {
@@ -32,6 +33,22 @@ $red: #ff6666;
     width: 100%;
     text-align: center;
 
+    position: fixed;
+    bottom: 15%;
+
     margin-top: 5%;
+}
+
+.login-switch {
+    color: $gray;
+    font-size: 10px;
+
+    text-align: center;
+    align-self: center;
+
+    margin: 25px;
+    position: fixed;
+
+    bottom: 10px;
 }
 

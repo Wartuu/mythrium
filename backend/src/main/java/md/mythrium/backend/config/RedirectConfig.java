@@ -15,14 +15,9 @@ public class RedirectConfig implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
-        String uri = request.getRequestURI();
+        String uri = request.getRequestURI().toLowerCase(Locale.ROOT);
 
-        if(uri.toLowerCase(Locale.ROOT).startsWith("/api")) {
-            filterChain.doFilter(servletRequest, servletResponse);
-            return;
-        }
-
-        if(uri.toLowerCase(Locale.ROOT).startsWith("/assets")) {
+        if(uri.startsWith("/assets") || uri.startsWith("/static") || uri.startsWith("/api")) {
             filterChain.doFilter(servletRequest, servletResponse);
             return;
         }

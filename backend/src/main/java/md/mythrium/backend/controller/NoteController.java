@@ -1,16 +1,18 @@
 package md.mythrium.backend.controller;
 
 
-import md.mythrium.backend.json.ApiError;
-import md.mythrium.backend.entity.Note;
+import md.mythrium.backend.json.input.NoteInput;
+import md.mythrium.backend.json.output.ApiOutput;
+import md.mythrium.backend.json.output.NoteOutput;
 import md.mythrium.backend.service.AccountService;
 import md.mythrium.backend.service.NoteService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.ObjectUtils;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController()
-@RequestMapping("/api/v1/")
+@RequestMapping("/api/v1/note")
 public class NoteController {
 
 
@@ -21,12 +23,19 @@ public class NoteController {
     private AccountService accountService;
 
 
-    @GetMapping("/note")
-    public Object getNote(@RequestParam(value = "uuid", required = false) String uuid) {
-        accountService.getAllRoles();
-        accountService.getAllUsers();
+    @GetMapping("/{uuid}")
+    public ResponseEntity<ApiOutput> getNote(@PathVariable(value = "uuid") String uuid) {
+        if(uuid == null)
+            return new ResponseEntity<>(new ApiOutput(false, "no uuid provided"), HttpStatus.OK);
 
-        return "";
+        NoteOutput output = new NoteOutput(true, "success", uuid);
+
+        return new ResponseEntity<>(output, HttpStatus.OK);
+    }
+
+    @PostMapping("/")
+    public ResponseEntity<ApiOutput> uploadNote(@RequestBody NoteInput input) {
+
     }
 
 }

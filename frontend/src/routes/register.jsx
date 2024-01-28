@@ -36,14 +36,15 @@ async function attemptRegister(email, password) {
 
 const RegisterPage = () => {
 
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+
     const [loading, setLoading] = useState("hidden");
 
     const [showInfo, setShowInfo] = useState("hidden");
     const [registerInfo, setRegisterInfo] = useState("");
     const [infoType, setInfoType] = useState("success");
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
 
 
     
@@ -55,6 +56,7 @@ const RegisterPage = () => {
 
                     <input type="text" name="username" value={email} onChange={e => setEmail(e.target.value)} className="credentials" placeholder="E-mail"/>
                     <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} className="credentials" placeholder="Password"/>
+                    
                     <input type="button" value={"register"} className="button-action credentials" onClick={async () => {
                         setShowInfo("hidden");
                         setLoading("visible");
@@ -77,7 +79,7 @@ const RegisterPage = () => {
                         {registerInfo}
                     </div>
 
-                    <Link to={"/login"} className="comment-text">
+                    <Link to={"/login"} className="login-switch">
                         Login instead
                     </Link>
                 </div>

@@ -15,12 +15,8 @@ const NoteViewer = ({ uuid }) => {
         const signal = controller.signal;
     
         const loadNote = async () => {
-            try {
-                let input = {
-                    uuid: uuid
-                };
-    
-                let response = await sendRequest(API.NOTE_URL, input, { signal });
+            try {    
+                let response = await sendRequest(API.NOTE_URL + '/' + uuid, undefined, 'GET', { signal });
     
                 if (!response.ok) {
                     setError("Failed to send request");

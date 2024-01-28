@@ -1,3 +1,4 @@
+import storageManager from "./configuration";
 
 const API = {
     LOGIN_URL: "/api/v1/account/login",
@@ -6,19 +7,46 @@ const API = {
     NOTE_URL: "/api/v1/note"
 }
 
-const sendRequest = async (apiUrl, data, options = {}) => {
-    const response = await fetch(apiUrl, {
-        method: "POST",
+const sendRequest = async (apiUrl, data, method='POST', options = {}) => {
 
-        headers: {
-            'Content-Type': 'application/json'
-        },
+    let jwt = '';
 
-        body: JSON.stringify(data),
-        ...options
-    });
+    let sessionJwt = storageManager.getValue("token", true);
+    let permamentJwt = storageManager.getValue("token", false);
 
-    return response;
+    if(sessionJwt.value !== undefined) jwt = 'Bearer ' + sessionJwt.value;
+    else if(permamentJwt.value !== undefined) jwt = 'Bearer ' + permamentJwt.value;
+
+    console.log(jwt);
+
+
+    if(data != null) {
+        const response = await fetch(apiUrl, {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': jwt
+            },
+    
+            body: JSON.stringify(data),
+            ...options
+        });
+    
+        return response;
+    } else {
+        const response = await fetch(apiUrl, {
+            method: method,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': jwt
+            },
+    
+            ...options
+        });
+        
+    
+        return response;
+    }
 }
 
 

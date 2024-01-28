@@ -78,24 +78,15 @@ body {
     margin: 25px;
 }
 
-.comment-text {
-    color: $gray;
-    font-size: 10px;
-
-    text-align: center;
-    align-self: center;
-
-    margin: 25px;
-    position: fixed;
-
-    bottom: 10px;
-}
-
 .details {
     margin: 10px;
     font-size: 20px;
     text-align: center;
+}
 
+.comment {
+    font-size: 15px;
+    color: $gray;
 }
 
 
@@ -171,6 +162,21 @@ input[type="text"], input[type="password"] {
     background-color: $background;
     color: white;
 }
+
+input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+
+    color: $gray;
+    background: $gray;
+
+    &:checked {
+        accent-color: $light-purple;
+    }
+
+}
+
+
 
 
 #cards {

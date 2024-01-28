@@ -6,7 +6,7 @@ import storageManager from "../config/configuration";
 import { Link } from "react-router-dom";
 
 
-async function attemptLogin(username, password) {
+async function attemptLogin(username, password, remember) {
     let output = {success: undefined, information: undefined};
 
     let input = {
@@ -31,7 +31,8 @@ async function attemptLogin(username, password) {
     output.information = data.information;
 
     if(output.success) {
-        storageManager.setValue("session", data.token);
+        storageManager.setValue("token", data.token, remember);
+        storageManager.setValue("token", undefined, !remember);
     }
 }
 
@@ -39,6 +40,7 @@ const LoginPage = () => {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [remember, setRemember] = useState(false);
 
     const [loading, setLoading] = useState("hidden");
 
@@ -55,10 +57,16 @@ const LoginPage = () => {
 
                     <input type="text" name="username" value={username} onChange={e => setUsername(e.target.value)} className="credentials" placeholder="Username"/>
                     <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} className="credentials" placeholder="Password"/>
+                    <div className="credentials">
+                        <input type="checkbox" name="remember" checked={remember} onChange={() => setRemember(!remember)}/>
+                        <span className="comment">
+                            remember me
+                        </span>
+                    </div>
                     <input type="button" value={"login"} className="button-action credentials" onClick={ async () => {
                         setShowInfo("hidden");
                         setLoading("visible");
-                        let info = await attemptLogin(username, password);
+                        let info = await attemptLogin(username, password, remember);
                         
                         setLoginInfo(info.information);
 
@@ -79,7 +87,7 @@ const LoginPage = () => {
                         {loginInfo}
                     </div>
 
-                    <Link to={"/register"} className="comment-text">
+                    <Link to={"/register"} className="login-switch">
                         Create an account
                     </Link>
 

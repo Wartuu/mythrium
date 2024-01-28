@@ -23,3 +23,16 @@ CREATE TABLE IF NOT EXISTS user_roles (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE
 );
+
+-- Create 'notes' table
+CREATE TABLE notes (
+    id BIGSERIAL PRIMARY KEY,
+    author_id BIGINT NOT NULL,
+    uuid VARCHAR(255) NOT NULL,
+    password VARCHAR(255),
+    is_private BOOLEAN NOT NULL,
+    burn_after_read BOOLEAN NOT NULL,
+    expiration_date DATE,
+    creation_date DATE NOT NULL,
+    view_count INT NOT NULL
+);
