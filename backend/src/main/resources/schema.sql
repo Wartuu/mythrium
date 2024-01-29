@@ -34,5 +34,6 @@ CREATE TABLE notes (
     burn_after_read BOOLEAN NOT NULL,
     expiration_date DATE,
     creation_date DATE NOT NULL,
-    view_count INT NOT NULL
+    view_count INT NOT NULL,
+    content TEXT NOT NULL
 );

@@ -32,7 +32,7 @@ const NoteViewer = ({ uuid }) => {
                     return;
                 }
     
-                setNoteData(data.note);
+                setNoteData(data.content);
                 setLoading("hidden");
             } catch (error) {
                 if (error.name !== 'AbortError') {

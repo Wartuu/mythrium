@@ -4,14 +4,14 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 public class NoteInput {
-    public final String data;
+    public final String content;
     public final String password;
     public final boolean isPrivate;
     public final boolean burnAfterRead;
     public final Date expirationDate;
 
-    public NoteInput(String data, String password, boolean isPrivate, boolean burnAfterRead, Date expirationDate) {
-        this.data = data;
+    public NoteInput(String content, String password, boolean isPrivate, boolean burnAfterRead, Date expirationDate) {
+        this.content = content;
         this.password = password;
         this.isPrivate = isPrivate;
         this.burnAfterRead = burnAfterRead;

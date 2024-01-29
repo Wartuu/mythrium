@@ -35,7 +35,11 @@ public class Note {
     private Date creationDate;
 
     @Column(name = "view_count", nullable = false)
-    private int view_count;
+    private int viewCount;
+
+    @Column(name = "content", nullable = false)
+    private String content;
+
 
     public Long getId() {
         return id;
@@ -97,11 +101,19 @@ public class Note {
         this.creationDate = creationDate;
     }
 
-    public int getView_count() {
-        return view_count;
+    public int getViewCount() {
+        return viewCount;
     }
 
-    public void setView_count(int view_count) {
-        this.view_count = view_count;
+    public void setViewCount(int viewCount) {
+        this.viewCount = viewCount;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }

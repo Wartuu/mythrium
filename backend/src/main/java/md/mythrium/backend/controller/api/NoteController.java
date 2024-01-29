@@ -35,33 +35,43 @@ public class NoteController {
         if(uuid == null)
             return new ResponseEntity<>(new ApiOutput(false, "no uuid provided"), HttpStatus.OK);
 
-        NoteReadOutput output = new NoteReadOutput(true, "success", uuid);
+        Note note = noteService.getNoteByUUID(uuid);
 
-        return new ResponseEntity<>(output, HttpStatus.OK);
+        noteService.updateViewCounter(uuid);
+
+        if(note == null)
+            return new ResponseEntity<>(new ApiOutput(false, "uuid does not exists"), HttpStatus.OK);
+
+
+        return new ResponseEntity<>(new NoteReadOutput(true, "success", note.getContent(), note.getViewCount()), HttpStatus.OK);
     }
 
-    @PostMapping("/")
-    public ResponseEntity<ApiOutput> uploadNote(@RequestBody NoteInput input, @RequestHeader(HttpHeaders.AUTHORIZATION) String jwt) {
-        System.out.println(jwt);
+    @PostMapping
+    public ResponseEntity<ApiOutput> uploadNote(@RequestBody NoteInput input, @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) String jwt) {
 
-        User user = accountService.getBySession(jwt);
+        if(jwt == null)
+            return new ResponseEntity<>(new ApiOutput(false, "not valid session"), HttpStatus.OK);
 
-        if(user == null) {
-            ApiOutput error = new ApiOutput(false, "not logged in");
-            return new ResponseEntity<>(error, HttpStatus.OK);
-        }
+
+//        User user = accountService.getBySession(jwt);
+//
+//        if(user == null) {
+//            ApiOutput error = new ApiOutput(false, "not logged in");
+//            return new ResponseEntity<>(error, HttpStatus.OK);
+//        }
 
         String uuid = UUID.randomUUID().toString();
 
         Note note = new Note();
-        note.setAuthor_id(user.getId());
+        note.setAuthor_id(0L);
         note.setUuid(uuid);
         note.setPassword(input.password);
         note.setPrivate(input.isPrivate);
         note.setBurnAfterRead(input.burnAfterRead);
         note.setExpirationDate(input.expirationDate);
         note.setCreationDate(Calendar.getInstance().getTime());
-        note.setView_count(0);
+        note.setContent(input.content);
+        note.setViewCount(0);
 
         noteService.addNote(note);
 
