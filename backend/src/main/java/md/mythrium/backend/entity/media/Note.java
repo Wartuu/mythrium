@@ -15,6 +15,7 @@ public class Note {
     @Column(name = "author_id", nullable = false)
     private Long author_id;
 
+
     @Column(name = "uuid", nullable = false)
     private String uuid;
 
@@ -36,4 +37,71 @@ public class Note {
     @Column(name = "view_count", nullable = false)
     private int view_count;
 
+    public Long getId() {
+        return id;
+    }
+
+    public Long getAuthor_id() {
+        return author_id;
+    }
+
+    public void setAuthor_id(Long author_id) {
+        this.author_id = author_id;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public boolean isPrivate() {
+        return isPrivate;
+    }
+
+    public void setPrivate(boolean aPrivate) {
+        isPrivate = aPrivate;
+    }
+
+    public boolean isBurnAfterRead() {
+        return isBurnAfterRead;
+    }
+
+    public void setBurnAfterRead(boolean burnAfterRead) {
+        isBurnAfterRead = burnAfterRead;
+    }
+
+    public Date getExpirationDate() {
+        return expirationDate;
+    }
+
+    public void setExpirationDate(Date expirationDate) {
+        this.expirationDate = expirationDate;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public int getView_count() {
+        return view_count;
+    }
+
+    public void setView_count(int view_count) {
+        this.view_count = view_count;
+    }
 }

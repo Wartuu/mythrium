@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @SpringBootApplication
-@AutoConfiguration
-@EntityScan("md.mythrium.backend.entity")
 public class BackendApplication {
 
 	public static void main(String[] args) {

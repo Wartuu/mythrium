@@ -28,4 +28,12 @@ public class AccountService {
     public List<Role> getAllRoles() {
         return roleRepository.findAll();
     }
+
+    public User getBySession(String jwt) {
+        return userRepository.findByToken(jwt);
+    }
+
+    public void addUser(User user) {
+        userRepository.saveAndFlush(user);
+    }
 }
