@@ -1,0 +1,18 @@
+# .dependabot/config.yml
+version: 2
+updates:
+  - package-ecosystem: "maven"
+    directory: "/backend"
+    schedule:
+      interval: "daily"
+    allow:
+      - dependency-name: "*"
+        dependency-type: "all"
+
+  - package-ecosystem: "npm"
+    directory: "/frontend"
+    schedule:
+      interval: "daily"
+    allow:
+      - dependency-name: "*"
+        dependency-type: "all"
