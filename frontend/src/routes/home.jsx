@@ -42,7 +42,7 @@ const HomePage = () => {
                     <div id="about" className="card">
                         <div className="header">open-source</div>
                         <div className="details">
-                            our project is actively developed at our <a href="https://github.com/wartuu/mythrium" className="href">repository</a> at github.com
+                            our project is actively developed at our <a href="https://github.com/wartuu/mythrium" target="_blank" rel="noopener noreferrer" className="href">repository</a> at github.com
                         </div>
                     </div>
                     <div id="join" className="card">
