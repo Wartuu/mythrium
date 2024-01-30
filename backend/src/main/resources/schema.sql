@@ -1,4 +1,4 @@
--- Create 'users' table
+-- Create 'accounts' table
 CREATE TABLE IF NOT EXISTS accounts (
     id SERIAL PRIMARY KEY,
     username VARCHAR(255) NOT NULL,
@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS roles (
     name VARCHAR(255)
 );
 
--- Create 'user_roles' table for the many-to-many relationship
+-- Create 'account_roles' table for the many-to-many relationship
 CREATE TABLE IF NOT EXISTS account_roles (
     account_id BIGINT,
     role_id BIGINT,
