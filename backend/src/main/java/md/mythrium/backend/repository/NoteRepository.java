@@ -1,11 +1,9 @@
 package md.mythrium.backend.repository;
 
-import md.mythrium.backend.entity.account.User;
 import md.mythrium.backend.entity.media.Note;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface NoteRepository extends JpaRepository<Note, Long> {

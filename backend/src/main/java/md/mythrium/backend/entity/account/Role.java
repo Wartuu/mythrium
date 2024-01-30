@@ -18,11 +18,11 @@ public class Role {
 
     @ManyToMany
     @JoinTable(
-            name = "user_roles",
+            name = "account_roles",
             joinColumns = @JoinColumn(name = "role_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
+            inverseJoinColumns = @JoinColumn(name = "account_id")
     )
-    private Set<User> users = new HashSet<>();
+    private Set<Account> accounts = new HashSet<>();
 
 
     public Long getId() {

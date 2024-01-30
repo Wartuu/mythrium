@@ -1,7 +1,6 @@
 package md.mythrium.backend.controller.api;
 
 
-import md.mythrium.backend.entity.account.User;
 import md.mythrium.backend.entity.media.Note;
 import md.mythrium.backend.json.input.NoteInput;
 import md.mythrium.backend.json.output.ApiOutput;

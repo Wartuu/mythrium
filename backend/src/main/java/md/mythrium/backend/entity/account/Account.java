@@ -8,8 +8,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "accounts")
+public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,7 +35,7 @@ public class User {
 
 
 
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany(mappedBy = "accounts")
     private Set<Role> roles = new HashSet<>();
 
 

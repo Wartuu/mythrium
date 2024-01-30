@@ -1,5 +1,5 @@
 -- Create 'users' table
-CREATE TABLE IF NOT EXISTS users (
+CREATE TABLE IF NOT EXISTS accounts (
     id SERIAL PRIMARY KEY,
     username VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
@@ -16,11 +16,11 @@ CREATE TABLE IF NOT EXISTS roles (
 );
 
 -- Create 'user_roles' table for the many-to-many relationship
-CREATE TABLE IF NOT EXISTS user_roles (
-    user_id BIGINT,
+CREATE TABLE IF NOT EXISTS account_roles (
+    account_id BIGINT,
     role_id BIGINT,
-    PRIMARY KEY (user_id, role_id),
-    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    PRIMARY KEY (account_id, role_id),
+    FOREIGN KEY (account_id) REFERENCES accounts(id) ON DELETE CASCADE,
     FOREIGN KEY (role_id) REFERENCES roles(id) ON DELETE CASCADE
 );
 

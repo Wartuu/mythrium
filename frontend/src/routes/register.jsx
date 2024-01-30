@@ -5,11 +5,12 @@ import Spinner from "../components/spinner";
 import storageManager from "../config/configuration";
 import { Link } from "react-router-dom";
 
-async function attemptRegister(email, password) {
+async function attemptRegister(email, username, password) {
     let output = {success: undefined, information: undefined};
 
     let input = {
         email: email,
+        username: username,
         password: password
     };
     
@@ -37,6 +38,7 @@ async function attemptRegister(email, password) {
 const RegisterPage = () => {
 
     const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
     const [loading, setLoading] = useState("hidden");
@@ -47,6 +49,7 @@ const RegisterPage = () => {
 
 
 
+    //TODO: add username input
     
     return(
         <>
@@ -54,13 +57,14 @@ const RegisterPage = () => {
                 <div className="card no-hover">
                     <div className="header">register</div>
 
-                    <input type="text" name="username" value={email} onChange={e => setEmail(e.target.value)} className="credentials" placeholder="E-mail"/>
+                    <input type="email" name="email" value={email} onChange={e => setEmail(e.target.value)} className="credentials" placeholder="Email"/>
+                    <input type="text" name="username" value={username} onChange={e => setUsername(e.target.value)} className="credentials" placeholder="Username"/>
                     <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} className="credentials" placeholder="Password"/>
                     
                     <input type="button" value={"register"} className="button-action credentials" onClick={async () => {
                         setShowInfo("hidden");
                         setLoading("visible");
-                        let info = await attemptRegister(email, password);
+                        let info = await attemptRegister(email, username, password);
 
                         setRegisterInfo(info.information);
 

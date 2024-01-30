@@ -1,5 +1,7 @@
 package md.mythrium.backend.json.output;
 
+import md.mythrium.backend.json.output.ApiOutput;
+
 public class NoteReadOutput extends ApiOutput {
 
     public final String content;
