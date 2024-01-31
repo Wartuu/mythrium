@@ -3,7 +3,7 @@ package md.mythrium.backend.entity.account;
 
 import jakarta.persistence.*;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,6 +16,9 @@ public class Account {
 
     @Column(name = "username", nullable = false)
     private String username;
+
+    @Column(name = "email", nullable = false)
+    private String email;
 
     // SHA-512 + SALTED password
     @Column(name = "password", nullable = false)
@@ -47,10 +50,20 @@ public class Account {
         this.id = id;
     }
 
-    public String getUsername() {return username;}
+    public String getUsername() {
+        return username;
+    }
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -91,5 +104,13 @@ public class Account {
 
     public void setSessionToken(String sessionToken) {
         this.sessionToken = sessionToken;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 }

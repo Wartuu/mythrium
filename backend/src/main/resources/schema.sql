@@ -37,3 +37,4 @@ CREATE TABLE notes (
     view_count INT NOT NULL,
     content TEXT NOT NULL
 );
+
