@@ -27,7 +27,8 @@ If you encounter any issues or find a bug, please [open an issue](https://github
 
 ## Acknowledgments
 
-Feel free to explore the [Tech Stack](TECHSTACK.MD) powering Mythrium and check out the [ToDo List](TODO.MD) for upcoming features and improvements.
+Feel free to explore the [Tech Stack](TECHSTACK.MD) powering Mythrium and check out the [ToDo List](TODO.MD) (or [github todo list](https://github.com/users/Wartuu/projects/3)) for upcoming features and improvements.
+
 
 
 ## License
