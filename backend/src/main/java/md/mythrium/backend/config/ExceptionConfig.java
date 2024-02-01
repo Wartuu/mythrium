@@ -10,6 +10,7 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
@@ -38,7 +39,7 @@ public class ExceptionConfig extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         StringBuilder information = new StringBuilder();
-        information.append('"').append(ex.getMethod()).append('"').append(" is not supported. Implementend methods are: ");
+        information.append(ex.getMethod()).append(" is not supported. Implementend methods are: ");
         ex.getSupportedHttpMethods().forEach(httpMethod -> information.append(information + " "));
 
         ApiError error = new ApiError(false, information.toString(), HttpStatus.METHOD_NOT_ALLOWED);
@@ -47,14 +48,20 @@ public class ExceptionConfig extends ResponseEntityExceptionHandler {
 
     @Override
     protected ResponseEntity<Object> handleNoHandlerFoundException(NoHandlerFoundException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-        ApiError error = new ApiError(false, "" + ex.getRequestURL() + " does not exist", HttpStatus.NOT_FOUND);
+        ApiError error = new ApiError(false, "handler for " + ex.getRequestURL() + " does not exist", HttpStatus.NOT_FOUND);
 
         return new ResponseEntity<>(error, error.status);
     }
 
     @Override
     protected ResponseEntity<Object> handleNoResourceFoundException(NoResourceFoundException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-        ApiError error = new ApiError(false, "resource at " + ex.getResourcePath() + " does not exist", HttpStatus.NOT_FOUND);
+        ApiError error;
+
+        if(ex.getResourcePath().startsWith("api/"))
+            error = new ApiError(false, "url for this API is incorrect or not found: " + ex.getResourcePath(), HttpStatus.NOT_FOUND);
+        else
+            error = new ApiError(false, "resource does not exist: " + ex.getResourcePath(), HttpStatus.NOT_FOUND);
+
         return new ResponseEntity<>(error, error.status);
     }
 
