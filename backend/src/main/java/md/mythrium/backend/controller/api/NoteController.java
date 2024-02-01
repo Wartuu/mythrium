@@ -18,7 +18,7 @@ import java.util.Calendar;
 import java.util.UUID;
 
 @RestController()
-@RequestMapping("/api/v1/note")
+@RequestMapping("/api/v1")
 public class NoteController {
 
 
@@ -29,7 +29,7 @@ public class NoteController {
     private AccountService accountService;
 
 
-    @GetMapping("/{uuid}")
+    @GetMapping("/note/{uuid}")
     public ResponseEntity<ApiOutput> getNote(@PathVariable(value = "uuid") String uuid) {
         if(uuid == null)
             return new ResponseEntity<>(new ApiOutput(false, "no uuid provided"), HttpStatus.OK);
@@ -45,7 +45,7 @@ public class NoteController {
         return new ResponseEntity<>(new NoteReadOutput(true, "success", note.getContent(), note.getViewCount()), HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping("/note")
     public ResponseEntity<ApiOutput> uploadNote(@RequestBody NoteInput input, @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) String jwt) {
 
         if(jwt == null)

@@ -1,6 +1,7 @@
 package md.mythrium.backend.controller.api;
 
 
+import md.mythrium.backend.config.ExceptionConfig;
 import md.mythrium.backend.entity.account.Account;
 import md.mythrium.backend.entity.account.Role;
 import md.mythrium.backend.json.input.RegisterInput;
@@ -17,7 +18,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/api/v1/account")
+@RequestMapping("/api/v1")
 public class AccountController {
 
 
@@ -28,7 +29,7 @@ public class AccountController {
         this.accountRepository = accountRepository;
     }
 
-    @GetMapping
+    @GetMapping("/account")
     public ResponseEntity<ApiOutput> getAccountInformation(@RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) String jwt) {
         if(jwt == null)
             return new ResponseEntity<>(new ApiOutput(false, "not valid session"), HttpStatus.OK);
@@ -38,8 +39,13 @@ public class AccountController {
         return new ResponseEntity<>(new ApiOutput(false, "TODO"), HttpStatus.OK);
     }
 
+    @GetMapping("/account/verify/{verificationId}")
+    public String verifyMail(@PathVariable String verificationId) {
+        return "ok";
+    }
 
-    @PostMapping
+
+    @PostMapping("/account")
     public ResponseEntity<ApiOutput> createNewAccount(@RequestBody RegisterInput input) {
         Account account = new Account();
 

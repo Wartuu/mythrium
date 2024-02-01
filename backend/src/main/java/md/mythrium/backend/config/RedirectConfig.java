@@ -17,7 +17,12 @@ public class RedirectConfig implements Filter {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         String uri = request.getRequestURI().toLowerCase(Locale.ROOT);
 
-        if(uri.startsWith("/assets") || uri.startsWith("/static") || uri.startsWith("/api")) {
+        if(uri.startsWith("/assets") || uri.startsWith("/static")) {
+            filterChain.doFilter(servletRequest, servletResponse);
+            return;
+        }
+
+        if(uri.startsWith("/api")) {
             filterChain.doFilter(servletRequest, servletResponse);
             return;
         }
