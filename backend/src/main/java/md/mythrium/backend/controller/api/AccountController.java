@@ -44,6 +44,8 @@ public class AccountController {
         return "ok";
     }
 
+    //TODO: /account/manage
+
 
     @PostMapping("/account")
     public ResponseEntity<ApiOutput> createNewAccount(@RequestBody RegisterInput input) {

@@ -31,7 +31,7 @@ async function attemptRegister(email, username, password) {
     output.information = data.information;
 
     if(output.success) {
-        storageManager.setValue("session", data.token);
+        storageManager.setValue("session", data.token, true);
     }
 }
 

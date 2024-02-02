@@ -11,7 +11,7 @@ async function attemptLogin(username, password, remember) {
 
     let input = {
         username: username,
-        password: password
+        password: password,
     };
 
     let response = await sendRequest(API.LOGIN_URL, input);
