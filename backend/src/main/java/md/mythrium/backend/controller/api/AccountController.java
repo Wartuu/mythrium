@@ -148,11 +148,7 @@ public class AccountController {
         if(!matches)
             return new ResponseEntity<>(error, HttpStatus.UNAUTHORIZED);
 
-        System.out.println("matched");
-
         String jwt = jwtUtils.generateJwt(account);
-
-        System.out.println(jwt);
 
         LoginOutput loginOutput = new LoginOutput(true, "logged in", jwt);
         return new ResponseEntity<>(loginOutput, HttpStatus.OK);
