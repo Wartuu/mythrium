@@ -24,6 +24,9 @@ public class Role {
     )
     private Set<Account> accounts = new HashSet<>();
 
+    public Role(String name) {
+        this.name = name;
+    }
 
     public Long getId() {
         return id;

@@ -2,13 +2,9 @@ package md.mythrium.backend.utils;
 
 import io.jsonwebtoken.Jwts;
 import md.mythrium.backend.entity.account.Account;
-import md.mythrium.backend.service.SignatureService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.security.Key;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -17,13 +13,8 @@ import java.util.concurrent.TimeUnit;
 public class JwtUtils {
     private final long EXPIRATION = TimeUnit.DAYS.toMillis(7);
 
-    @Autowired
-    private final SignatureService signatureService;
-
-
-    public JwtUtils(SignatureService signatureService) {
-        this.signatureService = signatureService;
-    }
+    @Value("${jwt.secret}")
+    private String secret;
 
 
     public String generateJwt(Account account) {
@@ -38,8 +29,6 @@ public class JwtUtils {
                 .content("email", account.getEmail())
                 .content("username", account.getUsername())
                 .claim("authority", account.getRoles())
-
-                .signWith(signatureService.getSignature())
                 .compact();
     }
 

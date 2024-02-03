@@ -24,13 +24,20 @@ public class AccountService {
     public List<Account> getAllUsers() {
         return accountRepository.findAll();
     }
+    public Account getAccountByEmail(String email) {
+        return accountRepository.findByEmail(email);
+    }
+
+    public Account getAccountByUsername(String username) {
+        return accountRepository.findByUsername(username);
+    }
 
     public List<Role> getAllRoles() {
         return roleRepository.findAll();
     }
 
     public Account getBySession(String jwt) {
-        return accountRepository.findByToken(jwt);
+        return null;
     }
 
     public void addUser(Account account) {

@@ -1,15 +1,20 @@
-server:
-  port: 8080
-  address: 0.0.0.0
-
+jwt:
+  secret: "8936190a62e567679e5c9a04319b1efcb1673543d6b52fc23d30113424aa3f92"
 
 spring:
   main:
-    banner-mode: "off"
-  application:
-    name: mythrium
+    banner-mode: off
+  server:
+    port: 8080
+    address: 0.0.0.0
   datasource:
-    driver-class-name=org.postgresql.Driver
-    url=jdbc:postgresql://localhost:5432/mythrium
-    username=postgres
-    password=admin
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/mythrium
+    username: postgres
+    password: admin
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    generate-dll: true
+    show-sql: true
+    hibernate:
+      dll-auto: update

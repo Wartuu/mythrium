@@ -27,17 +27,6 @@ public class Account {
     @Column(name = "creation_date", nullable = true)
     private Date creationDate;
 
-    @Column(name = "last_login", nullable = true)
-    private Date lastLogin;
-
-    @Column(name = "api_token")
-    private String apiToken;
-
-    @Column(name = "session_token")
-    private String sessionToken;
-
-
-
     @ManyToMany(mappedBy = "accounts")
     private Set<Role> roles = new HashSet<>();
 
@@ -80,30 +69,6 @@ public class Account {
 
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
-    }
-
-    public Date getLastLogin() {
-        return lastLogin;
-    }
-
-    public void setLastLogin(Date lastLogin) {
-        this.lastLogin = lastLogin;
-    }
-
-    public String getApiToken() {
-        return apiToken;
-    }
-
-    public void setApiToken(String apiToken) {
-        this.apiToken = apiToken;
-    }
-
-    public String getSessionToken() {
-        return sessionToken;
-    }
-
-    public void setSessionToken(String sessionToken) {
-        this.sessionToken = sessionToken;
     }
 
     public Set<Role> getRoles() {

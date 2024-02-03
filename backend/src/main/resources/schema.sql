@@ -1,12 +1,10 @@
 -- Create 'accounts' table
 CREATE TABLE IF NOT EXISTS accounts (
     id SERIAL PRIMARY KEY,
+    email VARCHAR(255) NOT NULL,
     username VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
-    creation_date DATE,
-    last_login DATE,
-    api_token VARCHAR(255),
-    session_token VARCHAR(255)
+    creation_date DATE
 );
 
 -- Create 'roles' table
