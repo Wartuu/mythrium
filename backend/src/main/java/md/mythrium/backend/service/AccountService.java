@@ -2,11 +2,13 @@ package md.mythrium.backend.service;
 
 
 import md.mythrium.backend.entity.account.Account;
+import md.mythrium.backend.entity.account.AccountRole;
 import md.mythrium.backend.entity.account.Role;
 import md.mythrium.backend.repository.account.RoleRepository;
 import md.mythrium.backend.repository.account.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -42,5 +44,26 @@ public class AccountService {
 
     public void addUser(Account account) {
         accountRepository.saveAndFlush(account);
+    }
+
+    @Transactional
+    public void syncRole(AccountRole accountRole) {
+        // checking if exists
+
+        Role role = roleRepository.findByOrdinal(accountRole);
+
+        if(role == null) {
+            roleRepository.addRole(accountRole, accountRole.getDisplayName(), accountRole.isVisible());
+            return;
+        }
+
+        if(!role.getName().equals(accountRole.getDisplayName()))
+            role.setName(accountRole.getDisplayName());
+
+
+        if(role.isVisible() != accountRole.isVisible())
+            role.setVisibility(accountRole.isVisible());
+
+        roleRepository.save(role);
     }
 }

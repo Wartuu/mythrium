@@ -10,7 +10,9 @@ CREATE TABLE IF NOT EXISTS accounts (
 -- Create 'roles' table
 CREATE TABLE IF NOT EXISTS roles (
     id SERIAL PRIMARY KEY,
-    name VARCHAR(255)
+    ordinal INTEGER NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    is_visible BOOLEAN NOT NULL
 );
 
 -- Create 'account_roles' table for the many-to-many relationship

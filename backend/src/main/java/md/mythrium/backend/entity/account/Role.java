@@ -13,8 +13,15 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "ordinal", nullable = false)
+    private AccountRole ordinal;
+
+    @Column(name = "name", nullable = false)
     private String name;
+
+    @Column(name = "is_visible", nullable = false)
+    private boolean visibility;
 
     @ManyToMany
     @JoinTable(
@@ -24,16 +31,20 @@ public class Role {
     )
     private Set<Account> accounts = new HashSet<>();
 
-    public Role(String name) {
-        this.name = name;
-    }
-
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public AccountRole getOrdinal() {
+        return ordinal;
+    }
+
+    public void setOrdinal(AccountRole ordinal) {
+        this.ordinal = ordinal;
     }
 
     public String getName() {
@@ -43,5 +54,30 @@ public class Role {
     public void setName(String name) {
         this.name = name;
     }
+
+    public boolean isVisible() {
+        return visibility;
+    }
+
+    public void setVisibility(boolean visibility) {
+        this.visibility = visibility;
+    }
+
+    public Set<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Set<Account> accounts) {
+        this.accounts = accounts;
+    }
+
+
+    public Role(){}
+    public Role(AccountRole ordinal, String name, boolean visibility) {
+        this.ordinal = ordinal;
+        this.name = name;
+        this.visibility = visibility;
+    }
+
 
 }

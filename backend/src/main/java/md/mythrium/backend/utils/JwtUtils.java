@@ -28,12 +28,7 @@ public class JwtUtils {
 
 
     public String generateJwt(Account account) {
-
-        List<String> roles = new ArrayList<>();
-
-        for (Role role : account.getRoles()) {
-            roles.add(role.getName());
-        }
+        // todo: add roles
 
 
         return Jwts.builder()
