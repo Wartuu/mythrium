@@ -8,11 +8,11 @@
 		<version>3.2.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>md.mythrium</groupId>
+	<groupId>xyz.mythrium</groupId>
 	<artifactId>backend</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>backend</name>
-	<description>Backend service for mythrium.md</description>
+	<version>0.1</version>
+	<name>mythrium</name>
+	<description>Backend service for mythrium.xyz</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
