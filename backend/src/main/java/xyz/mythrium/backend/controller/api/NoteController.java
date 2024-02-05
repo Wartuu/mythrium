@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Calendar;
 import java.util.UUID;
 
-@RestController()
+@RestController
 @RequestMapping("/api/v1")
 public class NoteController {
 

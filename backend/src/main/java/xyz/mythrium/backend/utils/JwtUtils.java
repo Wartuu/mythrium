@@ -9,18 +9,10 @@ import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 
-@Service
 public class JwtUtils {
-    private final long EXPIRATION = TimeUnit.DAYS.toMillis(7);
-    @Value("${jwt.secret}")
-    private String secret;
+    private static final long EXPIRATION = TimeUnit.DAYS.toMillis(7);
 
-    public JwtUtils() {
-
-    }
-
-
-    public String generateJwt(Account account) {
+    public static String generateJwt(Account account) {
         // todo: add roles
 
 

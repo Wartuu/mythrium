@@ -31,14 +31,12 @@ public class AccountController {
 
     private final AccountService accountService;
     private final RoleService roleService;
-    private final JwtUtils jwtUtils;
 
 
     @Autowired
-    public AccountController(AccountService accountService, RoleService roleService, JwtUtils jwtUtils) {
+    public AccountController(AccountService accountService, RoleService roleService) {
         this.accountService = accountService;
         this.roleService = roleService;
-        this.jwtUtils = jwtUtils;
     }
 
 
@@ -152,7 +150,7 @@ public class AccountController {
         if(!matches)
             return new ResponseEntity<>(error, HttpStatus.UNAUTHORIZED);
 
-        String jwt = jwtUtils.generateJwt(account);
+        String jwt = JwtUtils.generateJwt(account);
 
         LoginOutput loginOutput = new LoginOutput(true, "logged in", jwt);
         return new ResponseEntity<>(loginOutput, HttpStatus.OK);
