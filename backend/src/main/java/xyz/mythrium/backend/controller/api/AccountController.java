@@ -2,12 +2,14 @@ package xyz.mythrium.backend.controller.api;
 
 
 import xyz.mythrium.backend.entity.account.Account;
+import xyz.mythrium.backend.entity.account.AccountRole;
 import xyz.mythrium.backend.entity.account.Role;
 import xyz.mythrium.backend.json.input.LoginInput;
 import xyz.mythrium.backend.json.input.RegisterInput;
 import xyz.mythrium.backend.json.output.ApiOutput;
 import xyz.mythrium.backend.json.output.LoginOutput;
-import xyz.mythrium.backend.repository.account.AccountRepository;
+import xyz.mythrium.backend.service.AccountService;
+import xyz.mythrium.backend.service.RoleService;
 import xyz.mythrium.backend.utils.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -27,20 +29,23 @@ import java.util.regex.Pattern;
 public class AccountController {
 
 
-    @Autowired
-    private final AccountRepository accountRepository;
+    private final AccountService accountService;
+    private final RoleService roleService;
+    private final JwtUtils jwtUtils;
+
 
     @Autowired
-    private final JwtUtils jwtUtils;
+    public AccountController(AccountService accountService, RoleService roleService, JwtUtils jwtUtils) {
+        this.accountService = accountService;
+        this.roleService = roleService;
+        this.jwtUtils = jwtUtils;
+    }
+
+
 
     private static final Pattern PASSWORD_PATTERN = Pattern.compile("(?=.*[A-Z])(?=.*[a-zA-Z]*[0-9])(?=.*[a-zA-Z]).{6,}");
     private static final Pattern USERNAME_PATTERN = Pattern.compile("[a-zA-Z0-9]{5,}");
     private static final Pattern EMAIL_PATTERN = Pattern.compile("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
-
-    public AccountController(AccountRepository accountRepository, JwtUtils jwtUtils) {
-        this.accountRepository = accountRepository;
-        this.jwtUtils = jwtUtils;
-    }
 
     @GetMapping
     public ResponseEntity<ApiOutput> getAccountInformation(@RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) String jwt) {
@@ -78,14 +83,14 @@ public class AccountController {
             return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
         }
 
-        Account usernameAccount = accountRepository.findByUsername(input.username);
+        Account usernameAccount = accountService.getAccountByUsername(input.username);
 
         if(usernameAccount != null) {
             ApiOutput error = new ApiOutput(false, "username is taken");
             return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
         }
 
-        Account emailAccount = accountRepository.findByEmail(input.email);
+        Account emailAccount = accountService.getAccountByEmail(input.email);
 
         if(emailAccount != null) {
             ApiOutput error = new ApiOutput(false, "email is already used");
@@ -94,11 +99,11 @@ public class AccountController {
 
         Account account = new Account();
 
+        Role user = roleService.getRoleByOrdinal(AccountRole.USER);
+        Role privilegeUser = roleService.getRoleByOrdinal(AccountRole.PRIVILEGES_USER);
 
+        account.setRoles(Set.of(user, privilegeUser));
 
-
-        Set<Role> defaultRoles = new HashSet<>();
-        account.setRoles(defaultRoles);
 
         account.setEmail(input.email);
         account.setUsername(input.username);
@@ -112,7 +117,14 @@ public class AccountController {
 
         account.setCreationDate(Calendar.getInstance().getTime());
 
-        accountRepository.save(account);
+        accountService.addAccount(account);
+        account = accountService.getAccountByEmail(account.getEmail());
+
+        user.getAccounts().add(account);
+        privilegeUser.getAccounts().add(account);
+
+        roleService.save(user);
+        roleService.save(privilegeUser);
 
         return new ResponseEntity<>(
                 new ApiOutput(true, "success"),
@@ -124,7 +136,7 @@ public class AccountController {
     public ResponseEntity<ApiOutput> loginAccount(@RequestBody LoginInput input) {
         ApiOutput error = new ApiOutput(false, "wrong username or password");
 
-        Account account = accountRepository.findByUsername(input.username);
+        Account account = accountService.getAccountByUsername(input.username);
 
         if(account == null)
             return new ResponseEntity<>(error, HttpStatus.UNAUTHORIZED);

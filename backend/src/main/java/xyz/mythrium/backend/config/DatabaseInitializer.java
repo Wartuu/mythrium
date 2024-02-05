@@ -6,26 +6,27 @@ import xyz.mythrium.backend.entity.account.AccountRole;
 import xyz.mythrium.backend.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import xyz.mythrium.backend.service.RoleService;
 
 @Component
 public class DatabaseInitializer {
     @Autowired
-    private final AccountService accountService;
+    private final RoleService roleService;
 
-    public DatabaseInitializer(AccountService accountService) {
-        this.accountService = accountService;
+    public DatabaseInitializer(RoleService roleService) {
+        this.roleService = roleService;
     }
 
     @PostConstruct
     private void loadRoles() {
-        accountService.syncRole(AccountRole.PRIVILEGES_ADMIN);
-        accountService.syncRole(AccountRole.PRIVILEGES_USER);
+        roleService.syncRole(AccountRole.PRIVILEGES_ADMIN);
+        roleService.syncRole(AccountRole.PRIVILEGES_USER);
 
-        accountService.syncRole(AccountRole.USER);
-        accountService.syncRole(AccountRole.MODERATOR);
+        roleService.syncRole(AccountRole.USER);
+        roleService.syncRole(AccountRole.MODERATOR);
 
-        accountService.syncRole(AccountRole.BOT);
-        accountService.syncRole(AccountRole.PREMIUM);
-        accountService.syncRole(AccountRole.BETA_TESTER);
+        roleService.syncRole(AccountRole.BOT);
+        roleService.syncRole(AccountRole.PREMIUM);
+        roleService.syncRole(AccountRole.BETA_TESTER);
     }
 }
