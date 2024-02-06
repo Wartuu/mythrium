@@ -1,6 +1,8 @@
 package xyz.mythrium.backend.controller.api;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import xyz.mythrium.backend.entity.account.Account;
 import xyz.mythrium.backend.entity.account.AccountRole;
 import xyz.mythrium.backend.entity.account.Role;
@@ -28,6 +30,7 @@ import java.util.regex.Pattern;
 @RequestMapping("/api/v1/account")
 public class AccountController {
 
+    private final Logger logger = LoggerFactory.getLogger(AccountController.class);
 
     private final AccountService accountService;
     private final RoleService roleService;

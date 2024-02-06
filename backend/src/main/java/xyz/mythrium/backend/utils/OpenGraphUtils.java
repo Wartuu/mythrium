@@ -27,6 +27,8 @@ public class OpenGraphUtils {
 
             body = response.body().string();
 
+            System.out.println(body);
+
         } catch (Exception e) {
             logger.debug("failed to fetch open graph data, error: " + e.getMessage());
         }

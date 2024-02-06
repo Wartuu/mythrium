@@ -17,9 +17,6 @@ const sendRequest = async (apiUrl, data, method='POST', options = {}) => {
     if(sessionJwt.value !== undefined) jwt = 'Bearer ' + sessionJwt.value;
     else if(permamentJwt.value !== undefined) jwt = 'Bearer ' + permamentJwt.value;
 
-    console.log(jwt);
-
-
     if(data != null) {
         const response = await fetch(apiUrl, {
             method: method,
