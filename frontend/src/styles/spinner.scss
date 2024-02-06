@@ -8,6 +8,8 @@ $light-purple: #6a5acd;
 $purple: #624e6e;
 $gray: #abadab;
 $lime: #82d782;
+$red: #ff6666;
+
 
 
 
@@ -23,6 +25,8 @@ $lime: #82d782;
 #spinner-wrapper {
     box-shadow: 4px 4px 8px $shadow;
     border-radius: 50%;
+    width: 2vw;
+    height: 2vw;
 }
 
 @keyframes spin {

@@ -1,0 +1,63 @@
+$background: #202020;
+$dark-background: #101010;
+$dark-shadow: #000000;
+$shadow: #121212;
+$light-shadow: #242424;
+$blue: #007acc;
+$light-purple: #6a5acd;
+$purple: #624e6e;
+$gray: #abadab;
+$lime: #82d782;
+$red: #ff6666;
+
+
+$window-size: 350px;
+$window-bar: 25px;
+
+.window-wrapper {
+    position: absolute;
+    width: $window-size;
+    height: $window-bar + $window-size;
+    border: 1px solid $light-purple;
+    border-radius: 15px;
+
+}
+
+.window-bar {
+    width: $window-size;
+    height: $window-bar;
+
+    text-align: center;
+    user-select: none;
+
+    cursor: grab;
+}
+
+.window-content {
+    background-color: $shadow;
+
+    width: $window-size;
+    height: $window-size;
+
+    top: $window-bar;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.window-close-button {
+    position: absolute;
+    width: $window-bar - 2.5;
+    height: $window-bar - 2.5;
+
+    border: none;
+
+    background-color: $background;
+    color: $red;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    left: $window-size - $window-bar - 10;
+
+}
