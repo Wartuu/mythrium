@@ -16,20 +16,39 @@ $window-bar: 25px;
 
 .window-wrapper {
     position: absolute;
+    background-color: $background;
     width: $window-size;
     height: $window-bar + $window-size;
-    border: 1px solid $light-purple;
+    border-top: 1px solid $purple;
+    border-bottom: 1px solid $purple;
     border-radius: 15px;
 
+    transition: border-top 0.25s, border-bottom 0.25s;
+    box-shadow: 4px 4px 10px $shadow;
+
+    z-index: 5000;
 }
 
+.window-wrapper:hover {
+    border-top: 1px solid $light-purple;
+    border-bottom: 1px solid $light-purple;
+}
+
+
 .window-bar {
+    display: flex;
+
+
+    border-radius: 15px;
+
     width: $window-size;
     height: $window-bar;
 
     text-align: center;
     user-select: none;
 
+    align-items: center;
+    justify-content: space-between;
     cursor: grab;
 }
 
@@ -44,20 +63,56 @@ $window-bar: 25px;
     border-bottom-right-radius: 15px;
 }
 
-.window-close-button {
-    position: absolute;
-    width: $window-bar - 2.5;
-    height: $window-bar - 2.5;
+.window-button {
+    position: relative;
+    
+    margin-left: auto;
+    width: 50px;
+    height: $window-bar;
 
-    border: none;
 
     background-color: $background;
-    color: $red;
-
-    border-radius: 10px;
+    border: none;
 
     cursor: pointer;
 
-    left: $window-size - $window-bar - 10;
+    left: 0;
 
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: bold;
+
+    transition: background-color 0.25s, color 0.25s;
+}
+
+.window-button-close {
+    border-top-right-radius: 15px;
+    color: $red;
+}
+
+.window-button-close:hover {
+    background-color: $red;
+    color: $light-shadow;
+}
+
+.window-button-minimize {
+    color: $blue;
+
+    &:hover {
+        color: $light-shadow;
+        background-color: $blue;
+    }
+}
+
+
+
+.window-buttons {
+    position: flex;
+    align-items: center;
+}
+
+
+
+
+.window-title {
+    padding-left: 20px;
 }

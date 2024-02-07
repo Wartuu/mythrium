@@ -4,10 +4,20 @@ import { useEffect, useState } from "react";
 
 const Window = (props) => {
 
+    const WINDOW_SIZE = 350;
+    const WINDOW_BAR_SIZE = 25;
+
+    const MINIMIZE_SIZE_OFFSET = 15;
+
+
     const [isDragging, setIsDragging] = useState(false);
     const [position, setPosition] = useState({x: 0, y: 0});
     const [lastPosition, setLastPosition] = useState({x: 0, y: 0});
-    const [visibility, setVisibility] = useState("visible");
+
+    const [isOpen, setIsOpen] = useState(true);
+
+    const [isMinimized, setIsMinimized] = useState("visible");
+    const [windowSize, setWindowSize] = useState(WINDOW_SIZE + WINDOW_BAR_SIZE)
 
     const mouseDownHandler = (e) => {
         setIsDragging(true);
@@ -40,22 +50,39 @@ const Window = (props) => {
     }, [isDragging, position, lastPosition]);
 
 
-    const hideWindow = () => {
-        setVisibility("hidden");
+    const closeWindow = () => {
+        setIsOpen(false);
+        setIsMinimized("hidden");
     }
 
-    return(
-        <div className="window-wrapper" style={{transform: `translate(${350 - position.x}px, ${25 - position.y}px)`, visibility: visibility}}>
+    const toggleMinimize = () => {
+        if(isMinimized === "visible") {
+            setIsMinimized("hidden");
+            setWindowSize(WINDOW_BAR_SIZE + MINIMIZE_SIZE_OFFSET);
+        
+        }
+        else {
+            setIsMinimized("visible");
+            setWindowSize(WINDOW_SIZE + WINDOW_BAR_SIZE)
+        }
+    }
+
+    return isOpen ? (
+        <div className="window-wrapper" style={{transform: `translate(${350 - position.x}px, ${25 - position.y}px)`, height: `${windowSize}px`}}>
             <div className="window-bar"  onMouseDown={mouseDownHandler}>
-                {props.title}
-                <input type="button" value={"✘"} className="window-close-button" onClick={hideWindow}/>
-            
+                <span className="window-title"> {props.title} </span>
+                <div className="window-buttons">
+                    <input type="button" value={"__"} className="window-button window-button-minimize" onClick={toggleMinimize}/>
+                    <input type="button" value={"X"} className="window-button window-button-close" onClick={closeWindow}/>
+                
+                </div>
+             
             </div>
-            <div className="window-content">
+            <div className="window-content" style={{visibility: isMinimized}}>
                 {props.element}
             </div>
         </div>
-    )
+    ) : null;
 
 
 }
