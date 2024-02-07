@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { API, sendRequest } from "../config/api";
+import { useState } from 'react';
+import { API, sendRequest } from '../config/api';
 import '../styles/login.scss'
-import Spinner from "../components/spinner";
-import storageManager from "../config/configuration";
-import { Link } from "react-router-dom";
+import Spinner from '../components/spinner';
+import storageManager from '../config/configuration';
+import { Link } from 'react-router-dom';
 
 async function attemptRegister(email, username, password) {
     let output = {success: undefined, information: undefined};
@@ -20,7 +20,7 @@ async function attemptRegister(email, username, password) {
 
     if(!response.ok) {
         output.success = false;
-        output.information = "Failed to send request";
+        output.information = 'Failed to send request';
         return output;
     } else {
         // contains success: bool, information: bool, token: bool
@@ -31,21 +31,21 @@ async function attemptRegister(email, username, password) {
     output.information = data.information;
 
     if(output.success) {
-        storageManager.setValue("session", data.token, true);
+        storageManager.setValue('session', data.token, true);
     }
 }
 
 const RegisterPage = () => {
 
-    const [email, setEmail] = useState("");
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
 
-    const [loading, setLoading] = useState("hidden");
+    const [loading, setLoading] = useState('hidden');
 
-    const [showInfo, setShowInfo] = useState("hidden");
-    const [registerInfo, setRegisterInfo] = useState("");
-    const [infoType, setInfoType] = useState("success");
+    const [showInfo, setShowInfo] = useState('hidden');
+    const [registerInfo, setRegisterInfo] = useState('');
+    const [infoType, setInfoType] = useState('success');
 
 
 
@@ -61,18 +61,18 @@ const RegisterPage = () => {
                     <input type="text" name="username" value={username} onChange={e => setUsername(e.target.value)} className="credentials" placeholder="Username"/>
                     <input type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} className="credentials" placeholder="Password"/>
                     
-                    <input type="button" value={"register"} className="button-action credentials" onClick={async () => {
-                        setShowInfo("hidden");
-                        setLoading("visible");
+                    <input type="button" value={'register'} className="button-action credentials" onClick={async () => {
+                        setShowInfo('hidden');
+                        setLoading('visible');
                         let info = await attemptRegister(email, username, password);
 
                         setRegisterInfo(info.information);
 
-                        if(info.success) setInfoType("success");
-                        else setInfoType("error");
+                        if(info.success) setInfoType('success');
+                        else setInfoType('error');
 
-                        setLoading("hidden");
-                        setShowInfo("visible");
+                        setLoading('hidden');
+                        setShowInfo('visible');
                     }}/>
 
                     <div className="login-spinner" style={{visibility: loading}}>
@@ -83,7 +83,7 @@ const RegisterPage = () => {
                         {registerInfo}
                     </div>
 
-                    <Link to={"/login"} className="login-switch">
+                    <Link to={'/login'} className="login-switch">
                         Login instead
                     </Link>
                 </div>

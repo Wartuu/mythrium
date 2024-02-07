@@ -1,10 +1,9 @@
-import { useState } from "react";
-import Spinner from "../components/spinner";
-import "../styles/login.scss"
-import { API, sendRequest } from "../config/api";
-import storageManager from "../config/configuration";
-import { Link } from "react-router-dom";
-import Window from "../components/window";
+import { useState } from 'react';
+import Spinner from '../components/spinner';
+import '../styles/login.scss'
+import { API, sendRequest } from '../config/api';
+import storageManager from '../config/configuration';
+import { Link } from 'react-router-dom';
 
 
 async function attemptLogin(username, password, remember) {
@@ -21,7 +20,7 @@ async function attemptLogin(username, password, remember) {
 
     if(!response.ok) {
         output.success = false;
-        output.information = "Failed to send request";
+        output.information = 'Failed to send request';
         return output;
     } else {
         // contains success: bool, information: bool, token: bool
@@ -32,22 +31,22 @@ async function attemptLogin(username, password, remember) {
     output.information = data.information;
 
     if(output.success) {
-        storageManager.setValue("token", data.token, remember);
-        storageManager.setValue("token", undefined, !remember);
+        storageManager.setValue('token', data.token, remember);
+        storageManager.setValue('token', undefined, !remember);
     }
 }
 
 const LoginPage = () => {
 
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
     const [remember, setRemember] = useState(false);
 
-    const [loading, setLoading] = useState("hidden");
+    const [loading, setLoading] = useState('hidden');
 
-    const [showInfo, setShowInfo] = useState("hidden");
-    const [loginInfo, setLoginInfo] = useState("");
-    const [infoType, setInfoType] = useState("success");
+    const [showInfo, setShowInfo] = useState('hidden');
+    const [loginInfo, setLoginInfo] = useState('');
+    const [infoType, setInfoType] = useState('success');
 
 
     return(
@@ -64,18 +63,18 @@ const LoginPage = () => {
                             remember me
                         </span>
                     </div>
-                    <input type="button" value={"login"} className="button-action credentials" onClick={ async () => {
-                        setShowInfo("hidden");
-                        setLoading("visible");
+                    <input type="button" value={'login'} className="button-action credentials" onClick={ async () => {
+                        setShowInfo('hidden');
+                        setLoading('visible');
                         let info = await attemptLogin(username, password, remember);
                         
                         setLoginInfo(info.information);
 
-                        if(info.success) setInfoType("success")
-                        else setInfoType("error");
+                        if(info.success) setInfoType('success')
+                        else setInfoType('error');
                         
-                        setLoading("hidden");
-                        setShowInfo("visible");
+                        setLoading('hidden');
+                        setShowInfo('visible');
                     }
                         
                     }/>
@@ -88,7 +87,7 @@ const LoginPage = () => {
                         {loginInfo}
                     </div>
 
-                    <Link to={"/register"} className="login-switch">
+                    <Link to={'/register'} className="login-switch">
                         Create an account
                     </Link>
 
@@ -96,7 +95,6 @@ const LoginPage = () => {
             </div>
 
 
-            <Window title={"testing application"} element={"app testing"}/>
         </>
     )
 }

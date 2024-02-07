@@ -16,6 +16,8 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
-    indent: ['warn', 4], // Set the tab size to 4 spaces
+
+    quotes: ['warn', "single", {"allowTemplateLiterals": true}],
+    indent: ['warn', 4], // Set the tab size to 4 space
   },
 };

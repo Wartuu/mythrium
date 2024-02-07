@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import "../styles/404.scss"
+import { Link } from 'react-router-dom';
+import '../styles/404.scss'
 
 
 const Error404 = () => {
@@ -9,7 +9,7 @@ const Error404 = () => {
                 Not found!
 
             
-                <Link to={"/"} className="button-link" id="goback">
+                <Link to={'/'} className="button-link" id="goback">
                     <button className="button-action">
                         Go back
                     </button>

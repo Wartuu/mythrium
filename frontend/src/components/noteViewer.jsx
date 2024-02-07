@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
-import { API, sendRequest } from "../config/api";
-import PropTypes from "prop-types";
+import { useEffect, useState } from 'react';
+import { API, sendRequest } from '../config/api';
+import PropTypes from 'prop-types';
 
-import "../styles/note.scss";
-import Spinner from "./spinner";
+import '../styles/note.scss';
+import Spinner from './spinner';
 
 const NoteViewer = ({ uuid }) => {
-    const [error, setError] = useState("");
-    const [loading, setLoading] = useState("visible");
-    const [noteData, setNoteData] = useState("");
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState('visible');
+    const [noteData, setNoteData] = useState('');
 
     useEffect(() => {
         const controller = new AbortController();
@@ -19,8 +19,8 @@ const NoteViewer = ({ uuid }) => {
                 let response = await sendRequest(API.NOTE_URL + '/' + uuid, undefined, 'GET', { signal });
     
                 if (!response.ok) {
-                    setError("Failed to send request");
-                    setLoading("hidden");
+                    setError('Failed to send request');
+                    setLoading('hidden');
                     return;
                 }
     
@@ -28,17 +28,17 @@ const NoteViewer = ({ uuid }) => {
     
                 if (data.success === false) {
                     setError(data.information);
-                    setLoading("hidden");
+                    setLoading('hidden');
                     return;
                 }
     
                 setNoteData(data.content);
-                setLoading("hidden");
+                setLoading('hidden');
             } catch (error) {
                 if (error.name !== 'AbortError') {
-                    console.error("Error loading note:", error);
-                    setError("An error occurred");
-                    setLoading("hidden");
+                    console.error('Error loading note:', error);
+                    setError('An error occurred');
+                    setLoading('hidden');
                 }
             }
         };
@@ -49,7 +49,7 @@ const NoteViewer = ({ uuid }) => {
     }, [uuid]);
     
 
-    if (loading === "visible") {
+    if (loading === 'visible') {
         return <div className="card-center"><Spinner/></div>;
     }
 

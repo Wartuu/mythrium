@@ -1,10 +1,9 @@
-import React, { Suspense } from "react";
+import React, { Suspense } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import "./styles/global.scss"
+import './styles/global.scss'
 
-import Spinner from "./components/spinner";
-import Window from "./components/window";
-import NoteViewer from "./components/noteViewer";
+import Spinner from './components/spinner';
+import DEBUG from './routes/debug';
 
 const HomePage      =   React.lazy(() => import('./routes/home'))
 const Error404      =   React.lazy(() => import('./routes/error404'))
@@ -32,8 +31,8 @@ const router = createBrowserRouter([
         element: <Note/>
     },
     {
-        'path': '/debug/window',
-        element: <div><Window element={<NoteViewer/>} title={"testing"}/></div>
+        'path': '/debug',
+        element: <DEBUG/>
     },
     {
         'path': '*',

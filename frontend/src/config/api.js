@@ -1,18 +1,20 @@
-import storageManager from "./configuration";
+import storageManager from './configuration';
 
 const API = {
-    LOGIN_URL: "/api/v1/account/login",
-    REGISTER_URL: "/api/v1/account/register",
+    LOGIN_URL: '/api/v1/account/login',
+    REGISTER_URL: '/api/v1/account/register',
 
-    NOTE_URL: "/api/v1/note"
+    NOTIFICATIONS_WS_URL: '/ws/v1/account/notifications',
+
+    NOTE_URL: '/api/v1/note'
 }
 
 const sendRequest = async (apiUrl, data, method='POST', options = {}) => {
 
     let jwt = '';
 
-    let sessionJwt = storageManager.getValue("token", true);
-    let permamentJwt = storageManager.getValue("token", false);
+    let sessionJwt = storageManager.getValue('token', true);
+    let permamentJwt = storageManager.getValue('token', false);
 
     if(sessionJwt.value !== undefined) jwt = 'Bearer ' + sessionJwt.value;
     else if(permamentJwt.value !== undefined) jwt = 'Bearer ' + permamentJwt.value;

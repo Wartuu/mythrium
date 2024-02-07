@@ -36,7 +36,7 @@ class StorageManager {
     constructor() {
         if (!StorageManager.instance) {
             this.values = [];
-            this.values.push(new ConfigValue("session", true));
+            this.values.push(new ConfigValue('session', true));
             StorageManager.instance = this;
         }
 

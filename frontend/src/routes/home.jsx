@@ -1,9 +1,9 @@
-import  { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import "../styles/home.scss";
+import  { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import '../styles/home.scss';
 
 const HomePage = () => {
-    const MOTTO = "Forever free and open-source"
+    const MOTTO = 'Forever free and open-source'
     const [animation, setAnimation] = useState(MOTTO[0]);
 
     useEffect(() => {
@@ -29,7 +29,7 @@ const HomePage = () => {
     return (
         <>
             <div id="page" className="home-bg">
-                <Link to={"/login"} className="button-link log-in-url">
+                <Link to={'/login'} className="button-link log-in-url">
                     <button className="button-comment" id="log-in">
                         Log in
                     </button>
@@ -51,7 +51,7 @@ const HomePage = () => {
                             Our project provides free storage for all of your notes! <br/><br/>
                             With an easy-to-use editor, you can edit, create, upload all files
                         </div>
-                        <Link to={"/register"} className="button-link" id="register">
+                        <Link to={'/register'} className="button-link" id="register">
                             <button className="button-action filler-button register">
                                 Join now!
                             </button>

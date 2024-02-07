@@ -1,7 +1,84 @@
+$background: #202020;
+$dark-background: #101010;
+$dark-shadow: #000000;
+$shadow: #121212;
+$light-shadow: #242424;
+$blue: #007acc;
+$light-purple: #6a5acd;
+$purple: #624e6e;
+$gray: #abadab;
+$lime: #82d782;
+$red: #ff6666;
+
 #notification-manager {
+    padding-left: 1vw;
+    padding-right: 1vw;
+
     position: absolute;
+    display: flex;
+    flex-direction: column-reverse;
+
     width: 25vw;
     height: 100vh;
 
     right: 0;
+}
+
+
+.notification-wrapper {
+    display: flex;
+    margin-bottom: 1vw;
+
+
+    width: 100%;
+    height: 10vh;
+
+    border-radius: 15px;
+
+
+    border: 1px solid $purple;
+
+    transition: border 0.25s, box-shadow 0.25s;
+    box-shadow: 1px 1px 10px $shadow;
+}
+
+.notification-wrapper:hover {
+    border: 1px solid $light-purple;
+    box-shadow: 4px 4px 15px $shadow;
+}
+
+.notification-color {
+    width: 5%;
+    height: 100%;
+
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+
+    background-color: $light-purple;
+}
+
+.notification-content {
+    width: 100%;
+    height: 100%;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+
+    background-color: $dark-background;
+}
+
+.notification-title {
+    height: 35px;
+    margin-left: 15px;
+    width: 75%;
+    font-size: 25px;
+    color: white;    
+}
+
+.notification-message {
+    margin-left: 15px;
+    height: calc(100% - 35px);
+    border-bottom-right-radius: 15px;
+    color: $gray;
+    overflow: hidden;
+    font-size: 15px;
 }

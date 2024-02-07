@@ -1,13 +1,13 @@
-import React, { Suspense } from "react";
-import { useParams } from "react-router-dom";
-import Spinner from "../components/spinner";
+import React, { Suspense } from 'react';
+import { useParams } from 'react-router-dom';
+import Spinner from '../components/spinner';
 
 
 
 const Note = () => {
     let { uuid } = useParams();
 
-    const NoteViewer = React.lazy(()=>import("../components/noteViewer"));
+    const NoteViewer = React.lazy(()=>import('../components/noteViewer'));
 
     return (
         <div id="page" className="center-flex">

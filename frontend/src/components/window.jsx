@@ -1,6 +1,6 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 import '../styles/window.scss'
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 const Window = (props) => {
 
@@ -16,7 +16,7 @@ const Window = (props) => {
 
     const [isOpen, setIsOpen] = useState(true);
 
-    const [isMinimized, setIsMinimized] = useState("visible");
+    const [isMinimized, setIsMinimized] = useState('visible');
     const [windowSize, setWindowSize] = useState(WINDOW_SIZE + WINDOW_BAR_SIZE)
 
     const mouseDownHandler = (e) => {
@@ -33,36 +33,46 @@ const Window = (props) => {
             return;
         }
 
-        setPosition({x: position.x + lastPosition.x - e.clientX, y: position.y + lastPosition.y - e.clientY});
+        let positions = {x: position.x + lastPosition.x - e.clientX, y: position.y + lastPosition.y - e.clientY};
+
+        positions.x = Math.min(positions.x, window.innerWidth - WINDOW_SIZE);
+
+        if(isMinimized) {
+            positions.y = Math.min(positions.y, window.innerHeight + WINDOW_BAR_SIZE + MINIMIZE_SIZE_OFFSET);
+        } else {
+            positions.y = Math.min(positions.y, window.innerHeight + WINDOW_BAR_SIZE + WINDOW_SIZE);
+        }
+
+        setPosition(positions);
         setLastPosition({x: e.clientX , y: e.clientY});
 
     }
 
 
     useEffect(() => {
-        document.addEventListener("mousemove", mouseMoveHandler);
-        document.addEventListener("mouseup", mouseUpHandler);
+        document.addEventListener('mousemove', mouseMoveHandler);
+        document.addEventListener('mouseup', mouseUpHandler);
 
         return () => {
-            document.removeEventListener("mousemove", mouseMoveHandler);
-            document.removeEventListener("mouseup", mouseUpHandler);
+            document.removeEventListener('mousemove', mouseMoveHandler);
+            document.removeEventListener('mouseup', mouseUpHandler);
         }
-    }, [isDragging, position, lastPosition]);
+    });
 
 
     const closeWindow = () => {
         setIsOpen(false);
-        setIsMinimized("hidden");
+        setIsMinimized('hidden');
     }
 
     const toggleMinimize = () => {
-        if(isMinimized === "visible") {
-            setIsMinimized("hidden");
+        if(isMinimized === 'visible') {
+            setIsMinimized('hidden');
             setWindowSize(WINDOW_BAR_SIZE + MINIMIZE_SIZE_OFFSET);
         
         }
         else {
-            setIsMinimized("visible");
+            setIsMinimized('visible');
             setWindowSize(WINDOW_SIZE + WINDOW_BAR_SIZE)
         }
     }
@@ -72,8 +82,8 @@ const Window = (props) => {
             <div className="window-bar"  onMouseDown={mouseDownHandler}>
                 <span className="window-title"> {props.title} </span>
                 <div className="window-buttons">
-                    <input type="button" value={"__"} className="window-button window-button-minimize" onClick={toggleMinimize}/>
-                    <input type="button" value={"X"} className="window-button window-button-close" onClick={closeWindow}/>
+                    <input type="button" value={'__'} className="window-button window-button-minimize" onClick={toggleMinimize}/>
+                    <input type="button" value={'X'} className="window-button window-button-close" onClick={closeWindow}/>
                 
                 </div>
              
