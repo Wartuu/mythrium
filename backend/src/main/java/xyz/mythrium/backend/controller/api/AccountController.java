@@ -6,8 +6,8 @@ import org.slf4j.LoggerFactory;
 import xyz.mythrium.backend.entity.account.Account;
 import xyz.mythrium.backend.entity.account.AccountRole;
 import xyz.mythrium.backend.entity.account.Role;
-import xyz.mythrium.backend.json.input.LoginInput;
-import xyz.mythrium.backend.json.input.RegisterInput;
+import xyz.mythrium.backend.json.input.account.LoginInput;
+import xyz.mythrium.backend.json.input.account.RegisterInput;
 import xyz.mythrium.backend.json.output.ApiOutput;
 import xyz.mythrium.backend.json.output.LoginOutput;
 import xyz.mythrium.backend.service.AccountService;
@@ -22,7 +22,6 @@ import org.springframework.security.crypto.keygen.KeyGenerators;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Calendar;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.regex.Pattern;
 

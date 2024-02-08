@@ -1,4 +1,4 @@
-package xyz.mythrium.backend.json.input;
+package xyz.mythrium.backend.json.input.note;
 
 import java.time.LocalDateTime;
 import java.util.Date;

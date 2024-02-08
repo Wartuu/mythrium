@@ -1,4 +1,4 @@
-package xyz.mythrium.backend.json.input;
+package xyz.mythrium.backend.json.input.account;
 
 public class LoginInput {
     public final String username;

@@ -2,7 +2,7 @@ package xyz.mythrium.backend.controller.api;
 
 
 import xyz.mythrium.backend.entity.media.Note;
-import xyz.mythrium.backend.json.input.NoteInput;
+import xyz.mythrium.backend.json.input.note.NoteInput;
 import xyz.mythrium.backend.json.output.ApiOutput;
 import xyz.mythrium.backend.json.output.NoteReadOutput;
 import xyz.mythrium.backend.json.output.NoteWriteOutput;
