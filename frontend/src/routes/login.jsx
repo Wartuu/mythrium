@@ -4,6 +4,7 @@ import '../styles/login.scss'
 import { API, sendRequest } from '../config/api';
 import storageManager from '../config/configuration';
 import { Link } from 'react-router-dom';
+import NotificationManager from '../components/notification';
 
 
 async function attemptLogin(username, password, remember) {
@@ -93,6 +94,8 @@ const LoginPage = () => {
 
                 </div>
             </div>
+
+            <NotificationManager/>
 
 
         </>

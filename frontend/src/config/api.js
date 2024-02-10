@@ -4,7 +4,7 @@ const API = {
     LOGIN_URL: '/api/v1/account/login',
     REGISTER_URL: '/api/v1/account/register',
 
-    NOTIFICATIONS_WS_URL: '/ws/v1/account/notifications',
+    NOTIFICATION_URL: '/ws/v1/notification',
 
     NOTE_URL: '/api/v1/note'
 }

@@ -9,6 +9,7 @@ $purple: #624e6e;
 $gray: #abadab;
 $lime: #82d782;
 $red: #ff6666;
+$orange: #D69C1E;
 
 @font-face {
     font-family: 'JetBrains Mono';
@@ -39,6 +40,8 @@ body {
     padding: 0;
     background-color: $background;
     color: white;
+
+    overflow-x: hidden;
 }
 
 #page {
@@ -235,6 +238,14 @@ input[type="checkbox"] {
 
 .error-color {
     color: $red;
+}
+
+.warn-color {
+    color: $orange;
+}
+
+.info-color {
+    color: $blue;
 }
 
 .success-color {
