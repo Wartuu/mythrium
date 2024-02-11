@@ -33,4 +33,6 @@ jobs:
 
     - name: Build
       run: npm run --prefix frontend build
+    - name: Audit
+      run: npm --prefix frontend audit
       
