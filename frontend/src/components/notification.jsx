@@ -57,12 +57,12 @@ const NotificationManager = () => {
 
     return (
         <>
-        <button onClick={testNotification}>test</button>
-        <div id="notification-manager">
-            {notifications.map((notification, index) => (
-                <React.Fragment key={index}>{notification}</React.Fragment>
-            ))}
-        </div>
+            <button onClick={testNotification}>test</button>
+            <div id="notification-manager">
+                {notifications.map((notification, index) => (
+                    <React.Fragment key={index}>{notification}</React.Fragment>
+                ))}
+            </div>
         </>
     );
 }
