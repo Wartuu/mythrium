@@ -236,6 +236,12 @@ input[type="checkbox"] {
 
 }
 
+.horizontal {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+
 .error-color {
     color: $red;
 }
