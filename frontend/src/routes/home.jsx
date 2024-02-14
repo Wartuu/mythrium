@@ -35,7 +35,7 @@ const HomePage = () => {
                     </button>
                 </Link>
 
-                <div className="center-flex">Mythrium</div>
+                <div className="center-flex" id="title">Mythrium</div>
                 <div className="center-flex" id="motto">{animation}</div>
 
                 <div id="cards">
