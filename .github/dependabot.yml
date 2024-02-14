@@ -12,7 +12,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/frontend"
     schedule:
-      interval: "daily"
+      interval: "weekly"
     allow:
       - dependency-name: "*"
         dependency-type: "all"
