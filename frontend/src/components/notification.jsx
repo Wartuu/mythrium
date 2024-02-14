@@ -18,6 +18,9 @@ const Notification = (props) => {
     const [hideTimeoutDuration, setHideTimeoutDuration] = useState(5000);
     const [hideTimeoutRemaining, setHideTimeoutRemaining] = useState(hideTimeoutDuration);
 
+
+    setHideTimeoutDuration(0);
+    hideTimeoutRemaining;
     const [paused, setPaused] = useState(false);
 
 

@@ -9,7 +9,7 @@ $purple: #624e6e;
 $gray: #abadab;
 $lime: #82d782;
 $red: #ff6666;
-
+$orange: #D69C1E;
 #motto {
     font-size: 35px;
     font-display: bold;
@@ -19,8 +19,8 @@ $red: #ff6666;
 }
 
 .home-bg {
-    background: rgb(32,32,32);
-    background: linear-gradient(180deg, rgba(32,32,32,1) 60%, rgba(106,90,205,1) 130%);
+    background: $background;
+    background: linear-gradient(180deg, $background 60%, rgba(106,90,205,1) 130%);
 }
 
 .filler-button {
@@ -48,4 +48,3 @@ $red: #ff6666;
     align-self: center;
     bottom: 0%;
 }
-
