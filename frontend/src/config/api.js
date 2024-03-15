@@ -1,7 +1,7 @@
 import storageManager from './configuration';
 
 const API = {
-    LOGIN_URL: '/api/v1/account/login',
+    LOGIN_URL: 'http://localhost:8080/api/v1/account/login',
     REGISTER_URL: '/api/v1/account/register',
 
     NOTIFICATION_URL: '/ws/v1/notification',

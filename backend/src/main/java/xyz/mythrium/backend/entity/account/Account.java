@@ -27,7 +27,7 @@ public class Account {
     @Column(name = "creation_date", nullable = true)
     private Date creationDate;
 
-    @ManyToMany(mappedBy = "accounts")
+    @ManyToMany(mappedBy = "accounts", fetch = FetchType.EAGER)
     private Set<Role> roles = new HashSet<>();
 
 

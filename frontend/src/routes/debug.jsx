@@ -1,13 +1,11 @@
 import NotificationManager from '../components/notification';
+import Window from '../components/window'
 
 const DEBUG = () => {
 
     return (
         <>
-
-
-            <NotificationManager/>
-            
+            <Window title={'1'} element={'test content'}/>
         </>
     )
 }

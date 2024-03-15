@@ -3,11 +3,14 @@ import Spinner from '../components/spinner';
 import '../styles/login.scss'
 import { API, sendRequest } from '../config/api';
 import storageManager from '../config/configuration';
-import { Link } from 'react-router-dom';
-import NotificationManager from '../components/notification';
+import { Link, useSearchParams } from 'react-router-dom';
+import Cookies from 'js-cookie';
+import { Navigate } from "react-router-dom"
 
 
-async function attemptLogin(username, password, remember) {
+
+
+async function attemptLogin(username, password, remember, searchParams) {
     let output = {success: undefined, information: undefined};
 
     let input = {
@@ -19,22 +22,39 @@ async function attemptLogin(username, password, remember) {
 
     let data;
 
-    if(!response.ok) {
+    data = await response.json();
+
+    if(data === undefined) {
         output.success = false;
         output.information = 'Failed to send request';
         return output;
-    } else {
-        // contains success: bool, information: bool, token: bool
-        data = await response.json();
     }
 
     output.success = data.success;
     output.information = data.information;
 
+    if(!output.success) {
+        output.redirect = undefined;
+        return output;
+    }
+
     if(output.success) {
         storageManager.setValue('token', data.token, remember);
         storageManager.setValue('token', undefined, !remember);
     }
+
+    Cookies.set('session', data.token);
+    
+    var redirect = searchParams.get('redirect');
+    
+    if(redirect != null) {
+        console.log("CAN REDIRECT");
+        output.redirect = redirect;
+    } else {
+        output.redirect = '/dashboard';
+    }
+
+    return output;
 }
 
 const LoginPage = () => {
@@ -48,6 +68,9 @@ const LoginPage = () => {
     const [showInfo, setShowInfo] = useState('hidden');
     const [loginInfo, setLoginInfo] = useState('');
     const [infoType, setInfoType] = useState('success');
+    const [redirectUrl, setRedirectUrl] = useState(undefined);
+    
+    const [searchParams] = useSearchParams();
 
 
     return(
@@ -67,7 +90,8 @@ const LoginPage = () => {
                     <input type="button" value={'login'} className="button-action credentials" onClick={ async () => {
                         setShowInfo('hidden');
                         setLoading('visible');
-                        let info = await attemptLogin(username, password, remember);
+
+                        let info = await attemptLogin(username, password, remember, searchParams);
                         
                         setLoginInfo(info.information);
 
@@ -76,6 +100,7 @@ const LoginPage = () => {
                         
                         setLoading('hidden');
                         setShowInfo('visible');
+                        setRedirectUrl(info.redirect);
                     }
                         
                     }/>
@@ -92,11 +117,12 @@ const LoginPage = () => {
                         Create an account
                     </Link>
 
+
+
                 </div>
             </div>
 
-            <NotificationManager/>
-
+            {redirectUrl !== undefined && (<Navigate to={redirectUrl} replace={false}/>)}
 
         </>
     )

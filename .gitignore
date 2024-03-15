@@ -6,6 +6,16 @@
 *.env/
 *.class/
 *.jar/
+*.exe
+*.dll
+*.out
+
+Cargo.lock
+debug/
+target/
+
+*.pdb
+**/*.rs.bk
 
 node_modules/
 
@@ -15,5 +25,7 @@ backend/src/main/resources/static/*
 release/
 build/
 dist/
+
+
 
 

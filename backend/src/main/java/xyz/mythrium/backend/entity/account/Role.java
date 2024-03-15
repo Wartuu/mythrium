@@ -23,7 +23,7 @@ public class Role {
     @Column(name = "is_visible", nullable = false)
     private boolean visibility;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "account_roles",
             joinColumns = @JoinColumn(name = "role_id"),
