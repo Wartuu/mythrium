@@ -5,7 +5,7 @@ import { API, sendRequest } from '../config/api';
 import storageManager from '../config/configuration';
 import { Link, useSearchParams } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import { Navigate } from "react-router-dom"
+import { Navigate } from 'react-router-dom'
 
 
 
@@ -48,7 +48,7 @@ async function attemptLogin(username, password, remember, searchParams) {
     var redirect = searchParams.get('redirect');
     
     if(redirect != null) {
-        console.log("CAN REDIRECT");
+        console.log('CAN REDIRECT');
         output.redirect = redirect;
     } else {
         output.redirect = '/dashboard';

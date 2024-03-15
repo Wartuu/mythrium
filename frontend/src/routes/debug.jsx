@@ -6,6 +6,7 @@ const DEBUG = () => {
     return (
         <>
             <Window title={'1'} element={'test content'}/>
+            <NotificationManager/>
         </>
     )
 }
