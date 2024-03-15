@@ -3,7 +3,6 @@ package xyz.mythrium.backend.controller.api;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
-import com.google.zxing.client.j2se.MatrixToImageConfig;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +10,9 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import xyz.mythrium.backend.service.OtpService;
+import xyz.mythrium.backend.service.security.OtpService;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.io.ByteArrayOutputStream;
 
 @RestController

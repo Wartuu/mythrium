@@ -1,4 +1,4 @@
-package xyz.mythrium.backend.service;
+package xyz.mythrium.backend.service.security;
 
 
 import org.springframework.stereotype.Service;
@@ -9,23 +9,39 @@ import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.time.Instant;
 import java.util.Base64;
 import java.util.Date;
 
 @Service
 public class OtpService {
-    private static final String GLOBAL_SECRET = "EXAMPLE_SECRET_1234567890_EXAMPLE_TEST";
 
     private static final String HMAC_ALGORITHM = "HmacSHA1";
+
     private static final String base32Chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
+    private static final String keyChars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
     private static final int DIGITS = 6;
     private static final int TIME_STEP_SECONDS = 30;
 
+
+    public String generateSecret(int size) {
+        SecureRandom secureRandom = new SecureRandom();
+
+        StringBuilder builder = new StringBuilder();
+
+
+        for (int i = 0; i < size; i++) {
+            int index = secureRandom.nextInt(keyChars.length());
+            builder.append(keyChars.charAt(index));
+        }
+
+        return builder.toString();
+    }
+
     public String generateTOTP(String secret) {
         try {
-
-
             secret = secret.toUpperCase();
             byte[] bytes = new byte[secret.length() * 5 / 8];
             int bytesWritten = 0;

@@ -5,18 +5,13 @@ import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 
 public enum AccountRole {
-
-
-    PRIVILEGES_ADMIN(false, "privileges: admin"),
-    PRIVILEGES_USER(false, "privileges: user"),
-
-
     USER(true, "user"),
     MODERATOR(true, "moderator"),
 
     BOT(true, "bot"),
     PREMIUM(true, "premium account"),
-    BETA_TESTER(true, "beta tester");
+    BETA_TESTER(true, "beta tester"),
+    ADMIN(true, "admin");
 
 
     final boolean visibility;

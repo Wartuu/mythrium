@@ -3,7 +3,6 @@ package xyz.mythrium.backend.config;
 
 import jakarta.annotation.PostConstruct;
 import xyz.mythrium.backend.entity.account.AccountRole;
-import xyz.mythrium.backend.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import xyz.mythrium.backend.service.RoleService;
@@ -19,11 +18,12 @@ public class DatabaseInitializer {
 
     @PostConstruct
     private void loadRoles() {
-        roleService.syncRole(AccountRole.PRIVILEGES_ADMIN);
-        roleService.syncRole(AccountRole.PRIVILEGES_USER);
+
+        // ! WARNING: MODIFYING ORDER OF ACCOUNT ROLES CAN RESULT INTO UNWANTED PRIVILEGE ESCALATION FOR UNWANTED USERS
 
         roleService.syncRole(AccountRole.USER);
         roleService.syncRole(AccountRole.MODERATOR);
+        roleService.syncRole(AccountRole.ADMIN);
 
         roleService.syncRole(AccountRole.BOT);
         roleService.syncRole(AccountRole.PREMIUM);

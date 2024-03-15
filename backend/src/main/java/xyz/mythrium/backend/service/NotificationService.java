@@ -10,9 +10,8 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 import xyz.mythrium.backend.entity.account.Account;
-import xyz.mythrium.backend.json.input.message.NotificationMessage;
+import xyz.mythrium.backend.json.input.NotificationMessage;
 
-import java.io.IOError;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package xyz.mythrium.backend.json.input.message;
+package xyz.mythrium.backend.json.input;
 
 public class NotificationMessage {
     public final String type;

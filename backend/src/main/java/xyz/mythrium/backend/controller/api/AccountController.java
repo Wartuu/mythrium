@@ -6,13 +6,13 @@ import org.slf4j.LoggerFactory;
 import xyz.mythrium.backend.entity.account.Account;
 import xyz.mythrium.backend.entity.account.AccountRole;
 import xyz.mythrium.backend.entity.account.Role;
-import xyz.mythrium.backend.json.input.account.LoginInput;
-import xyz.mythrium.backend.json.input.account.RegisterInput;
+import xyz.mythrium.backend.json.input.LoginInput;
+import xyz.mythrium.backend.json.input.RegisterInput;
 import xyz.mythrium.backend.json.output.ApiOutput;
 import xyz.mythrium.backend.json.output.LoginOutput;
 import xyz.mythrium.backend.service.AccountService;
+import xyz.mythrium.backend.service.security.OAuthService;
 import xyz.mythrium.backend.service.RoleService;
-import xyz.mythrium.backend.utils.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -33,12 +33,14 @@ public class AccountController {
 
     private final AccountService accountService;
     private final RoleService roleService;
+    private final OAuthService oAuthService;
 
 
     @Autowired
-    public AccountController(AccountService accountService, RoleService roleService) {
+    public AccountController(AccountService accountService, RoleService roleService, OAuthService oAuthService) {
         this.accountService = accountService;
         this.roleService = roleService;
+        this.oAuthService = oAuthService;
     }
 
 
@@ -100,9 +102,8 @@ public class AccountController {
         Account account = new Account();
 
         Role user = roleService.getRoleByOrdinal(AccountRole.USER);
-        Role privilegeUser = roleService.getRoleByOrdinal(AccountRole.PRIVILEGES_USER);
 
-        account.setRoles(Set.of(user, privilegeUser));
+        account.setRoles(Set.of(user));
 
 
         account.setEmail(input.email);
@@ -121,10 +122,8 @@ public class AccountController {
         account = accountService.getAccountByEmail(account.getEmail());
 
         user.getAccounts().add(account);
-        privilegeUser.getAccounts().add(account);
 
         roleService.save(user);
-        roleService.save(privilegeUser);
 
         return new ResponseEntity<>(
                 new ApiOutput(true, "success"),
@@ -152,7 +151,7 @@ public class AccountController {
         if(!matches)
             return new ResponseEntity<>(error, HttpStatus.UNAUTHORIZED);
 
-        String jwt = JwtUtils.generateJwt(account);
+        String jwt = oAuthService.createJWT(account);
 
         LoginOutput loginOutput = new LoginOutput(true, "logged in", jwt);
         return new ResponseEntity<>(loginOutput, HttpStatus.OK);
