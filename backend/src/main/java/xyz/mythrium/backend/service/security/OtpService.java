@@ -30,12 +30,15 @@ public class OtpService {
         SecureRandom secureRandom = new SecureRandom();
 
         StringBuilder builder = new StringBuilder();
+        byte[] bytes = new byte[size];
 
+        secureRandom.nextBytes(bytes);
 
-        for (int i = 0; i < size; i++) {
-            int index = secureRandom.nextInt(keyChars.length());
-            builder.append(keyChars.charAt(index));
+        for (byte b : bytes) {
+            int index = Math.abs(b) % base32Chars.length();
+            builder.append(base32Chars.charAt(index));
         }
+
 
         return builder.toString();
     }
