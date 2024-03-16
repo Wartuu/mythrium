@@ -1,15 +1,26 @@
 package xyz.mythrium.backend.controller.api;
 
 
+import com.beust.ah.A;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
+import jakarta.servlet.http.Cookie;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import xyz.mythrium.backend.entity.account.Account;
 import xyz.mythrium.backend.entity.account.AccountRole;
 import xyz.mythrium.backend.entity.account.Role;
 import xyz.mythrium.backend.json.input.LoginInput;
+import xyz.mythrium.backend.json.input.OtpEnableInput;
 import xyz.mythrium.backend.json.input.RegisterInput;
+import xyz.mythrium.backend.json.output.ApiError;
 import xyz.mythrium.backend.json.output.ApiOutput;
 import xyz.mythrium.backend.json.output.LoginOutput;
+import xyz.mythrium.backend.json.output.OtpGenerationOutput;
 import xyz.mythrium.backend.service.AccountService;
 import xyz.mythrium.backend.service.security.OAuthService;
 import xyz.mythrium.backend.service.RoleService;
@@ -20,7 +31,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.keygen.KeyGenerators;
 import org.springframework.web.bind.annotation.*;
+import xyz.mythrium.backend.service.security.OtpService;
 
+import javax.imageio.ImageIO;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.Base64;
 import java.util.Calendar;
 import java.util.Set;
 import java.util.regex.Pattern;
@@ -34,13 +50,14 @@ public class AccountController {
     private final AccountService accountService;
     private final RoleService roleService;
     private final OAuthService oAuthService;
-
+    private final OtpService otpService;
 
     @Autowired
-    public AccountController(AccountService accountService, RoleService roleService, OAuthService oAuthService) {
+    public AccountController(AccountService accountService, RoleService roleService, OAuthService oAuthService, OtpService otpService) {
         this.accountService = accountService;
         this.roleService = roleService;
         this.oAuthService = oAuthService;
+        this.otpService = otpService;
     }
 
 
@@ -59,12 +76,64 @@ public class AccountController {
         return new ResponseEntity<>(new ApiOutput(false, "TODO"), HttpStatus.OK);
     }
 
-    @GetMapping("/verify/{verificationId}")
-    public String verifyMail(@PathVariable String verificationId) {
-        return "ok";
+    @PostMapping("/security/otp/new")
+    public ResponseEntity<ApiOutput> generateOtpKey(@CookieValue("session") String jwt) {
+        Account session = oAuthService.authenticateJWT(jwt);
+
+        if(session == null)
+            return new ResponseEntity<>(new ApiOutput(false, "not valid session"), HttpStatus.UNAUTHORIZED);
+
+
+        String key = otpService.generateSecret(16);
+        session.setOtpEnabled(false);
+        session.setOtpKey(key);
+
+        MultiFormatWriter writer = new MultiFormatWriter();
+
+
+        String otpauthUrl = "otpauth://totp/" + session.getUsername() + "?secret=" + key + "&issuer=Mythrium";
+        String encodedImage;
+
+        try {
+            BitMatrix matrix = writer.encode(otpauthUrl, BarcodeFormat.QR_CODE, 150, 150);
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            ImageIO.write(MatrixToImageWriter.toBufferedImage(matrix), "png", bos);
+            byte[] image = bos.toByteArray();
+            encodedImage = Base64.getEncoder().encodeToString(image);
+
+            accountService.save(session);
+        } catch (WriterException | IOException exception) {
+            exception.printStackTrace();
+            return new ResponseEntity<>(new ApiOutput(false, "internal server error"), HttpStatus.UNAUTHORIZED);
+        }
+
+
+
+        return new ResponseEntity<>(new OtpGenerationOutput(true, "verification required", key, "data:image/png;base64," + encodedImage),HttpStatus.OK);
     }
 
-    //TODO: /account/manage
+    @PostMapping("/security/otp/confirm")
+    public ResponseEntity<ApiOutput> verifyOtpKey(@RequestBody String auth, @CookieValue("session") String jwt) {
+        System.out.println("executing...");
+        Account session = oAuthService.authenticateJWT(jwt);
+
+        if(session == null)
+            return new ResponseEntity<>(new ApiOutput(false, "not valid session"), HttpStatus.UNAUTHORIZED);
+
+        String key = session.getOtpKey();
+
+        if(key == null)
+            return new ResponseEntity<>(new ApiOutput(false, "you need to create key first"), HttpStatus.BAD_REQUEST);
+        String code = otpService.generateTOTP(key);
+        if(auth.length() == 6 && code.equals(auth)) {
+
+            session.setOtpEnabled(true);
+            accountService.save(session);
+            return new ResponseEntity<>(new ApiOutput(true, "OTP (TOTP) verification enabled"), HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(new ApiOutput(false, "wrong code providen"), HttpStatus.BAD_REQUEST);
+    }
 
 
     @PostMapping("/register")
@@ -117,6 +186,7 @@ public class AccountController {
         account.setPassword(salt + ":" + password); // TODO: SHA-256 / SHA-512 passwords
 
         account.setCreationDate(Calendar.getInstance().getTime());
+        account.setOtpEnabled(false);
 
         accountService.addAccount(account);
         account = accountService.getAccountByEmail(account.getEmail());

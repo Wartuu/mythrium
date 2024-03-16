@@ -37,5 +37,9 @@ public class AccountService {
         accountRepository.saveAndFlush(account);
     }
 
+    public void save(Account account) {
+        accountRepository.save(account);
+    }
+
 
 }

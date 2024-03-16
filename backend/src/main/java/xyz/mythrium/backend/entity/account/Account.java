@@ -24,12 +24,17 @@ public class Account {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "creation_date", nullable = true)
+    @Column(name = "creation_date")
     private Date creationDate;
+
+    @Column(name = "otp_key", length = 16)
+    private String otp_key;
+
+    @Column(name = "otp_enabled", nullable = false)
+    private boolean otp_enabled;
 
     @ManyToMany(mappedBy = "accounts", fetch = FetchType.EAGER)
     private Set<Role> roles = new HashSet<>();
-
 
     public Long getId() {
         return id;
@@ -69,6 +74,22 @@ public class Account {
 
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public String getOtpKey() {
+        return otp_key;
+    }
+
+    public void setOtpKey(String otp_key) {
+        this.otp_key = otp_key;
+    }
+
+    public boolean isOtpEnabled() {
+        return otp_enabled;
+    }
+
+    public void setOtpEnabled(boolean otp_enabled) {
+        this.otp_enabled = otp_enabled;
     }
 
     public Set<Role> getRoles() {

@@ -4,6 +4,8 @@ CREATE TABLE IF NOT EXISTS accounts (
     email VARCHAR(255) NOT NULL,
     username VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
+    otp_key VARCHAR(16),
+    otp_enabled BOOLEAN NOT NULL,
     creation_date DATE
 );
 
