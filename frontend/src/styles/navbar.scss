@@ -1,0 +1,74 @@
+$background: #202020;
+$dark-background: #101010;
+$dark-shadow: #000000;
+$shadow: #121212;
+$light-shadow: #242424;
+$blue: #007acc;
+$light-purple: #6a5acd;
+$purple: #624e6e;
+$gray: #abadab;
+$lime: #82d782;
+$red: #ff6666;
+$orange: #D69C1E;
+
+
+.navbar-flex {
+    display: flex;
+    justify-content: center;
+
+    width: 100%;
+    height: 75px;
+
+    margin-bottom: 10px;
+}
+
+.navbar-container {
+    width: 90%;
+    height: 75px;
+
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+
+
+    background-color: rgba($color: $shadow, $alpha: 0.5);
+    transition-duration: 0.5s;
+
+
+
+    box-shadow: 2px 2px 5px $light-shadow;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba($color: $purple, $alpha: 0.9);    
+
+}
+
+.navbar-container:hover {
+    height: 75px;
+}
+
+.navbar-title {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.navbar-button {
+    border: 1px solid $light-purple;
+
+    margin: 10px;
+    width: 45px;
+    height: 45px;
+}
+
+.navbar-button-text {
+    width: 100%;
+    color: white;
+
+    text-decoration: none;
+
+    font-size: 10px;
+
+    transition-duration: 0.75s;
+}
+
+.navbar-settings:hover {
+    transform: rotate(100px);
+}

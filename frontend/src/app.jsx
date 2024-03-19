@@ -10,6 +10,9 @@ const Error404      =   React.lazy(() => import('./routes/error404'))
 const LoginPage     =   React.lazy(() => import('./routes/login'))
 const RegisterPage  =   React.lazy(() => import('./routes/register'))
 const Note          =   React.lazy(() => import('./routes/note'))
+const AdminPanel    =   React.lazy(() => import('./routes/adminPanel'))
+const Dashboard     =   React.lazy(() => import('./routes/dashboard'))
+
 
 const router = createBrowserRouter([
     {
@@ -27,8 +30,16 @@ const router = createBrowserRouter([
         
     },
     {
+        'path': '/dashboard',
+        element: <Dashboard/>
+    },
+    {
         'path': '/note/:uuid',
         element: <Note/>
+    },
+    {
+        'path': '/admin/control',
+        element: <AdminPanel/>
     },
     {
         'path': '/debug',

@@ -279,3 +279,9 @@ input[type="checkbox"] {
 .success-color {
     color: $lime;
 }
+
+.icon {
+    filter: invert(100);
+    height: 100%;
+    width: 100%;
+}

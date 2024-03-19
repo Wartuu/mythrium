@@ -69,7 +69,7 @@ const LoginPage = () => {
     const [loginInfo, setLoginInfo] = useState('');
     const [infoType, setInfoType] = useState('success');
     const [redirectUrl, setRedirectUrl] = useState(undefined);
-    
+
     const [searchParams] = useSearchParams();
 
 
