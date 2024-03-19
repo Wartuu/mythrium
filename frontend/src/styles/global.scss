@@ -200,7 +200,30 @@ input[type="checkbox"] {
     }
 
     .card {
+        width: 80vh;
+    }
+
+    #page {
+        height: 100%;
+    }
+
+    #title {
+        margin-top: 10vw;
+    }
+}
+
+@media only screen and (max-height: 700px) {
+    #cards {
+        height: 80vh * 3;
+        display: flex;
+        align-items: row;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+
+    .card {
         width: 80vw;
+        height: 80vh;
     }
 
     #page {
