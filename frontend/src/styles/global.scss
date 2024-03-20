@@ -192,7 +192,6 @@ input[type="checkbox"] {
 
 @media only screen and (max-width: 850px) {
     #cards {
-        height: 80vh * 3;
         display: flex;
         align-items: row;
         flex-direction: column;
@@ -214,7 +213,7 @@ input[type="checkbox"] {
 
 @media only screen and (max-height: 700px) {
     #cards {
-        height: 80vh * 3;
+        height: fit-content;
         display: flex;
         align-items: row;
         flex-direction: column;

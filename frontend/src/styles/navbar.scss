@@ -17,7 +17,7 @@ $orange: #D69C1E;
     justify-content: center;
 
     width: 100%;
-    height: 75px;
+    height: fit-content;
 
     margin-bottom: 10px;
 }
@@ -37,7 +37,10 @@ $orange: #D69C1E;
 
     box-shadow: 2px 2px 5px $light-shadow;
     backdrop-filter: blur(15px);
-    border: 1px solid rgba($color: $purple, $alpha: 0.9);    
+    border: 1px solid rgba($color: $purple, $alpha: 0.9);  
+    
+    display: flex;
+    justify-content: flex-end;
 
 }
 
@@ -71,4 +74,70 @@ $orange: #D69C1E;
 
 .navbar-settings:hover {
     transform: rotate(100px);
+}
+
+.navbar-account {
+    width: 250px;
+    height: 100%;
+
+    border-bottom-right-radius: 15px;
+    border-left: 1px solid $purple;
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+}
+
+.navbar-userprofile {
+    border: 1px solid $lime;
+
+
+    width: 65px;
+    height: 65px;
+
+    margin-right: 5px;
+    margin-left: 5px;
+
+
+    border-radius: 10px;
+}
+
+.navbar-data {
+
+    width: 180px;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    text-align: center;
+}
+
+.navbar-username {
+    margin-bottom: 10px;
+    width: 100%;
+    height: 25px;
+    font-weight: bold;
+    font-size: 16px;
+    text-align: center;
+}
+
+.navbar-action {
+    width: 100%;
+    height: 25px;
+
+    border: 2px solid $light-shadow;
+
+    margin: 2px;
+
+    background-color: $gray;
+    color: $shadow;
+
+    transition-duration: 0.75s;
+}
+
+.navbar-action:hover {
+    background-color: $lime;
 }

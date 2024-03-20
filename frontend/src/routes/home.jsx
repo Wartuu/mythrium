@@ -38,7 +38,7 @@ const HomePage = () => {
                 <div className="center-flex" id="title">Mythrium</div>
                 <div className="center-flex" id="motto">{animation}</div>
 
-                <div id="cards">
+                <div id="cards" className='home-cards'>
                     <div id="about" className="card">
                         <div className="header">open-source</div>
                         <div className="details">
