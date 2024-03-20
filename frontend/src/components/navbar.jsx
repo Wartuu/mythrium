@@ -4,8 +4,8 @@ import '../styles/navbar.scss'
 
 
 const NavBar = () => {
-    const [username, setUsername] = useState('Example Username')
-
+    const [username, setUsername] = useState('Example Username');
+    setUsername('example username');
 
     return (
         <>
