@@ -19,6 +19,7 @@ $orange: #D69C1E;
 }
 
 .home-bg {
+    position: absolute;
     background: $background;
     background: linear-gradient(180deg, $background 60%, rgba(106,90,205,1) 130%);
 }
