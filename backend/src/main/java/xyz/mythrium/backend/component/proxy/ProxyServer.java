@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.concurrent.atomic.AtomicLong;
 
 @Component
 public class ProxyServer {
@@ -23,6 +24,10 @@ public class ProxyServer {
     private final ProxyConfig config;
     private ServerSocket serverSocket;
     private boolean running = false;
+    private AtomicLong totalBytesTransferred = new AtomicLong(0);
+    private AtomicLong bytesTransferredThisSecond = new AtomicLong(0);
+    public double bytesPerSecond = 0.0;
+    private long lastUpdateTime = System.currentTimeMillis();
 
     private int connectionsMade = 0;
 
@@ -37,14 +42,14 @@ public class ProxyServer {
 
             running = true;
             new Thread(this::proxyWorker).start();
+            new Thread(this::calculateNetworkUsage).start();
         }
     }
 
     public void proxyWorker() {
         try {
 
-            // testing proxy can be done with browser or using curl:
-            // curl -x http://127.0.0.1:7000 google.com
+            // testing proxy can be done with browser:
             while(running) {
                 Socket socket = serverSocket.accept();
 
@@ -82,13 +87,17 @@ public class ProxyServer {
         }
 
         String requestData = builder.toString();
-        String[] requestLine = requestData.split("\\s+");
-        String[] hostAndPort = requestLine[1].split(":");
-        String host = hostAndPort[0];
-        int port = Integer.parseInt(hostAndPort[1]);
 
-
-        Socket request = new Socket(host, port);
+        if(requestData.isEmpty() || requestData.isBlank()) {
+            writer.println("HTTP/1.1 500 Server error or wrong url");
+            writer.println("Proxy-Agent: Mythrium/1.0");
+            writer.println();
+            writer.flush();
+            writer.close();
+            socket.close();
+            return;
+        }
+        Socket request = getRequestSocket(requestData);
 
         writer.println("HTTP/1.1 200 Connection established");
         writer.println("Proxy-Agent: Mythrium/1.0");
@@ -113,18 +122,72 @@ public class ProxyServer {
 
     }
 
+    private static Socket getRequestSocket(String requestData) throws IOException {
+        String[] requestLine = requestData.split("\n")[0].split(" ");
+
+
+        String[] hostAndPort;
+
+        if(requestLine[1].startsWith("http://")) {
+
+            String[] data = requestLine[1].substring(7).split(":");
+            hostAndPort = new String[]{
+                    data[0],
+                    data[1].split("/")[0]
+            };
+
+        } else if(requestLine[1].startsWith("https://")) {
+            String[] data = requestLine[1].substring(8).split(":");
+            hostAndPort = new String[]{
+                    data[0],
+                    data[1].split("/")[0]
+            };
+        } else hostAndPort = requestLine[1].split(":");
+
+
+        String host = hostAndPort[0];
+        int port = Integer.parseInt(hostAndPort[1]);
+
+
+        Socket request = new Socket(host, port);
+        return request;
+    }
+
     private void transferData(InputStream in, OutputStream out) {
         try {
             byte[] buffer = new byte[4096];
             int bytesRead;
 
+            long bytesTransferred = 0;
+
             while ((bytesRead = in.read(buffer)) != -1) {
                 out.write(buffer, 0, bytesRead);
                 out.flush();
+
+                bytesTransferred += bytesRead;
             }
 
+            totalBytesTransferred.addAndGet(bytesTransferred);
+            bytesTransferredThisSecond.addAndGet(bytesTransferred);
 
         } catch(IOException ignored) {}
+    }
+
+    public void calculateNetworkUsage() {
+        while (running) {
+            long currentTime = System.currentTimeMillis();
+            long elapsedTime = currentTime - lastUpdateTime;
+
+            if(elapsedTime >= 1000) {
+                bytesPerSecond = bytesTransferredThisSecond.get() / (elapsedTime / 1000.0);
+                bytesTransferredThisSecond.set(0);
+                lastUpdateTime = currentTime;
+            } else {
+                try {
+                    Thread.sleep(1000 - elapsedTime);
+                } catch (Exception ignored) {}
+            }
+        }
     }
 
     public boolean isRunning() {
@@ -133,5 +196,13 @@ public class ProxyServer {
 
     public int getConnectionsMade() {
         return connectionsMade;
+    }
+
+    public long getTotalBytesTransferred() {
+        return totalBytesTransferred.get();
+    }
+
+    public double getBytesPerSecond() {
+        return bytesPerSecond;
     }
 }
