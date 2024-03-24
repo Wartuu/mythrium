@@ -7287,3 +7287,49 @@ xyz.mythrium.backend.controller.api.AccountController#generateOtpKey(String) map
 2024-03-24T20:18:37.707+01:00 INFO  6344 --- [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-03-24T20:18:37.709+01:00 INFO  6344 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
 2024-03-24T20:18:37.712+01:00 INFO  6344 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
+2024-03-24T20:18:40.825+01:00 INFO  25388 --- [main] x.m.backend.BackendApplication : Starting BackendApplication using Java 17.0.8 with PID 25388 (D:\mythrium\backend\target\classes started by Wartuu in D:\mythrium\backend\runtime)
+2024-03-24T20:18:40.828+01:00 INFO  25388 --- [main] x.m.backend.BackendApplication : No active profile set, falling back to 1 default profile: "default"
+2024-03-24T20:18:41.400+01:00 INFO  25388 --- [main] o.s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-24T20:18:41.459+01:00 INFO  25388 --- [main] o.s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 53 ms. Found 3 JPA repository interfaces.
+2024-03-24T20:18:41.932+01:00 INFO  25388 --- [main] o.s.b.w.e.tomcat.TomcatWebServer : Tomcat initialized with port 8080 (http)
+2024-03-24T20:18:41.941+01:00 INFO  25388 --- [main] o.a.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-0.0.0.0-8080"]
+2024-03-24T20:18:41.943+01:00 INFO  25388 --- [main] o.a.catalina.core.StandardService : Starting service [Tomcat]
+2024-03-24T20:18:41.943+01:00 INFO  25388 --- [main] o.a.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-03-24T20:18:42.006+01:00 INFO  25388 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2024-03-24T20:18:42.007+01:00 INFO  25388 --- [main] o.s.b.w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1136 ms
+2024-03-24T20:18:42.085+01:00 INFO  25388 --- [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
+2024-03-24T20:18:42.239+01:00 INFO  25388 --- [main] com.zaxxer.hikari.pool.HikariPool : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@68ea253b
+2024-03-24T20:18:42.241+01:00 INFO  25388 --- [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
+2024-03-24T20:18:42.312+01:00 INFO  25388 --- [main] o.h.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-03-24T20:18:42.358+01:00 INFO  25388 --- [main] org.hibernate.Version : HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-03-24T20:18:42.387+01:00 INFO  25388 --- [main] o.h.c.i.RegionFactoryInitiator : HHH000026: Second-level cache disabled
+2024-03-24T20:18:42.563+01:00 INFO  25388 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-24T20:18:42.605+01:00 WARN  25388 --- [main] org.hibernate.orm.deprecation : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-03-24T20:18:43.309+01:00 INFO  25388 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-03-24T20:18:43.311+01:00 INFO  25388 --- [main] o.s.o.j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-03-24T20:18:43.319+01:00 INFO  25388 --- [main] x.m.b.component.proxy.ProxyServer : custom proxy started at: 127.0.0.1:7000
+2024-03-24T20:18:43.319+01:00 INFO  25388 --- [main] x.m.b.component.proxy.ProxyServer : custom proxy daily limit set at: 25000 connections
+2024-03-24T20:18:43.506+01:00 INFO  25388 --- [main] o.s.d.j.r.query.QueryEnhancerFactory : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-03-24T20:18:44.063+01:00 WARN  25388 --- [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-03-24T20:18:44.147+01:00 INFO  25388 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping : Adding welcome page: class path resource [static/index.html]
+2024-03-24T20:18:44.258+01:00 INFO  25388 --- [main] o.s.s.web.DefaultSecurityFilterChain : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@56b4951a, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2d58136, org.springframework.security.web.context.SecurityContextHolderFilter@3d4ea4cf, org.springframework.security.web.header.HeaderWriterFilter@70796b21, org.springframework.web.filter.CorsFilter@173a86ad, org.springframework.security.web.authentication.logout.LogoutFilter@429ad94a, xyz.mythrium.backend.component.JwtAuthenticationFilter@758e8b8d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5b34e7bd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@77095c8c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@760dc63, org.springframework.security.web.access.ExceptionTranslationFilter@5aac9d67, org.springframework.security.web.access.intercept.AuthorizationFilter@2d170dac]
+2024-03-24T20:18:44.563+01:00 INFO  25388 --- [main] o.a.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-0.0.0.0-8080"]
+2024-03-24T20:18:44.577+01:00 INFO  25388 --- [main] o.s.b.w.e.tomcat.TomcatWebServer : Tomcat started on port 8080 (http) with context path ''
+2024-03-24T20:18:44.586+01:00 INFO  25388 --- [main] x.m.backend.BackendApplication : Started BackendApplication in 4.239 seconds (process running for 4.648)
+2024-03-24T20:18:48.604+01:00 INFO  25388 --- [http-nio-0.0.0.0-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-24T20:18:48.604+01:00 INFO  25388 --- [http-nio-0.0.0.0-8080-exec-1] o.s.web.servlet.DispatcherServlet : Initializing Servlet 'dispatcherServlet'
+2024-03-24T20:18:48.605+01:00 INFO  25388 --- [http-nio-0.0.0.0-8080-exec-1] o.s.web.servlet.DispatcherServlet : Completed initialization in 1 ms
+2024-03-24T20:19:01.213+01:00 ERROR 25388 --- [Thread-64] x.m.b.component.proxy.ProxyServer : Nawiązane połączenie zostało przerwane przez oprogramowanie zainstalowane w komputerze-hoście
+2024-03-24T20:19:01.586+01:00 ERROR 25388 --- [Thread-67] x.m.b.component.proxy.ProxyServer : Connection reset
+2024-03-24T20:19:02.078+01:00 ERROR 25388 --- [Thread-70] x.m.b.component.proxy.ProxyServer : Nawiązane połączenie zostało przerwane przez oprogramowanie zainstalowane w komputerze-hoście
+2024-03-24T20:19:02.255+01:00 ERROR 25388 --- [Thread-73] x.m.b.component.proxy.ProxyServer : Connection reset
+2024-03-24T20:19:25.926+01:00 ERROR 25388 --- [Thread-76] x.m.b.component.proxy.ProxyServer : Connection reset
+2024-03-24T20:19:39.585+01:00 ERROR 25388 --- [Thread-116] x.m.b.component.proxy.ProxyServer : Nawiązane połączenie zostało przerwane przez oprogramowanie zainstalowane w komputerze-hoście
+2024-03-24T20:19:57.540+01:00 ERROR 25388 --- [Thread-137] x.m.b.component.proxy.ProxyServer : Connection reset
+2024-03-24T20:21:08.771+01:00 ERROR 25388 --- [Thread-158] x.m.b.component.proxy.ProxyServer : Nawiązane połączenie zostało przerwane przez oprogramowanie zainstalowane w komputerze-hoście
+2024-03-24T20:21:08.779+01:00 ERROR 25388 --- [Thread-160] x.m.b.component.proxy.ProxyServer : Nawiązane połączenie zostało przerwane przez oprogramowanie zainstalowane w komputerze-hoście
+2024-03-24T20:21:29.383+01:00 ERROR 25388 --- [Thread-77] x.m.b.component.proxy.ProxyServer : Connection reset
+2024-03-24T20:21:32.769+01:00 ERROR 25388 --- [Thread-83] x.m.b.component.proxy.ProxyServer : Connection reset
+2024-03-24T20:22:39.254+01:00 INFO  25388 --- [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-03-24T20:22:39.256+01:00 INFO  25388 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
+2024-03-24T20:22:39.258+01:00 INFO  25388 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.

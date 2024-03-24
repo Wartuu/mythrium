@@ -3,6 +3,8 @@ package xyz.mythrium.backend.component.proxy;
 
 // public free to use VPN/proxy-server for everyone
 // it will have connection limit for everyone instead of trusted (premium) users
+// every Exception will be ignored for even more privacy reasons
+// proxy is given as is without any proof of working correctly (for now)
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,9 +52,7 @@ public class ProxyServer {
                         () -> {
                             try {
                                 handleConnection(socket);
-                            } catch (IOException e) {
-                                logger.error(e.getLocalizedMessage());
-                            }
+                            } catch (IOException ignored) {}
                         }
                 ).start();
 
@@ -64,9 +64,7 @@ public class ProxyServer {
 
 
 
-        } catch (IOException e) {
-            logger.error(e.getMessage());
-        }
+        } catch (IOException ignored) {}
     }
 
     public void handleConnection(Socket socket) throws IOException{
@@ -84,10 +82,11 @@ public class ProxyServer {
         }
 
         String requestData = builder.toString();
-        String[] requestLine = requestData.split("\n")[0].split(" ");
-        String[] connection = requestLine[1].split(":");
-        String host = connection[0];
-        int port = Integer.parseInt(connection[1]);
+        String[] requestLine = requestData.split("\\s+");
+        String[] hostAndPort = requestLine[1].split(":");
+        String host = hostAndPort[0];
+        int port = Integer.parseInt(hostAndPort[1]);
+
 
         Socket request = new Socket(host, port);
 
@@ -99,17 +98,13 @@ public class ProxyServer {
         Thread clientToServer = new Thread(() -> {
             try {
                 transferData(socket.getInputStream(), request.getOutputStream());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            } catch (IOException ignored) {}
         });
 
         Thread serverToClient = new Thread(() -> {
             try {
                 transferData(request.getInputStream(), socket.getOutputStream());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+            } catch (IOException ignored) {}
         });
 
 
@@ -129,9 +124,7 @@ public class ProxyServer {
             }
 
 
-        } catch(IOException e) {
-            logger.error(e.getMessage());
-        }
+        } catch(IOException ignored) {}
     }
 
     public boolean isRunning() {
