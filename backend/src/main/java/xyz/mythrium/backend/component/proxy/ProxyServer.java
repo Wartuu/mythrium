@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Component
@@ -77,6 +78,7 @@ public class ProxyServer {
         PrintWriter writer = new PrintWriter(socket.getOutputStream());
 
         StringBuilder builder = new StringBuilder();
+
         String line;
         while ((line = reader.readLine()) != null) {
 
@@ -98,6 +100,9 @@ public class ProxyServer {
             return;
         }
         Socket request = getRequestSocket(requestData);
+
+        if(request == null)
+            return;
 
         writer.println("HTTP/1.1 200 Connection established");
         writer.println("Proxy-Agent: Mythrium/1.0");
@@ -123,6 +128,11 @@ public class ProxyServer {
     }
 
     private static Socket getRequestSocket(String requestData) throws IOException {
+
+        if(requestData.isBlank() || requestData.isEmpty() || requestData.split("\n").length == 0)
+            return null;
+
+
         String[] requestLine = requestData.split("\n")[0].split(" ");
 
 
@@ -131,17 +141,32 @@ public class ProxyServer {
         if(requestLine[1].startsWith("http://")) {
 
             String[] data = requestLine[1].substring(7).split(":");
-            hostAndPort = new String[]{
-                    data[0],
-                    data[1].split("/")[0]
-            };
+
+            try {
+                hostAndPort = new String[]{
+                        data[0],
+                        data[1].split("/")[0]
+                };
+            } catch (Exception e) {
+                hostAndPort = new String[]{
+                        data[0],
+                        "80"
+                };
+            }
 
         } else if(requestLine[1].startsWith("https://")) {
             String[] data = requestLine[1].substring(8).split(":");
-            hostAndPort = new String[]{
-                    data[0],
-                    data[1].split("/")[0]
-            };
+            try {
+                hostAndPort = new String[]{
+                        data[0],
+                        data[1].split("/")[0]
+                };
+            } catch (Exception e) {
+                hostAndPort = new String[]{
+                        data[0],
+                        "80"
+                };
+            }
         } else hostAndPort = requestLine[1].split(":");
 
 
@@ -158,17 +183,15 @@ public class ProxyServer {
             byte[] buffer = new byte[4096];
             int bytesRead;
 
-            long bytesTransferred = 0;
-
             while ((bytesRead = in.read(buffer)) != -1) {
                 out.write(buffer, 0, bytesRead);
                 out.flush();
 
-                bytesTransferred += bytesRead;
+                bytesTransferredThisSecond.addAndGet(bytesRead);
+                totalBytesTransferred.addAndGet(bytesRead);
             }
 
-            totalBytesTransferred.addAndGet(bytesTransferred);
-            bytesTransferredThisSecond.addAndGet(bytesTransferred);
+
 
         } catch(IOException ignored) {}
     }
@@ -196,6 +219,8 @@ public class ProxyServer {
 
     public int getConnectionsMade() {
         return connectionsMade;
+
+
     }
 
     public long getTotalBytesTransferred() {
