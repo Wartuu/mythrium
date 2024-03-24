@@ -1,6 +1,7 @@
 package xyz.mythrium.backend.controller.api;
 
 
+import xyz.mythrium.backend.entity.account.Account;
 import xyz.mythrium.backend.entity.media.Note;
 import xyz.mythrium.backend.json.input.NoteInput;
 import xyz.mythrium.backend.json.output.ApiOutput;
@@ -13,8 +14,10 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import xyz.mythrium.backend.service.session.OAuthService;
 
 import java.util.Calendar;
+import java.util.Objects;
 import java.util.UUID;
 
 @RestController
@@ -22,47 +25,53 @@ import java.util.UUID;
 public class NoteController {
 
 
-    @Autowired
-    private NoteService noteService;
+    private final NoteService noteService;
+    private final AccountService accountService;
+    private final OAuthService oAuthService;
 
-    @Autowired
-    private AccountService accountService;
-
+    public NoteController(NoteService noteService, AccountService accountService, OAuthService oAuthService) {
+        this.noteService = noteService;
+        this.accountService = accountService;
+        this.oAuthService = oAuthService;
+    }
 
     @GetMapping("/note/{uuid}")
-    public ResponseEntity<ApiOutput> getNote(@PathVariable(value = "uuid") String uuid) {
+    public ResponseEntity<ApiOutput> getNote(@PathVariable(value = "uuid") String uuid, @CookieValue(value = "session", required = false) String session) {
         if(uuid == null)
             return new ResponseEntity<>(new ApiOutput(false, "no uuid provided"), HttpStatus.OK);
 
         Note note = noteService.getNoteByUUID(uuid);
 
-        noteService.updateViewCounter(uuid);
-
         if(note == null)
             return new ResponseEntity<>(new ApiOutput(false, "uuid does not exists"), HttpStatus.OK);
 
+        if(!note.isPrivate()) {
+            noteService.updateViewCounter(uuid);
+            return new ResponseEntity<>(new NoteReadOutput(true, "success", note.getContent(), note.getViewCount()), HttpStatus.OK);
+        }
 
-        return new ResponseEntity<>(new NoteReadOutput(true, "success", note.getContent(), note.getViewCount()), HttpStatus.OK);
+        Account account = oAuthService.authenticateJWT(session);
+
+        if(account == null)
+            return new ResponseEntity<>(new ApiOutput(false, "invalid session, verification required"), HttpStatus.UNAUTHORIZED);
+
+        if(Objects.equals(account.getId(), note.getAuthorId())) {
+            noteService.updateViewCounter(uuid);
+            return new ResponseEntity<>(new NoteReadOutput(true, "success", note.getContent(), note.getViewCount()), HttpStatus.OK);
+        } else return new ResponseEntity<>(new ApiOutput(false, "you have no access to this resource"), HttpStatus.UNAUTHORIZED);
     }
 
     @PostMapping("/note")
-    public ResponseEntity<ApiOutput> uploadNote(@RequestBody NoteInput input, @RequestHeader(value = HttpHeaders.AUTHORIZATION, required = false) String jwt) {
+    public ResponseEntity<ApiOutput> uploadNote(@RequestBody NoteInput input, @CookieValue("session") String session) {
+        Account account = oAuthService.authenticateJWT(session);
 
-        if(jwt == null)
-            return new ResponseEntity<>(new ApiOutput(false, "not valid session"), HttpStatus.OK);
-
-
-//        User user = accountService.getBySession(jwt);
-//
-//        if(user == null) {
-//            ApiOutput error = new ApiOutput(false, "not logged in");
-//            return new ResponseEntity<>(error, HttpStatus.OK);
-//        }
+        if(account == null)
+            return new ResponseEntity<>(new ApiOutput(false, "invalid session"), HttpStatus.UNAUTHORIZED);
 
         String uuid = UUID.randomUUID().toString();
 
         Note note = new Note();
-        note.setAuthor_id(0L);
+        note.setAuthorId(account.getId());
         note.setUuid(uuid);
         note.setPassword(input.password);
         note.setPrivate(input.isPrivate);

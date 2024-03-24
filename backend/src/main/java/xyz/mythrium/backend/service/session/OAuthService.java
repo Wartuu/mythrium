@@ -1,4 +1,4 @@
-package xyz.mythrium.backend.service.security;
+package xyz.mythrium.backend.service.session;
 
 
 import io.jsonwebtoken.Claims;

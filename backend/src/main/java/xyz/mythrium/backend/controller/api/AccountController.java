@@ -1,28 +1,23 @@
 package xyz.mythrium.backend.controller.api;
 
 
-import com.beust.ah.A;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
-import com.google.zxing.qrcode.QRCodeWriter;
-import jakarta.servlet.http.Cookie;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import xyz.mythrium.backend.entity.account.Account;
 import xyz.mythrium.backend.entity.account.AccountRole;
 import xyz.mythrium.backend.entity.account.Role;
 import xyz.mythrium.backend.json.input.LoginInput;
-import xyz.mythrium.backend.json.input.OtpEnableInput;
 import xyz.mythrium.backend.json.input.RegisterInput;
-import xyz.mythrium.backend.json.output.ApiError;
 import xyz.mythrium.backend.json.output.ApiOutput;
 import xyz.mythrium.backend.json.output.LoginOutput;
 import xyz.mythrium.backend.json.output.OtpGenerationOutput;
 import xyz.mythrium.backend.service.AccountService;
-import xyz.mythrium.backend.service.security.OAuthService;
+import xyz.mythrium.backend.service.session.OAuthService;
 import xyz.mythrium.backend.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -92,6 +87,7 @@ public class AccountController {
 
 
         String otpauthUrl = "otpauth://totp/" + session.getUsername() + "?secret=" + key + "&issuer=Mythrium";
+        System.out.println(otpauthUrl);
         String encodedImage;
 
         try {

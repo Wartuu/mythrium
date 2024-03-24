@@ -13,7 +13,7 @@ public class Note {
     private Long id;
 
     @Column(name = "author_id", nullable = false)
-    private Long author_id;
+    private Long authorId;
 
 
     @Column(name = "uuid", nullable = false)
@@ -37,7 +37,7 @@ public class Note {
     @Column(name = "view_count", nullable = false)
     private int viewCount;
 
-    @Column(name = "content", nullable = false)
+    @Column(name = "content", nullable = false, length = 4096)
     private String content;
 
 
@@ -45,12 +45,12 @@ public class Note {
         return id;
     }
 
-    public Long getAuthor_id() {
-        return author_id;
+    public Long getAuthorId() {
+        return authorId;
     }
 
-    public void setAuthor_id(Long author_id) {
-        this.author_id = author_id;
+    public void setAuthorId(Long authorId) {
+        this.authorId = authorId;
     }
 
     public String getUuid() {

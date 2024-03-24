@@ -1,7 +1,6 @@
 package xyz.mythrium.backend.config;
 
 
-import jakarta.servlet.Filter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +12,7 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import xyz.mythrium.backend.component.JwtAuthenticationFilter;
-import xyz.mythrium.backend.service.security.OAuthService;
+import xyz.mythrium.backend.service.session.OAuthService;
 
 
 @Configuration
@@ -31,7 +30,7 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf(c -> {c.disable();}).addFilterBefore(new JwtAuthenticationFilter(oAuthService), UsernamePasswordAuthenticationFilter.class).authorizeHttpRequests(
+        http.csrf(AbstractHttpConfigurer::disable).addFilterBefore(new JwtAuthenticationFilter(oAuthService), UsernamePasswordAuthenticationFilter.class).authorizeHttpRequests(
                 requests -> requests
                         .requestMatchers("/", "/login", "/register", "/static/**", "/assets/**", "/api/v1/**").permitAll()
                         .requestMatchers("/note/**", "/dashboard/**", "/account/**").hasAuthority("user")
