@@ -21,7 +21,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/note")
 public class NoteController {
 
 
@@ -35,7 +35,7 @@ public class NoteController {
         this.oAuthService = oAuthService;
     }
 
-    @GetMapping("/note/{uuid}")
+    @GetMapping("/get/{uuid}")
     public ResponseEntity<ApiOutput> getNote(@PathVariable(value = "uuid") String uuid, @CookieValue(value = "session", required = false) String session) {
         if(uuid == null)
             return new ResponseEntity<>(new ApiOutput(false, "no uuid provided"), HttpStatus.OK);
@@ -61,7 +61,7 @@ public class NoteController {
         } else return new ResponseEntity<>(new ApiOutput(false, "you have no access to this resource"), HttpStatus.UNAUTHORIZED);
     }
 
-    @PostMapping("/note")
+    @PostMapping("/")
     public ResponseEntity<ApiOutput> uploadNote(@RequestBody NoteInput input, @CookieValue("session") String session) {
         Account account = oAuthService.authenticateJWT(session);
 

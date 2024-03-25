@@ -1,23 +1,6 @@
-jwt:
-  secret: "8936190a62e567679e5c9a04319b1efcb1673543d6b52fc23d30113424aa3f92"
-
-logfile:
-  path: "console.out.log"
-
-server:
-  port: 8080
-  address: 0.0.0.0
-  compression:
-    enabled: true
-    mime-types: text/plain,text/html,text/css,application/javascript,application/json,application/xml,text/xml
-    min-response-size: 10240
-
-proxy:
-  enabled: true
-  port: 7000
-  dailyLimit: 25000
-
 spring:
+  profiles:
+    active: debug
   main:
     banner-mode: off
   datasource:
@@ -31,3 +14,12 @@ spring:
     show-sql: true
     hibernate:
       dll-auto: update
+
+
+server:
+  port: 8080
+  address: 0.0.0.0
+  compression:
+    enabled: true
+    mime-types: text/plain,text/html,text/css,application/javascript,application/json,application/xml,text/xml
+    min-response-size: 10240

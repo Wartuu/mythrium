@@ -129,10 +129,10 @@ public class ProxyServer {
         if(requestData.isBlank() || requestData.isEmpty() || requestData.split("\n").length == 0)
             return null;
 
-
         String[] requestLine = requestData.split("\n")[0].split(" ");
 
         String domain = requestLine[1];
+
 
         if (!domain.startsWith("http://") && !domain.startsWith("https://")) {
             domain = "http://" + domain;
@@ -190,9 +190,7 @@ public class ProxyServer {
             } else {
                 try {
                     Thread.sleep(1000 - elapsedTime);
-                } catch (InterruptedException ignored) {
-                    Thread.currentThread().interrupt();
-                }
+                } catch (InterruptedException ignored) {}
             }
         }
     }

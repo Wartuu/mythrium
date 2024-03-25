@@ -1,0 +1,12 @@
+proxy:
+  enabled: true
+  port: 7000
+  dailyLimit: 900000
+
+springdoc:
+  swagger-ui:
+    enabled: true
+    path: /api/debugging/swagger-ui.html
+  api-docs:
+    enabled: true
+    path: /api/v1/api.json
