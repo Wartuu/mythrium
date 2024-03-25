@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS account_roles (
 
 -- Create 'notes' table
 CREATE TABLE notes (
-    id BIGSERIAL PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     author_id BIGINT NOT NULL,
     uuid VARCHAR(255) NOT NULL,
     password VARCHAR(255),
@@ -37,6 +37,6 @@ CREATE TABLE notes (
     expiration_date DATE,
     creation_date DATE NOT NULL,
     view_count INT NOT NULL,
-    content TEXT NOT NULL
+    content VARCHAR(4096) NOT NULL
 );
 
