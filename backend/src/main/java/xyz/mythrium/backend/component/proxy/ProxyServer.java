@@ -12,8 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.*;
-import java.net.ServerSocket;
-import java.net.Socket;
+import java.net.*;
 import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -27,8 +26,9 @@ public class ProxyServer {
     private boolean running = false;
     private AtomicLong totalBytesTransferred = new AtomicLong(0);
     private AtomicLong bytesTransferredThisSecond = new AtomicLong(0);
-    public double bytesPerSecond = 0.0;
-    private long lastUpdateTime = System.currentTimeMillis();
+    private AtomicLong bytesTransferredThisMinute = new AtomicLong(0);
+    private double bytesPerSecond = 0.0;
+    private double bytesPerMinute = 0.0;
 
     private int connectionsMade = 0;
 
@@ -135,43 +135,27 @@ public class ProxyServer {
 
         String[] requestLine = requestData.split("\n")[0].split(" ");
 
+        String domain = requestLine[1];
 
-        String[] hostAndPort;
+        if (!domain.startsWith("http://") && !domain.startsWith("https://")) {
+            domain = "http://" + domain;
+        }
 
-        if(requestLine[1].startsWith("http://")) {
-
-            String[] data = requestLine[1].substring(7).split(":");
-
-            try {
-                hostAndPort = new String[]{
-                        data[0],
-                        data[1].split("/")[0]
-                };
-            } catch (Exception e) {
-                hostAndPort = new String[]{
-                        data[0],
-                        "80"
-                };
-            }
-
-        } else if(requestLine[1].startsWith("https://")) {
-            String[] data = requestLine[1].substring(8).split(":");
-            try {
-                hostAndPort = new String[]{
-                        data[0],
-                        data[1].split("/")[0]
-                };
-            } catch (Exception e) {
-                hostAndPort = new String[]{
-                        data[0],
-                        "80"
-                };
-            }
-        } else hostAndPort = requestLine[1].split(":");
+        URI uri;
+        try {
+            uri = new URI(domain);
+        } catch (URISyntaxException ignored) {
+            return null;
+        }
 
 
-        String host = hostAndPort[0];
-        int port = Integer.parseInt(hostAndPort[1]);
+        String host = uri.getHost();
+        int port = 80;
+
+
+        if(uri.getPort() != -1) {
+            port = uri.getPort();
+        }
 
 
         Socket request = new Socket(host, port);
@@ -188,6 +172,7 @@ public class ProxyServer {
                 out.flush();
 
                 bytesTransferredThisSecond.addAndGet(bytesRead);
+                bytesTransferredThisMinute.addAndGet(bytesRead);
                 totalBytesTransferred.addAndGet(bytesRead);
             }
 
@@ -197,30 +182,38 @@ public class ProxyServer {
     }
 
     public void calculateNetworkUsage() {
+        long lastUpdateTime = System.currentTimeMillis();
+        long lastMinute = System.currentTimeMillis();
         while (running) {
             long currentTime = System.currentTimeMillis();
             long elapsedTime = currentTime - lastUpdateTime;
 
-            if(elapsedTime >= 1000) {
-                bytesPerSecond = bytesTransferredThisSecond.get() / (elapsedTime / 1000.0);
-                bytesTransferredThisSecond.set(0);
+            if (elapsedTime >= 1000) {
+                bytesPerSecond = bytesTransferredThisSecond.getAndSet(0);
+
+                if(currentTime - lastMinute >= 60000.0) {
+                    bytesPerMinute = bytesTransferredThisMinute.getAndSet(0);
+                    lastMinute = currentTime;
+                }
+
                 lastUpdateTime = currentTime;
             } else {
                 try {
                     Thread.sleep(1000 - elapsedTime);
-                } catch (Exception ignored) {}
+                } catch (InterruptedException ignored) {
+                    Thread.currentThread().interrupt();
+                }
             }
         }
     }
 
-    public boolean isRunning() {
-        return running;
+
+    public ProxyConfig getConfig() {
+        return config;
     }
 
-    public int getConnectionsMade() {
-        return connectionsMade;
-
-
+    public boolean isRunning() {
+        return running;
     }
 
     public long getTotalBytesTransferred() {
@@ -229,5 +222,13 @@ public class ProxyServer {
 
     public double getBytesPerSecond() {
         return bytesPerSecond;
+    }
+
+    public double getBytesPerMinute() {
+        return bytesPerMinute;
+    }
+
+    public int getConnectionsMade() {
+        return connectionsMade;
     }
 }

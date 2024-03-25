@@ -25,11 +25,20 @@ public class ProxyController {
 
     @GetMapping
     public ProxyInfoOutput proxy() {
+        double totalTransfer = (double) server.getTotalBytesTransferred() / 1_048_576;
+        double kilobytesPerSecond = server.getBytesPerSecond() / 1024;
+        double megabytesPerMinute = server.getBytesPerMinute() / 1_048_576;
+
+        totalTransfer = (double) Math.round(totalTransfer * 1000) / 1000;
+        kilobytesPerSecond = (double) Math.round(kilobytesPerSecond * 1000) / 1000;
+        megabytesPerMinute = (double) Math.round(megabytesPerMinute * 1000) / 1000;
+
         return new ProxyInfoOutput(
                 true,
                 "fetched data",
-                (double) server.getTotalBytesTransferred() / 1_048_576,
-                server.getBytesPerSecond() / 1024,
+                totalTransfer,
+                kilobytesPerSecond,
+                megabytesPerMinute,
                 server.isRunning(),
                 server.getConnectionsMade(),
                 config.getDailyLimit() - server.getConnectionsMade()
