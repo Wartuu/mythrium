@@ -42,3 +42,71 @@
 2024-02-06T03:43:39.782+01:00 INFO  11584 --- [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-02-06T03:43:39.784+01:00 INFO  11584 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
 2024-02-06T03:43:39.788+01:00 INFO  11584 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
+2024-03-25T09:15:32.989+01:00 INFO  4500 --- [main] x.m.backend.BackendApplication : Starting BackendApplication using Java 17.0.7 with PID 4500 (C:\dev\mythrium\backend\target\classes started by Wartuu in C:\dev\mythrium\backend)
+2024-03-25T09:15:33.000+01:00 INFO  4500 --- [main] x.m.backend.BackendApplication : No active profile set, falling back to 1 default profile: "default"
+2024-03-25T09:15:35.168+01:00 INFO  4500 --- [main] o.s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-25T09:15:35.365+01:00 INFO  4500 --- [main] o.s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 175 ms. Found 3 JPA repository interfaces.
+2024-03-25T09:15:37.176+01:00 INFO  4500 --- [main] o.s.b.w.e.tomcat.TomcatWebServer : Tomcat initialized with port 8080 (http)
+2024-03-25T09:15:37.205+01:00 INFO  4500 --- [main] o.a.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-0.0.0.0-8080"]
+2024-03-25T09:15:37.209+01:00 INFO  4500 --- [main] o.a.catalina.core.StandardService : Starting service [Tomcat]
+2024-03-25T09:15:37.210+01:00 INFO  4500 --- [main] o.a.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-03-25T09:15:37.373+01:00 INFO  4500 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2024-03-25T09:15:37.375+01:00 INFO  4500 --- [main] o.s.b.w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4248 ms
+2024-03-25T09:15:37.651+01:00 INFO  4500 --- [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
+2024-03-25T09:15:38.110+01:00 INFO  4500 --- [main] com.zaxxer.hikari.pool.HikariPool : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1b24ea2a
+2024-03-25T09:15:38.113+01:00 INFO  4500 --- [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
+2024-03-25T09:15:38.412+01:00 INFO  4500 --- [main] o.h.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-03-25T09:15:38.695+01:00 INFO  4500 --- [main] org.hibernate.Version : HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-03-25T09:15:38.815+01:00 INFO  4500 --- [main] o.h.c.i.RegionFactoryInitiator : HHH000026: Second-level cache disabled
+2024-03-25T09:15:39.730+01:00 INFO  4500 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-25T09:15:39.904+01:00 WARN  4500 --- [main] org.hibernate.orm.deprecation : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-03-25T09:15:41.965+01:00 INFO  4500 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-03-25T09:15:41.970+01:00 INFO  4500 --- [main] o.s.o.j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25T09:15:41.988+01:00 INFO  4500 --- [main] x.m.b.component.proxy.ProxyServer : custom proxy started at: 127.0.0.1:7000
+2024-03-25T09:15:41.989+01:00 INFO  4500 --- [main] x.m.b.component.proxy.ProxyServer : custom proxy daily limit set at: 25000 connections
+2024-03-25T09:15:42.625+01:00 INFO  4500 --- [main] o.s.d.j.r.query.QueryEnhancerFactory : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-03-25T09:15:44.434+01:00 WARN  4500 --- [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-03-25T09:15:45.061+01:00 INFO  4500 --- [main] o.s.s.web.DefaultSecurityFilterChain : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@76b35c38, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@ced7e4a, org.springframework.security.web.context.SecurityContextHolderFilter@6dad684f, org.springframework.security.web.header.HeaderWriterFilter@564d9ec2, org.springframework.web.filter.CorsFilter@af27e00, org.springframework.security.web.authentication.logout.LogoutFilter@642aa8ea, xyz.mythrium.backend.component.JwtAuthenticationFilter@543669de, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@33606f4b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@222ebd21, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3808bdfc, org.springframework.security.web.access.ExceptionTranslationFilter@171b82ea, org.springframework.security.web.access.intercept.AuthorizationFilter@7d1f60cf]
+2024-03-25T09:15:46.573+01:00 INFO  4500 --- [main] o.a.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-0.0.0.0-8080"]
+2024-03-25T09:15:46.611+01:00 INFO  4500 --- [main] o.s.b.w.e.tomcat.TomcatWebServer : Tomcat started on port 8080 (http) with context path ''
+2024-03-25T09:15:46.632+01:00 INFO  4500 --- [main] x.m.backend.BackendApplication : Started BackendApplication in 14.984 seconds (process running for 16.575)
+2024-03-25T09:22:56.355+01:00 INFO  4500 --- [http-nio-0.0.0.0-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-25T09:22:56.357+01:00 INFO  4500 --- [http-nio-0.0.0.0-8080-exec-2] o.s.web.servlet.DispatcherServlet : Initializing Servlet 'dispatcherServlet'
+2024-03-25T09:22:56.362+01:00 INFO  4500 --- [http-nio-0.0.0.0-8080-exec-2] o.s.web.servlet.DispatcherServlet : Completed initialization in 5 ms
+2024-03-25T09:27:10.684+01:00 INFO  4500 --- [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25T09:27:10.691+01:00 INFO  4500 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
+2024-03-25T09:27:10.713+01:00 INFO  4500 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
+2024-03-25T09:27:30.514+01:00 INFO  14796 --- [main] x.m.backend.BackendApplication : Starting BackendApplication using Java 17.0.7 with PID 14796 (C:\dev\mythrium\backend\target\classes started by Wartuu in C:\dev\mythrium\backend)
+2024-03-25T09:27:30.527+01:00 INFO  14796 --- [main] x.m.backend.BackendApplication : No active profile set, falling back to 1 default profile: "default"
+2024-03-25T09:27:32.634+01:00 INFO  14796 --- [main] o.s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-25T09:27:32.845+01:00 INFO  14796 --- [main] o.s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 190 ms. Found 3 JPA repository interfaces.
+2024-03-25T09:27:34.447+01:00 INFO  14796 --- [main] o.s.b.w.e.tomcat.TomcatWebServer : Tomcat initialized with port 8080 (http)
+2024-03-25T09:27:34.469+01:00 INFO  14796 --- [main] o.a.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-0.0.0.0-8080"]
+2024-03-25T09:27:34.473+01:00 INFO  14796 --- [main] o.a.catalina.core.StandardService : Starting service [Tomcat]
+2024-03-25T09:27:34.474+01:00 INFO  14796 --- [main] o.a.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-03-25T09:27:34.638+01:00 INFO  14796 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2024-03-25T09:27:34.641+01:00 INFO  14796 --- [main] o.s.b.w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3976 ms
+2024-03-25T09:27:34.914+01:00 INFO  14796 --- [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
+2024-03-25T09:27:35.394+01:00 INFO  14796 --- [main] com.zaxxer.hikari.pool.HikariPool : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2afdf6b7
+2024-03-25T09:27:35.398+01:00 INFO  14796 --- [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
+2024-03-25T09:27:35.655+01:00 INFO  14796 --- [main] o.h.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-03-25T09:27:35.916+01:00 INFO  14796 --- [main] org.hibernate.Version : HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-03-25T09:27:36.031+01:00 INFO  14796 --- [main] o.h.c.i.RegionFactoryInitiator : HHH000026: Second-level cache disabled
+2024-03-25T09:27:36.840+01:00 INFO  14796 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-25T09:27:37.020+01:00 WARN  14796 --- [main] org.hibernate.orm.deprecation : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-03-25T09:27:39.004+01:00 INFO  14796 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-03-25T09:27:39.009+01:00 INFO  14796 --- [main] o.s.o.j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25T09:27:39.037+01:00 INFO  14796 --- [main] x.m.b.component.proxy.ProxyServer : custom proxy started at: 127.0.0.1:7000
+2024-03-25T09:27:39.038+01:00 INFO  14796 --- [main] x.m.b.component.proxy.ProxyServer : custom proxy daily limit set at: 25000 connections
+2024-03-25T09:27:39.844+01:00 INFO  14796 --- [main] o.s.d.j.r.query.QueryEnhancerFactory : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-03-25T09:27:42.574+01:00 WARN  14796 --- [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-03-25T09:27:43.772+01:00 INFO  14796 --- [main] o.s.s.web.DefaultSecurityFilterChain : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@6e48dc84, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@633aedeb, org.springframework.security.web.context.SecurityContextHolderFilter@55785ee7, org.springframework.security.web.header.HeaderWriterFilter@48f6f272, org.springframework.web.filter.CorsFilter@2449dff5, org.springframework.security.web.authentication.logout.LogoutFilter@aba3735, xyz.mythrium.backend.component.JwtAuthenticationFilter@4d2068ea, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@10bf2726, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@bb78f01, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@65a42136, org.springframework.security.web.access.ExceptionTranslationFilter@54c76c23, org.springframework.security.web.access.intercept.AuthorizationFilter@5f2312f3]
+2024-03-25T09:27:45.166+01:00 INFO  14796 --- [main] o.a.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-0.0.0.0-8080"]
+2024-03-25T09:27:45.211+01:00 INFO  14796 --- [main] o.s.b.w.e.tomcat.TomcatWebServer : Tomcat started on port 8080 (http) with context path ''
+2024-03-25T09:27:45.234+01:00 INFO  14796 --- [main] x.m.backend.BackendApplication : Started BackendApplication in 16.121 seconds (process running for 17.114)
+2024-03-25T09:27:49.299+01:00 INFO  14796 --- [http-nio-0.0.0.0-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-25T09:27:49.300+01:00 INFO  14796 --- [http-nio-0.0.0.0-8080-exec-1] o.s.web.servlet.DispatcherServlet : Initializing Servlet 'dispatcherServlet'
+2024-03-25T09:27:49.302+01:00 INFO  14796 --- [http-nio-0.0.0.0-8080-exec-1] o.s.web.servlet.DispatcherServlet : Completed initialization in 1 ms
+2024-03-25T09:32:11.981+01:00 INFO  14796 --- [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-03-25T09:32:11.986+01:00 INFO  14796 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
+2024-03-25T09:32:12.008+01:00 INFO  14796 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.

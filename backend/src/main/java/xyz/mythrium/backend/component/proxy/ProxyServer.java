@@ -26,10 +26,7 @@ public class ProxyServer {
     private boolean running = false;
     private AtomicLong totalBytesTransferred = new AtomicLong(0);
     private AtomicLong bytesTransferredThisSecond = new AtomicLong(0);
-    private AtomicLong bytesTransferredThisMinute = new AtomicLong(0);
     private double bytesPerSecond = 0.0;
-    private double bytesPerMinute = 0.0;
-
     private int connectionsMade = 0;
 
     @Autowired
@@ -172,7 +169,6 @@ public class ProxyServer {
                 out.flush();
 
                 bytesTransferredThisSecond.addAndGet(bytesRead);
-                bytesTransferredThisMinute.addAndGet(bytesRead);
                 totalBytesTransferred.addAndGet(bytesRead);
             }
 
@@ -190,12 +186,6 @@ public class ProxyServer {
 
             if (elapsedTime >= 1000) {
                 bytesPerSecond = bytesTransferredThisSecond.getAndSet(0);
-
-                if(currentTime - lastMinute >= 60000.0) {
-                    bytesPerMinute = bytesTransferredThisMinute.getAndSet(0);
-                    lastMinute = currentTime;
-                }
-
                 lastUpdateTime = currentTime;
             } else {
                 try {
@@ -222,10 +212,6 @@ public class ProxyServer {
 
     public double getBytesPerSecond() {
         return bytesPerSecond;
-    }
-
-    public double getBytesPerMinute() {
-        return bytesPerMinute;
     }
 
     public int getConnectionsMade() {
