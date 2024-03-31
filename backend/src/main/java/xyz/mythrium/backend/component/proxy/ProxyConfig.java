@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "proxy")
 public class ProxyConfig {
     private boolean enabled = false;
-    private int dailyLimit = 1000;
+    private double usageLimit = 50;
     private int port = 7000;
 
     public boolean isEnabled() {
@@ -19,12 +19,12 @@ public class ProxyConfig {
         this.enabled = enabled;
     }
 
-    public int getDailyLimit() {
-        return dailyLimit;
+    public double getUsageLimit() {
+        return usageLimit;
     }
 
-    public void setDailyLimit(int dailyLimit) {
-        this.dailyLimit = dailyLimit;
+    public void setUsageLimit(double usageLimit) {
+        this.usageLimit = usageLimit;
     }
 
     public int getPort() {

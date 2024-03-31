@@ -1,7 +1,7 @@
 proxy:
   enabled: true
   port: 7000
-  dailyLimit: 900000
+  usageLimit: 9000
 
 springdoc:
   swagger-ui:

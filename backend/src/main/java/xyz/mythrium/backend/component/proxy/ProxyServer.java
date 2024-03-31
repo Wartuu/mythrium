@@ -35,8 +35,8 @@ public class ProxyServer {
 
         if(config.isEnabled()) {
             this.serverSocket = new ServerSocket(config.getPort());
-            logger.info("custom proxy started at: 127.0.0.1:" + config.getPort());
-            logger.info("custom proxy daily limit set at: " + config.getDailyLimit() + " connections");
+            logger.info("proxy started at: 127.0.0.1:" + config.getPort());
+            logger.info("proxy daily transfer limit set at: " + config.getUsageLimit() + " connections");
 
             running = true;
             new Thread(this::proxyWorker).start();
@@ -60,8 +60,9 @@ public class ProxyServer {
                 ).start();
 
                 connectionsMade++;
+                double totalTransfer = (double) totalBytesTransferred.get() / 1_073_741_824;
 
-                if(connectionsMade >= config.getDailyLimit())
+                if(totalTransfer >= config.getUsageLimit())
                     running = false;
             }
 

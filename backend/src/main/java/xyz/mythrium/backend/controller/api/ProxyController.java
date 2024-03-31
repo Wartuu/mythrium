@@ -38,7 +38,7 @@ public class ProxyController {
                 megabytesPerSecond,
                 server.isRunning(),
                 server.getConnectionsMade(),
-                config.getDailyLimit() - server.getConnectionsMade()
+                config.getUsageLimit() - totalTransfer
         );
     }
 
