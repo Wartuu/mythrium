@@ -9,6 +9,7 @@ spring:
     username: postgres
     password: admin
   jpa:
+    open-in-view: false
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     generate-dll: true
     show-sql: true

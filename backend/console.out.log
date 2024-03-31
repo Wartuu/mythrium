@@ -371,3 +371,6 @@
 2024-03-31T17:34:49.476+02:00 INFO  17436 --- [http-nio-0.0.0.0-8080-exec-1] o.s.web.servlet.DispatcherServlet : Completed initialization in 2 ms
 2024-03-31T17:34:49.680+02:00 INFO  17436 --- [http-nio-0.0.0.0-8080-exec-1] x.m.b.service.bot.WorkerService : connection
 2024-03-31T17:34:49.696+02:00 INFO  17436 --- [http-nio-0.0.0.0-8080-exec-1] x.m.b.service.bot.WorkerService : {"session":"TEMP"}
+2024-03-31T17:48:39.819+02:00 INFO  17436 --- [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-03-31T17:48:39.863+02:00 INFO  17436 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
+2024-03-31T17:48:39.895+02:00 INFO  17436 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
