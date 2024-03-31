@@ -338,3 +338,36 @@
 2024-03-31T17:34:06.068+02:00 INFO  1292 --- [SpringApplicationShutdownHook] o.s.o.j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-03-31T17:34:06.073+02:00 INFO  1292 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown initiated...
 2024-03-31T17:34:06.097+02:00 INFO  1292 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Shutdown completed.
+2024-03-31T17:34:16.872+02:00 INFO  17436 --- [main] x.m.backend.BackendApplication : Starting BackendApplication using Java 17.0.7 with PID 17436 (C:\dev\mythrium\backend\target\classes started by Wartuu in C:\dev\mythrium\backend)
+2024-03-31T17:34:16.882+02:00 INFO  17436 --- [main] x.m.backend.BackendApplication : The following 1 profile is active: "debug"
+2024-03-31T17:34:19.306+02:00 INFO  17436 --- [main] o.s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-03-31T17:34:19.476+02:00 INFO  17436 --- [main] o.s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 150 ms. Found 3 JPA repository interfaces.
+2024-03-31T17:34:21.094+02:00 INFO  17436 --- [main] o.s.b.w.e.tomcat.TomcatWebServer : Tomcat initialized with port 8080 (http)
+2024-03-31T17:34:21.113+02:00 INFO  17436 --- [main] o.a.coyote.http11.Http11NioProtocol : Initializing ProtocolHandler ["http-nio-0.0.0.0-8080"]
+2024-03-31T17:34:21.118+02:00 INFO  17436 --- [main] o.a.catalina.core.StandardService : Starting service [Tomcat]
+2024-03-31T17:34:21.118+02:00 INFO  17436 --- [main] o.a.catalina.core.StandardEngine : Starting Servlet engine: [Apache Tomcat/10.1.18]
+2024-03-31T17:34:21.354+02:00 INFO  17436 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/] : Initializing Spring embedded WebApplicationContext
+2024-03-31T17:34:21.359+02:00 INFO  17436 --- [main] o.s.b.w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 4316 ms
+2024-03-31T17:34:21.609+02:00 INFO  17436 --- [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Starting...
+2024-03-31T17:34:22.196+02:00 INFO  17436 --- [main] com.zaxxer.hikari.pool.HikariPool : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5396eeb1
+2024-03-31T17:34:22.203+02:00 INFO  17436 --- [main] com.zaxxer.hikari.HikariDataSource : HikariPool-1 - Start completed.
+2024-03-31T17:34:22.917+02:00 INFO  17436 --- [main] o.h.jpa.internal.util.LogHelper : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-03-31T17:34:23.242+02:00 INFO  17436 --- [main] org.hibernate.Version : HHH000412: Hibernate ORM core version 6.4.1.Final
+2024-03-31T17:34:23.362+02:00 INFO  17436 --- [main] o.h.c.i.RegionFactoryInitiator : HHH000026: Second-level cache disabled
+2024-03-31T17:34:24.274+02:00 INFO  17436 --- [main] o.s.o.j.p.SpringPersistenceUnitInfo : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-03-31T17:34:24.488+02:00 WARN  17436 --- [main] org.hibernate.orm.deprecation : HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2024-03-31T17:34:26.723+02:00 INFO  17436 --- [main] o.h.e.t.j.p.i.JtaPlatformInitiator : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-03-31T17:34:26.731+02:00 INFO  17436 --- [main] o.s.o.j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-03-31T17:34:26.749+02:00 INFO  17436 --- [main] x.m.b.component.proxy.ProxyServer : proxy started at: 127.0.0.1:7000
+2024-03-31T17:34:26.753+02:00 INFO  17436 --- [main] x.m.b.component.proxy.ProxyServer : proxy daily transfer limit set at: 9000.0 connections
+2024-03-31T17:34:27.368+02:00 INFO  17436 --- [main] o.s.d.j.r.query.QueryEnhancerFactory : Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-03-31T17:34:29.489+02:00 WARN  17436 --- [main] o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-03-31T17:34:33.057+02:00 INFO  17436 --- [main] o.s.s.web.DefaultSecurityFilterChain : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@4947b8a7, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7cad6289, org.springframework.security.web.context.SecurityContextHolderFilter@49de1717, org.springframework.security.web.header.HeaderWriterFilter@73f506d7, org.springframework.web.filter.CorsFilter@5655d64, org.springframework.security.web.authentication.logout.LogoutFilter@724d4c0a, xyz.mythrium.backend.component.JwtAuthenticationFilter@22ff53d1, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@24bf95ec, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@13ae0ffd, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@568945a9, org.springframework.security.web.access.ExceptionTranslationFilter@252d690, org.springframework.security.web.access.intercept.AuthorizationFilter@bfe49f9]
+2024-03-31T17:34:34.357+02:00 INFO  17436 --- [main] o.a.coyote.http11.Http11NioProtocol : Starting ProtocolHandler ["http-nio-0.0.0.0-8080"]
+2024-03-31T17:34:34.397+02:00 INFO  17436 --- [main] o.s.b.w.e.tomcat.TomcatWebServer : Tomcat started on port 8080 (http) with context path ''
+2024-03-31T17:34:34.427+02:00 INFO  17436 --- [main] x.m.backend.BackendApplication : Started BackendApplication in 18.782 seconds (process running for 19.86)
+2024-03-31T17:34:49.468+02:00 INFO  17436 --- [http-nio-0.0.0.0-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/] : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-03-31T17:34:49.468+02:00 INFO  17436 --- [http-nio-0.0.0.0-8080-exec-1] o.s.web.servlet.DispatcherServlet : Initializing Servlet 'dispatcherServlet'
+2024-03-31T17:34:49.476+02:00 INFO  17436 --- [http-nio-0.0.0.0-8080-exec-1] o.s.web.servlet.DispatcherServlet : Completed initialization in 2 ms
+2024-03-31T17:34:49.680+02:00 INFO  17436 --- [http-nio-0.0.0.0-8080-exec-1] x.m.b.service.bot.WorkerService : connection
+2024-03-31T17:34:49.696+02:00 INFO  17436 --- [http-nio-0.0.0.0-8080-exec-1] x.m.b.service.bot.WorkerService : {"session":"TEMP"}
