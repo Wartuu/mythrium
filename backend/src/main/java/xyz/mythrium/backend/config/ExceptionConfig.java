@@ -39,7 +39,7 @@ public class ExceptionConfig extends ResponseEntityExceptionHandler {
     protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
         StringBuilder information = new StringBuilder();
         information.append(ex.getMethod()).append(" is not supported. Implementend methods are: ");
-        ex.getSupportedHttpMethods().forEach(httpMethod -> information.append(information + " "));
+        ex.getSupportedHttpMethods().forEach(httpMethod -> information.append(information).append(" "));
 
         ApiError error = new ApiError(false, information.toString(), HttpStatus.METHOD_NOT_ALLOWED);
         return new ResponseEntity<>(error, error.status);
