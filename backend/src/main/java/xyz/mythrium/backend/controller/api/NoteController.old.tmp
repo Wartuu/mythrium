@@ -1,0 +1,51 @@
+    @GetMapping("/get/{uuid}")
+    public ResponseEntity<ApiOutput> getNote(@PathVariable(value = "uuid") String uuid, @CookieValue(value = "session", required = false) String session) {
+        if(uuid == null)
+            return new ResponseEntity<>(new ApiOutput(false, "no uuid provided"), HttpStatus.OK);
+
+        Note note = noteService.getNoteByUUID(uuid);
+
+        if(note == null)
+            return new ResponseEntity<>(new ApiOutput(false, "uuid does not exists"), HttpStatus.OK);
+
+        if(!note.isPrivate()) {
+            noteService.updateViewCounter(uuid);
+            return new ResponseEntity<>(new NoteReadOutput(true, "success", note.getContent(), note.getViewCount()), HttpStatus.OK);
+        }
+
+        Account account = oAuthService.authenticateJWT(session);
+
+        if(account == null)
+            return new ResponseEntity<>(new ApiOutput(false, "invalid session, verification required"), HttpStatus.UNAUTHORIZED);
+
+        if(Objects.equals(account.getId(), note.getAuthorId())) {
+            noteService.updateViewCounter(uuid);
+            return new ResponseEntity<>(new NoteReadOutput(true, "success", note.getContent(), note.getViewCount()), HttpStatus.OK);
+        } else return new ResponseEntity<>(new ApiOutput(false, "you have no access to this resource"), HttpStatus.UNAUTHORIZED);
+    }
+
+    @PostMapping("/")
+    public ResponseEntity<ApiOutput> uploadNote(@RequestBody NoteInput input, @CookieValue("session") String session) {
+        Account account = oAuthService.authenticateJWT(session);
+
+        if(account == null)
+            return new ResponseEntity<>(new ApiOutput(false, "invalid session"), HttpStatus.UNAUTHORIZED);
+
+        String uuid = UUID.randomUUID().toString();
+
+        Note note = new Note();
+        note.setAuthorId(account.getId());
+        note.setUuid(uuid);
+        note.setPassword(input.password);
+        note.setPrivate(input.isPrivate);
+        note.setBurnAfterRead(input.burnAfterRead);
+        note.setExpirationDate(input.expirationDate);
+        note.setCreationDate(Calendar.getInstance().getTime());
+        note.setContent(input.content);
+        note.setViewCount(0);
+
+        noteService.addNote(note);
+
+        NoteWriteOutput output = new NoteWriteOutput(true, "note created", uuid);
+        return new ResponseEntity<>(output, HttpStatus.OK);
+    }

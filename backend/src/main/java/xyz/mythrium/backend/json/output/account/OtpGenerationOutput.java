@@ -1,4 +1,6 @@
-package xyz.mythrium.backend.json.output;
+package xyz.mythrium.backend.json.output.account;
+
+import xyz.mythrium.backend.json.output.ApiOutput;
 
 public class OtpGenerationOutput extends ApiOutput {
     private final String key;

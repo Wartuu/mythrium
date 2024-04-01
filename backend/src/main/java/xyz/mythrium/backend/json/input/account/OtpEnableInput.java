@@ -1,4 +1,4 @@
-package xyz.mythrium.backend.json.input;
+package xyz.mythrium.backend.json.input.account;
 
 public class OtpEnableInput {
     public final String authentication;

@@ -3,7 +3,7 @@ package xyz.mythrium.backend.entity.media;
 
 import jakarta.persistence.*;
 
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Table(name = "notes")
@@ -19,30 +19,27 @@ public class Note {
     @Column(name = "uuid", nullable = false)
     private String uuid;
 
-    @Column(name = "password")
-    private String password;
+    @Column(name = "title", nullable = false)
+    private String title;
 
-    @Column(name = "is_private", nullable = false)
-    private boolean isPrivate;
-
-    @Column(name = "burn_after_read", nullable = false)
-    private boolean isBurnAfterRead;
-
-    @Column(name = "expiration_date")
-    private Date expirationDate;
-
-    @Column(name = "creation_date", nullable = false)
-    private Date creationDate;
-
-    @Column(name = "view_count", nullable = false)
-    private int viewCount;
-
-    @Column(name = "content", nullable = false, length = 4096)
+    @Column(name = "content", nullable = false, length = 8192)
     private String content;
 
+    @Column(name = "is_private", nullable = false)
+    private Boolean isPrivate;
+
+    @Column(name = "creation_date", nullable = false)
+    private Date date;
+
+    @Column(name = "view_count", nullable = false)
+    private Integer viewCount;
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getAuthorId() {
@@ -61,52 +58,12 @@ public class Note {
         this.uuid = uuid;
     }
 
-    public String getPassword() {
-        return password;
+    public String getTitle() {
+        return title;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public boolean isPrivate() {
-        return isPrivate;
-    }
-
-    public void setPrivate(boolean aPrivate) {
-        isPrivate = aPrivate;
-    }
-
-    public boolean isBurnAfterRead() {
-        return isBurnAfterRead;
-    }
-
-    public void setBurnAfterRead(boolean burnAfterRead) {
-        isBurnAfterRead = burnAfterRead;
-    }
-
-    public Date getExpirationDate() {
-        return expirationDate;
-    }
-
-    public void setExpirationDate(Date expirationDate) {
-        this.expirationDate = expirationDate;
-    }
-
-    public Date getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public int getViewCount() {
-        return viewCount;
-    }
-
-    public void setViewCount(int viewCount) {
-        this.viewCount = viewCount;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getContent() {
@@ -115,5 +72,29 @@ public class Note {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Boolean getPrivate() {
+        return isPrivate;
+    }
+
+    public void setPrivate(Boolean aPrivate) {
+        isPrivate = aPrivate;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Integer getViewCount() {
+        return viewCount;
+    }
+
+    public void setViewCount(Integer viewCount) {
+        this.viewCount = viewCount;
     }
 }

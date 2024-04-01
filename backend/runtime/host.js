@@ -27,5 +27,5 @@ async function startUpload(stream) {
         console.log("Finished");
     }
 
-    media.start(500);
+    media.start(1);
 }

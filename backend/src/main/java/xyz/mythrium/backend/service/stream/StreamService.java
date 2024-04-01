@@ -26,15 +26,12 @@ public class StreamService extends BinaryWebSocketHandler {
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        System.out.println("connection");
 
         if(session.getUri().getQuery() == null) {
-            System.out.println("no query data");
             session.close();
         }
 
         String[] params = session.getUri().getQuery().split("&");
-
         for (String param : params) {
             String key = param.split("=")[0];
             String value = param.split("=")[1];

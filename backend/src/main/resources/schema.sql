@@ -31,12 +31,39 @@ CREATE TABLE notes (
     id SERIAL PRIMARY KEY,
     author_id BIGINT NOT NULL,
     uuid VARCHAR(255) NOT NULL,
-    password VARCHAR(255),
     is_private BOOLEAN NOT NULL,
-    burn_after_read BOOLEAN NOT NULL,
     expiration_date DATE,
     creation_date DATE NOT NULL,
     view_count INT NOT NULL,
     content VARCHAR(4096) NOT NULL
 );
+
+CREATE TABLE notes (
+    id SERIAL PRIMARY KEY,
+    author_id BIGINT NOT NULL,
+    uuid VARCHAR(255) NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    content VARCHAR(8192) NOT NULL,
+    is_private BOOLEAN NOT NULL,
+    creation_date DATE NOT NULL,
+    view_count INT NOT NULL
+);
+
+CREATE TABLE attachments (
+    id SERIAL PRIMARY KEY,
+    author_id BIGINT NOT NULL,
+    uuid VARCHAR(255) NOT NULL,
+    content BYTEA NOT NULL,
+    is_private BOOLEAN NOT NULL,
+    creation_date DATE NOT NULL
+);
+
+CREATE TABLE proxy_network (
+    id SERIAL PRIMARY KEY,
+    account_id BIGINT NOT NULL,
+    current_ip VARCHAR(128),
+    bandwidth_used BIGINT NOT NULL DEFAULT 0,
+);
+
+
 

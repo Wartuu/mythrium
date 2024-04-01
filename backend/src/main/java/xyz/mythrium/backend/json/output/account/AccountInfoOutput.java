@@ -1,7 +1,8 @@
-package xyz.mythrium.backend.json.output;
+package xyz.mythrium.backend.json.output.account;
 
 
 import xyz.mythrium.backend.entity.account.Account;
+import xyz.mythrium.backend.json.output.ApiOutput;
 
 import java.util.Date;
 
