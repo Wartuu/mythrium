@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import xyz.mythrium.backend.service.session.OAuthService;
 
 import java.util.Calendar;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -63,31 +64,35 @@ public class NoteController {
     }
 
     @GetMapping("/get/{uuid}")
-    public ResponseEntity<ApiOutput> get(@PathVariable("uuid") String uuid, @CookieValue("session") String session) {
+    public ResponseEntity<ApiOutput> get(@PathVariable("uuid") String uuid, @CookieValue(value = "session", required = false) String session) {
         Note note = noteService.getNoteByUUID(uuid);
 
         if(note == null)
             return CommonResponse.RESOURCE_NOT_FOUND;
 
-        Optional<Account> author = accountService.getAccountById(note.getId());
 
-        if(author.isEmpty())
+        Optional<Account> author = accountService.getAccountById(note.getAuthorId());
+
+        if(!author.isPresent())
             return new ResponseEntity<>(new ApiOutput(false, "internal server error"), HttpStatus.INTERNAL_SERVER_ERROR);
 
         NoteContentOutput output = new NoteContentOutput(note, author.get().getUsername());
 
 
-        if(!note.isPrivate())
+        if(!note.isPrivate()) {
+            noteService.updateViewCounter(uuid);
             return new ResponseEntity<>(output, HttpStatus.OK);
+        }
 
         Account sessionAccount = oAuthService.authenticateJWT(session);
 
         if(sessionAccount == null)
             return CommonResponse.RESOURCE_NOT_FOUND; // faking not existing note (security reasons)
 
-        if(sessionAccount.getId().equals(author.get().getId()))
+        if(sessionAccount.getId().equals(author.get().getId())) {
+            noteService.updateViewCounter(uuid);
             return new ResponseEntity<>(output, HttpStatus.OK);
-        else
+        } else
             return CommonResponse.RESOURCE_NOT_FOUND; // faking not existing note
     }
 
@@ -97,6 +102,13 @@ public class NoteController {
         return null;
     }
 
+    @GetMapping("/list")
+    public ResponseEntity<List<Note>> listPublic() {
+        List<Note> notes = noteService.getAllNotes();
+
+        return new ResponseEntity<>(notes, HttpStatus.OK);
+
+    }
 
 
 
