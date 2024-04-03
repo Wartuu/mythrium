@@ -3,7 +3,8 @@ package xyz.mythrium.backend.entity.media;
 
 import jakarta.persistence.*;
 
-import java.sql.Date;
+import java.util.Date;
+
 
 @Entity
 @Table(name = "notes")
@@ -29,7 +30,7 @@ public class Note {
     private Boolean isPrivate;
 
     @Column(name = "creation_date", nullable = false)
-    private Date date;
+    private Date creationDate;
 
     @Column(name = "view_count", nullable = false)
     private Integer viewCount;
@@ -74,20 +75,20 @@ public class Note {
         this.content = content;
     }
 
-    public Boolean getPrivate() {
+    public Boolean isPrivate() {
         return isPrivate;
     }
 
-    public void setPrivate(Boolean aPrivate) {
-        isPrivate = aPrivate;
+    public void setPrivate(Boolean isPrivate) {
+        this.isPrivate = isPrivate;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getCreationDate() {
+        return creationDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
     }
 
     public Integer getViewCount() {
