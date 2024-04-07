@@ -88,6 +88,8 @@ public class ProxyServer {
 
         String requestData = builder.toString();
 
+        System.out.println(requestData);
+
         if(requestData.isEmpty() || requestData.isBlank()) {
             writer.println("HTTP/1.1 500 Server error or wrong url");
             writer.println("Proxy-Agent: Mythrium/1.0");

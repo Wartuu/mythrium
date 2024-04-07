@@ -1,10 +1,14 @@
 package xyz.mythrium.backend.controller.api;
 
 
+import discord4j.common.util.Snowflake;
+import discord4j.core.object.entity.channel.TextChannel;
+import discord4j.core.object.presence.ClientPresence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import xyz.mythrium.backend.component.bot.DiscordBot;
 import xyz.mythrium.backend.component.proxy.ProxyConfig;
 import xyz.mythrium.backend.component.proxy.ProxyServer;
 import xyz.mythrium.backend.json.output.ProxyInfoOutput;
@@ -15,7 +19,6 @@ public class ProxyController {
 
     private final ProxyServer server;
     private final ProxyConfig config;
-
 
     @Autowired
     public ProxyController(ProxyServer server, ProxyConfig config) {

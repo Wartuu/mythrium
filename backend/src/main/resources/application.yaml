@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: debug
+    active: debug,secret
   main:
     banner-mode: off
   datasource:
