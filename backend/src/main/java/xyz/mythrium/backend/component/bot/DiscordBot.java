@@ -26,7 +26,7 @@ public class DiscordBot {
     private final WorkerScriptService workerScriptService;
 
 
-    private GatewayDiscordClient client = null;
+    private GatewayDiscordClient client;
 
     @Autowired
     public DiscordBot(DiscordConfig config, AccountService accountService, NoteService noteService, WorkerService workerService, WorkerScriptService workerScriptService) {
@@ -36,12 +36,11 @@ public class DiscordBot {
         this.workerService = workerService;
         this.workerScriptService = workerScriptService;
 
-        GatewayDiscordClient client = DiscordClientBuilder.create(config.getTOKEN())
+        client = DiscordClientBuilder.create(config.getTOKEN())
                 .build()
                 .login()
                 .block();
     }
-
 
     @Bean
     public GatewayDiscordClient gatewayDiscordClient() {

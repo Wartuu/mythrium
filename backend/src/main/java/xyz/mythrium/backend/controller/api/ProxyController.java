@@ -2,6 +2,7 @@ package xyz.mythrium.backend.controller.api;
 
 
 import discord4j.common.util.Snowflake;
+import discord4j.core.GatewayDiscordClient;
 import discord4j.core.object.entity.channel.TextChannel;
 import discord4j.core.object.presence.ClientPresence;
 import org.springframework.beans.factory.annotation.Autowired;
