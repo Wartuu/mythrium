@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-	<div id="app">Dashboard</div>
+	Dashboard
 </template>
 
 <style scoped lang="scss"></style>

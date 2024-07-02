@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-	<div id="app">Register</div>
+	Register
 </template>
 
 <style scoped lang="scss"></style>

@@ -1,7 +1,8 @@
 <script setup></script>
 
 <template>
-	<div id="app">Login</div>
+	Login
 </template>
 
-<style scoped lang="scss"></style>
+<style lang="scss">
+</style>

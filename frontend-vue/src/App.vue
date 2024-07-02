@@ -2,9 +2,11 @@
 
 <template>
 	<div id="app">
-		app#
 		<router-view></router-view>
 	</div>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+@import "@/styles/_variables.scss";
+@import "@/styles/_global.scss";
+</style>

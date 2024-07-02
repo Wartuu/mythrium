@@ -1,0 +1,139 @@
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/static/JetBrainsMono-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('/static/JetBrainsMono-Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+}
+
+* {
+    scrollbar-width: thin;
+    scrollbar-color: $purple $background;
+ 
+    font-family: 'JetBrains Mono', monospace;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background-color: $background;
+	color: snow;
+}
+
+#app {
+	width: 100vw;
+	height: 100vh;
+}
+
+.button-action {
+    height: 35px;
+    width: 125px;
+
+    border: none;
+    color: white;
+    text-align: center;
+
+    background-color: desaturate($color: $blue, $amount: 25);
+    border: 1px;
+    border-radius: 10px;
+
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+
+.button-link {
+    text-decoration: none;
+    width: 125px;
+    height: 35px;
+    display: flex;
+    position: fixed;
+}
+
+.button-comment {
+    height: 35px;
+    width: 125px;
+
+    border: none;
+    color: $shadow;
+    text-align: center;
+
+    background-color: $gray;
+
+    border: 1px;
+    border-radius: 10px;
+
+    transition-duration: 0.5s;
+    cursor: pointer;
+}
+
+.button-action:hover {
+    background-color: $blue;
+    box-shadow: 1px 1px 10px $shadow;
+}
+
+
+.button-comment:hover {
+    box-shadow: 4px 4px 10px $shadow;
+    transform: translate(0, -2px);
+
+    background-color: $lime;
+}
+
+.purple-gradient-background {
+	width: 100vw;
+	height: 100vh;
+
+	background: $background;
+	background: linear-gradient(180deg, $background 60%, rgba(106,90,205,1) 130%);
+}
+
+.header {
+    font-size: 50px;
+    text-shadow: 2px 2px 5px darken($color: #FFFFFF, $amount: 50);
+
+    text-align: center;
+    align-self: center;
+
+    margin: 25px;
+}
+
+.details {
+    margin: 10px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.comment {
+    font-size: 15px;
+    color: $gray;
+}
+
+.center-flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.end-flex {
+	display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+
+.start-flex {
+	display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+a {
+    text-decoration: none;
+    color: $lime;
+}
