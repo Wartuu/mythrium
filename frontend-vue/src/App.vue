@@ -2,12 +2,9 @@
 
 <template>
 	<div id="app">
+		app#
 		<router-view></router-view>
 	</div>
 </template>
 
-<style lang="scss">
-body {
-	background-color: $background;
-}
-</style>
+<style lang="scss"></style>

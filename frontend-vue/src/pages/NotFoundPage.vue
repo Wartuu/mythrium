@@ -1,7 +1,5 @@
 <script setup></script>
 
-<template>
-	<div id="app">Home</div>
-</template>
+<template>404 - Not Found</template>
 
 <style scoped lang="scss"></style>
