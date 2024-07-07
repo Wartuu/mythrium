@@ -5,6 +5,6 @@
     "singleQuote": true,
     "trailingComma": "none",
     "printWidth": 80,
-    "bracketSpacing": true,
+    "bracketSpacing": false,
     "arrowParens": "avoid"
 }

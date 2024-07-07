@@ -1,0 +1,46 @@
+#cards {
+	height: 80vh;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+
+	@media (max-width: 900px) {
+		flex-direction: column;
+		justify-content: flex-start;
+		height: fit-content;
+		padding-bottom: 25px;
+		padding-top: 25px;
+	}
+}
+
+.card {
+	width: 500px;
+	height: 500px;
+	background-color: $shadow;
+	transition-duration: 0.5s;
+	border-radius: 10px;
+
+	margin: 10px;
+	color: white;
+
+	// Common styles for both card and large-card
+	box-shadow: 2px 2px 5px $light-shadow;
+	backdrop-filter: blur(5px);
+	border: 1px solid rgba($color: $purple, $alpha: 0.9);
+
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+
+	&:not(.no-hover):hover {
+		box-shadow: 4px 4px 10px $shadow;
+		transform: translate(0, -2px);
+	}
+
+	@media (max-width: 550px) {
+		width: 90%;
+	}
+}

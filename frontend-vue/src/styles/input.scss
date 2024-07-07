@@ -1,0 +1,92 @@
+input[type='text'],
+input[type='password'],
+input[type='email'] {
+	width: 50%;
+	height: 25px;
+
+	border: none;
+	outline: none;
+
+	background-color: $background;
+	color: white;
+}
+
+input[type='checkbox'] {
+	width: 15px;
+	height: 15px;
+
+	color: $gray;
+	background: $gray;
+
+	&:checked {
+		accent-color: $light-purple;
+	}
+}
+
+.comment-url {
+	color: $gray;
+	font-size: 10px;
+
+	text-align: center;
+	align-self: center;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.button-action {
+	height: 35px;
+	width: 125px;
+
+	border: none;
+	color: white;
+	text-align: center;
+
+	background-color: desaturate($color: $blue, $amount: 25);
+	border: 1px;
+	border-radius: 10px;
+
+	transition-duration: 0.5s;
+	cursor: pointer;
+}
+
+.button-link {
+	text-decoration: none;
+	width: 125px;
+	height: 35px;
+	display: flex;
+	position: fixed;
+}
+
+.button-comment {
+	height: 35px;
+	width: 125px;
+
+	border: none;
+	color: $shadow;
+	text-align: center;
+
+	background-color: $gray;
+
+	border: 1px;
+	border-radius: 10px;
+
+	transition-duration: 0.5s;
+	cursor: pointer;
+}
+
+.button-action:hover {
+	background-color: $blue;
+	box-shadow: 1px 1px 10px $shadow;
+}
+
+.button-comment:hover {
+	box-shadow: 4px 4px 10px $shadow;
+	transform: translate(0, -2px);
+
+	background-color: $lime;
+}
+
+a {
+	text-decoration: none;
+	color: $lime;
+}
