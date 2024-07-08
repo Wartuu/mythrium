@@ -90,3 +90,24 @@ a {
 	text-decoration: none;
 	color: $lime;
 }
+
+.spinner {
+	width: 25px;
+	height: 25px;
+
+	border-radius: 50%;
+
+	border: 5px solid snow;
+	border-right-color: $light-purple;
+	animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
+}
