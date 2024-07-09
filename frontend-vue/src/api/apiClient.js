@@ -7,7 +7,7 @@ async function sendRequest(url, data, method = 'POST', options) {
 
 	var session = localStorage.getItem('session');
 	if (session !== null) {
-		headers['Authorization'] = session;
+		headers['Authorization'] = `Bearer ${session}`;
 	}
 
 	const response = await fetch(baseUrl + url, {
