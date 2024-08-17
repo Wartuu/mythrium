@@ -1,4 +1,4 @@
-package xyz.mythrium.backend.component;
+package xyz.mythrium.backend.config;
 
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -16,5 +16,13 @@ public class IntegrationConfig {
 
     public String getTwitch() {
         return twitch;
+    }
+
+    public void setDiscord(String discord) {
+        this.discord = discord;
+    }
+
+    public void setTwitch(String twitch) {
+        this.twitch = twitch;
     }
 }
