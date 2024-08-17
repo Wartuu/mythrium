@@ -46,7 +46,6 @@ public class ProxyServer {
 
     public void proxyWorker() {
         try {
-
             // testing proxy can be done with browser:
             while(running) {
                 Socket socket = serverSocket.accept();
@@ -87,8 +86,6 @@ public class ProxyServer {
         }
 
         String requestData = builder.toString();
-
-        System.out.println(requestData);
 
         if(requestData.isEmpty() || requestData.isBlank()) {
             writer.println("HTTP/1.1 500 Server error or wrong url");
