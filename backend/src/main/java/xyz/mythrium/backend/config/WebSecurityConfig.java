@@ -30,7 +30,7 @@ public class WebSecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf(AbstractHttpConfigurer::disable).addFilterBefore(new JwtAuthenticationFilter(oAuthService), UsernamePasswordAuthenticationFilter.class).authorizeHttpRequests(
+        http.csrf(AbstractHttpConfigurer::disable).cors(AbstractHttpConfigurer::disable).addFilterBefore(new JwtAuthenticationFilter(oAuthService), UsernamePasswordAuthenticationFilter.class).authorizeHttpRequests(
                 requests -> requests
                         .requestMatchers("/", "/login", "/register", "/static/**", "/assets/**", "/api/v1/**").permitAll()
                         .requestMatchers("/note/**", "/dashboard/**", "/account/**").hasAuthority("user")
