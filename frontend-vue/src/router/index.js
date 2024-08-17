@@ -1,4 +1,5 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import sendRequest from '@/api/apiClient';
+import {createRouter, createWebHistory} from 'vue-router';
 
 const Home = () => import('@/pages/HomePage.vue');
 const Register = () => import('@/pages/RegisterPage.vue');
@@ -23,11 +24,17 @@ const routes = [
 	},
 	{
 		path: '/dashboard',
-		component: Dashboard
+		component: Dashboard,
+		meta: {
+			requiresAuth: true
+		}
 	},
 	{
 		path: '/workers',
-		component: Workers
+		component: Workers,
+		meta: {
+			requiresAuth: true
+		}
 	},
 	{
 		path: '/note/:uuid',
@@ -42,6 +49,17 @@ const routes = [
 const router = createRouter({
 	history: createWebHistory(),
 	routes
+});
+
+router.beforeEach(async (to, from, next) => {
+	if (to.matched.some(record => record.meta.requiresAuth)) {
+		next({
+			path: '/login',
+			query: {redirect: to.fullPath}
+		});
+	} else {
+		next();
+	}
 });
 
 export default router;

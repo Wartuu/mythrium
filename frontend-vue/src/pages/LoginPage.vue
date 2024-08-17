@@ -26,7 +26,7 @@ export default {
 				<router-link to="/register" custom v-slot="{ navigate }">
 					<a class="comment-url" style="margin: 25px; margin-bottom: 0px" @click="navigate"
 						@keypress.enter="navigate">
-						Login instead
+						Register instead
 					</a>
 				</router-link>
 				<br />

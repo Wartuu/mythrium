@@ -20,7 +20,7 @@ async function sendRequest(url, data, method = 'POST', options) {
 		...options
 	});
 
-	response.json();
+	return response.json();
 }
 
 export default sendRequest;
