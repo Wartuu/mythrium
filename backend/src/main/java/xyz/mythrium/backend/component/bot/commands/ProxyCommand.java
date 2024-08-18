@@ -4,6 +4,7 @@ import discord4j.core.event.domain.interaction.ApplicationCommandInteractionEven
 import discord4j.core.spec.EmbedCreateFields;
 import discord4j.core.spec.EmbedCreateSpec;
 import discord4j.core.spec.InteractionApplicationCommandCallbackReplyMono;
+import discord4j.discordjson.json.ApplicationCommandRequest;
 import discord4j.rest.util.Color;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -54,5 +55,14 @@ public class ProxyCommand implements Command {
 
 
         return event.reply().withEmbeds(embed);
+    }
+
+    @Override
+    public ApplicationCommandRequest initializeCommand() {
+        ApplicationCommandRequest command = ApplicationCommandRequest.builder()
+                .name(getName())
+                .description("display informations about proxy").build();
+
+        return command;
     }
 }
