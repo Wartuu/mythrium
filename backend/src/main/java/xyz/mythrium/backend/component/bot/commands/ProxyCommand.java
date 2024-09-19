@@ -59,10 +59,9 @@ public class ProxyCommand implements Command {
 
     @Override
     public ApplicationCommandRequest initializeCommand() {
-        ApplicationCommandRequest command = ApplicationCommandRequest.builder()
+        return ApplicationCommandRequest.builder()
                 .name(getName())
-                .description("display informations about proxy").build();
-
-        return command;
+                .description("display informations about proxy")
+                .build();
     }
 }

@@ -1,7 +1,7 @@
 proxy:
   enabled: false
   port: 7000
-  usageLimit: 100
+  usageLimit: 75
 
 springdoc:
   swagger-ui:
